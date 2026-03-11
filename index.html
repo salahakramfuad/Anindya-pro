@@ -8,7 +8,509 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydro Smart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
+body{
+background:linear-gradient(135deg,#020617,#0f172a,#020617);
+color:white;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:rgba(0,0,0,0.4);
+backdrop-filter:blur(15px);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-size:28px;
+font-weight:700;
+background:linear-gradient(90deg,#38bdf8,#22c55e);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:35px;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+font-weight:500;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#38bdf8;
+}
+
+.searchBox input{
+padding:8px 15px;
+border-radius:20px;
+border:none;
+outline:none;
+background:#1e293b;
+color:white;
+}
+
+/* HERO */
+
+.hero{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:100px 8%;
+}
+
+.heroText h1{
+font-size:60px;
+background:linear-gradient(90deg,#38bdf8,#22c55e);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:20px;
+}
+
+.heroText p{
+font-size:18px;
+color:#cbd5f5;
+margin-bottom:30px;
+}
+
+.buyBtn{
+padding:15px 35px;
+border:none;
+border-radius:40px;
+background:linear-gradient(90deg,#38bdf8,#22c55e);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.buyBtn:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px rgba(34,197,94,0.6);
+}
+
+.heroImage img{
+width:420px;
+filter:drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+}
+
+/* PRODUCT */
+
+.product{
+padding:100px 8%;
+text-align:center;
+}
+
+.product h2{
+font-size:40px;
+margin-bottom:40px;
+}
+
+.products{
+display:flex;
+justify-content:center;
+gap:40px;
+}
+
+.card{
+background:rgba(255,255,255,0.03);
+border:1px solid rgba(255,255,255,0.1);
+padding:30px;
+border-radius:20px;
+width:260px;
+transition:0.4s;
+backdrop-filter:blur(10px);
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 20px 40px rgba(0,0,0,0.6);
+}
+
+.card img{
+width:180px;
+margin-bottom:15px;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.card button{
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:linear-gradient(90deg,#38bdf8,#22c55e);
+color:white;
+cursor:pointer;
+}
+
+/* FEATURES */
+
+.features{
+padding:100px 8%;
+text-align:center;
+}
+
+.featureGrid{
+display:flex;
+justify-content:center;
+gap:40px;
+margin-top:40px;
+}
+
+.feature{
+background:rgba(255,255,255,0.03);
+padding:40px;
+border-radius:15px;
+width:280px;
+}
+
+/* ORDER */
+
+.order{
+padding:100px 8%;
+text-align:center;
+}
+
+.order form{
+display:flex;
+flex-direction:column;
+width:350px;
+margin:auto;
+gap:15px;
+}
+
+.order input,
+.order select{
+padding:12px;
+border-radius:8px;
+border:none;
+background:#1e293b;
+color:white;
+}
+
+.order button{
+padding:12px;
+border:none;
+border-radius:25px;
+background:linear-gradient(90deg,#22c55e,#38bdf8);
+color:white;
+cursor:pointer;
+}
+
+/* CONTACT */
+
+.contact{
+padding:100px 8%;
+text-align:center;
+}
+
+.contact form{
+display:flex;
+flex-direction:column;
+width:350px;
+margin:auto;
+gap:15px;
+}
+
+.contact input,
+.contact textarea{
+padding:12px;
+border:none;
+border-radius:8px;
+background:#1e293b;
+color:white;
+}
+
+.contact button{
+padding:12px;
+border:none;
+border-radius:25px;
+background:linear-gradient(90deg,#38bdf8,#22c55e);
+color:white;
+cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+padding:30px;
+text-align:center;
+background:#020617;
+color:#94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">HydroSmart</div>
+
+<nav>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#product">Product</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#order">Order</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<div class="searchBox">
+<input type="text" placeholder="Search...">
+</div>
+
+</header>
+
+
+<section class="hero" id="home">
+
+<div class="heroText">
+<h1>Hydration. Perfected.</h1>
+<p>The smartest water bottle ever created. Stay focused, energized and hydrated with Hydro Smart.</p>
+
+<button class="buyBtn" id="orderNowBtn">Order Now</button>
+
+</div>
+
+<div class="heroImage">
+<!-- together.png content: three bottles mockup, kept as is -->
+<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%231e293b'/%3E%3Ctext x='20' y='40' fill='%23ffffff' font-size='14'%3E21%E2%84%83%3C/text%3E%3Ctext x='20' y='70' fill='%23ffffff' font-size='14'%3E10:00%3C/text%3E%3Ctext x='20' y='100' fill='%23ffffff' font-size='14'%3ETIME TODRINK%3C/text%3E%3Ctext x='20' y='130' fill='%23ffffff' font-size='14'%3EHydro Smart%3C/text%3E%3Ctext x='120' y='40' fill='%23ffffff' font-size='14'%3E21%E2%84%83%3C/text%3E%3Ctext x='120' y='70' fill='%23ffffff' font-size='14'%3E10:00%3C/text%3E%3Ctext x='120' y='100' fill='%23ffffff' font-size='14'%3ETIME TODRINK%3C/text%3E%3Ctext x='120' y='130' fill='%23ffffff' font-size='14'%3EHydroSmart%3C/text%3E%3Ctext x='220' y='40' fill='%23ffffff' font-size='14'%3E21%E2%84%83%3C/text%3E%3Ctext x='220' y='70' fill='%23ffffff' font-size='14'%3E10:00%3C/text%3E%3Ctext x='220' y='100' fill='%23ffffff' font-size='14'%3ETIME TODRINK%3C/text%3E%3Ctext x='220' y='130' fill='%23ffffff' font-size='14'%3EHydro Smart%3C/text%3E%3C/svg%3E"
+     alt="Three bottles together">
+</div>
+
+</section>
+
+
+<section class="product" id="product">
+
+<h2>Our Smart Bottles</h2>
+
+<div class="products">
+
+<div class="card" data-product="Ocean Blue">
+<!-- bottle_blue.png content represented -->
+<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%231e3b5e'/%3E%3Ctext x='25' y='60' fill='%23ffffff' font-size='16'%3E21%E2%84%83%3C/text%3E%3Ctext x='25' y='100' fill='%23ffffff' font-size='16'%3E10:00%3C/text%3E%3Ctext x='25' y='140' fill='%23ffffff' font-size='12'%3ETIME TO%3C/text%3E%3Ctext x='25' y='160' fill='%23ffffff' font-size='12'%3EDRINK%3C/text%3E%3Ctext x='25' y='185' fill='%23ffffff' font-size='14'%3EHydro Smart%3C/text%3E%3C/svg%3E"
+     alt="Ocean Blue bottle">
+<h3>Ocean Blue</h3>
+<p>$9.99</p>
+<button class="buy-card-btn">Buy</button>
+</div>
+
+<div class="card" data-product="Energy Green">
+<!-- bottle_green.png content represented -->
+<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%231e5e3b'/%3E%3Ctext x='25' y='60' fill='%23ffffff' font-size='16'%3E21%E2%84%83%3C/text%3E%3Ctext x='25' y='100' fill='%23ffffff' font-size='16'%3E10:00%3C/text%3E%3Ctext x='25' y='140' fill='%23ffffff' font-size='12'%3ETIME TO%3C/text%3E%3Ctext x='25' y='160' fill='%23ffffff' font-size='12'%3EDRINK%3C/text%3E%3Ctext x='25' y='185' fill='%23ffffff' font-size='14'%3EHydro Smart%3C/text%3E%3C/svg%3E"
+     alt="Energy Green bottle">
+<h3>Energy Green</h3>
+<p>$9.99</p>
+<button class="buy-card-btn">Buy</button>
+</div>
+
+<div class="card" data-product="Galaxy Purple">
+<!-- bottle_purple.png content represented -->
+<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%234b1e5e'/%3E%3Ctext x='25' y='60' fill='%23ffffff' font-size='16'%3E21%E2%84%83%3C/text%3E%3Ctext x='25' y='100' fill='%23ffffff' font-size='16'%3E10:00%3C/text%3E%3Ctext x='25' y='140' fill='%23ffffff' font-size='12'%3ETIME TO%3C/text%3E%3Ctext x='25' y='160' fill='%23ffffff' font-size='12'%3EDRINK%3C/text%3E%3Ctext x='25' y='185' fill='%23ffffff' font-size='14'%3EHydro Smart%3C/text%3E%3C/svg%3E"
+     alt="Galaxy Purple bottle">
+<h3>Galaxy Purple</h3>
+<p>$9.99</p>
+<button class="buy-card-btn">Buy</button>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="features" id="features">
+
+<h2>Smart Features</h2>
+
+<div class="featureGrid">
+
+<div class="feature">
+<h3>Temperature Detection</h3>
+<p>Know the temperature of your drink instantly.</p>
+</div>
+
+<div class="feature">
+<h3>Smart Reminder</h3>
+<p>Never forget to hydrate with automated reminders.</p>
+</div>
+
+<div class="feature">
+<h3>Touch Display</h3>
+<p>Elegant touch interface with time and alerts.</p>
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="order" id="order">
+
+<h2>Order Your Hydro Smart</h2>
+
+<form id="orderForm">
+
+<input type="text" placeholder="Full Name" id="fullName" required>
+<input type="email" placeholder="Email" id="email" required>
+
+<select id="bottleColor" required>
+<option value="">Select Bottle Color</option>
+<option value="Ocean Blue">Ocean Blue</option>
+<option value="Energy Green">Energy Green</option>
+<option value="Galaxy Purple">Galaxy Purple</option>
+</select>
+
+<input type="number" placeholder="Quantity" id="quantity" min="1" required>
+
+<button type="submit">Place Order</button>
+
+</form>
+
+</section>
+
+
+
+<section class="contact" id="contact">
+
+<h2>Contact Us</h2>
+
+<div class="contactInfo">
+
+<p>Email: support@hydrosmart.com</p>
+<p>Phone: +880 1234 567890</p>
+<p>Location: Dhaka, Bangladesh</p>
+
+</div>
+
+<form id="contactForm">
+
+<input type="text" placeholder="Name" required>
+<input type="email" placeholder="Email" required>
+<textarea placeholder="Your message" required></textarea>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+</section>
+
+
+<footer>
+
+<p>© 2026 Hydro Smart. All rights reserved.</p>
+
+</footer>
+
+
+<script>
+// === ORDER NOW / BUY BUTTONS REDIRECT TO ORDER SECTION ===
+// Function to smoothly scroll to order section
+function scrollToOrder() {
+    document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Attach to main "Order Now" button in hero
+document.getElementById('orderNowBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    scrollToOrder();
+});
+
+// Attach to all "Buy" buttons on product cards
+document.querySelectorAll('.buy-card-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Optional: pre-fill color based on card? we can try to set select option
+        // Find the parent card to extract product name
+        let card = this.closest('.card');
+        if (card) {
+            let productName = card.querySelector('h3')?.innerText; // e.g., "Ocean Blue"
+            let colorSelect = document.getElementById('bottleColor');
+            if (colorSelect && productName) {
+                // Loop options to find match
+                for (let opt of colorSelect.options) {
+                    if (opt.text === productName) {
+                        opt.selected = true;
+                        break;
+                    }
+                }
+            }
+        }
+        scrollToOrder();
+    });
+});
+
+// SEARCH FUNCTIONALITY (as in original js.js)
+const searchInput = document.querySelector(".searchBox input");
+if (searchInput) {
+    searchInput.addEventListener("keyup", function() {
+        let value = searchInput.value.toLowerCase();
+        let products = document.querySelectorAll(".card");
+        products.forEach(function(card) {
+            let text = card.innerText.toLowerCase();
+            if (text.includes(value)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    });
+}
+
+// FORM SUBMISSION HANDLING (prevent default + alert)
+document.querySelectorAll("form").forEach(function(form) {
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        alert("Thank you! Your request has been received.");
+        // Optionally reset the form
+        // form.reset();
+    });
+});
+
+// Also handle the contact form separately if needed, but same behavior
+// (the above loop covers both order and contact forms)
+
+// Additional: make sure the order form reset doesn't conflict, but alert is fine.
+// Small improvement: pre-fill color from URL or something? Not needed.
+
+// Ensure that the buy button also triggers pre-fill as we already did.
+
+</script>
+
+</body>
+</html>
 <body>
 
 <header>
@@ -135,7 +637,7 @@
 
 <section class="contact" id="contact">
 
-<h2>Contact Us</h2>
+<h2>Contact Us For Any Issue wd</h2>
 
 <div class="contactInfo">
 
