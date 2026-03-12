@@ -74,14 +74,13 @@ justify-content:space-between;
 padding:100px 8%;
 }
 
-.heroText h1{
-font-size:60px;
-background:linear-gradient(90deg,#38bdf8,#22c55e);
-
--webkit-text-fill-color:transparent;
-margin-bottom:20px;
+.hero-text h1{
+    font-size:60px;
+    background:linear-gradient(90deg,#38bdf8,#22c55e);
+    -webkit-background-clip:text;   /* THIS LINE IS MISSING */
+    -webkit-text-fill-color:transparent;
+    margin-bottom:20px;
 }
-
 .heroText p{
 font-size:18px;
 color:#cbd5f5;
