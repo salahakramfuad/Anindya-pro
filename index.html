@@ -11,314 +11,388 @@
 <link rel="stylesheet" href="css.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-.container{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  color: white;
 }
 
 /* HEADER */
-
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 8%;
-background:rgba(0,0,0,0.4);
-backdrop-filter:blur(15px);
-position:sticky;
-top:0;
-z-index:100;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(15px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.logo{
-font-size:28px;
-font-weight:700;
-background:linear-gradient(90deg,#38bdf8,#22c55e);
-color:black;
--webkit-background-clip: text;
--webkit-text-fill-color:transparent;
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-    
-img{
+
+img {
   max-width: 100%;
   height: auto;
 }
-    /* Desktop */
-.container{
+
+nav ul {
   display: flex;
+  list-style: none;
+  gap: 35px;
 }
 
-/* Mobile */
-@media (max-width: 768px){
-  .container{
-    flex-direction: column;
-  }
-}
-nav ul{
-display:flex;
-list-style:none;
-gap:35px;
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
 }
 
-nav a{
-text-decoration:none;
-color:white;
-font-weight:500;
-transition:0.3s;
+nav a:hover {
+  color: #38bdf8;
 }
 
-nav a:hover{
-color:#38bdf8;
-}
-
-.searchBox input{
-padding:8px 15px;
-border-radius:20px;
-border:none;
-outline:none;
-background:#1e293b;
-color:white;
+.searchBox input {
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background: #1e293b;
+  color: white;
 }
 
 /* HERO */
-
-.hero{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:100px 8%;
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px 8%;
+  flex-wrap: wrap;
+  gap: 40px;
 }
 
-.hero-text h1{
-    font-size:60px;
-    background:linear-gradient(90deg,#38bdf8,#22c55e);
-    -webkit-background-clip:text;   /* THIS LINE IS MISSING */
-    -webkit-text-fill-color:transparent;
-    margin-bottom:20px;
-}
-.heroText p{
-font-size:18px;
-color:#cbd5f5;
-margin-bottom:30px;
+.hero-text h1 {
+  font-size: 60px;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
 }
 
-.buyBtn{
-padding:15px 35px;
-border:none;
-border-radius:40px;
-background:linear-gradient(90deg,#38bdf8,#22c55e);
-color:white;
-font-size:16px;
-cursor:pointer;
-transition:0.3s;
+.hero-text p {
+  font-size: 18px;
+  color: #cbd5f5;
+  margin-bottom: 30px;
 }
 
-.buyBtn:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px rgba(34,197,94,0.6);
+.buyBtn {
+  padding: 15px 35px;
+  border: none;
+  border-radius: 40px;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.heroImage img{
-width:420px;
-filter:drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+.buyBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
+}
+
+.heroImage img {
+  width: 420px;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
 }
 
 /* PRODUCT */
-
-.product{
-padding:100px 8%;
-text-align:center;
+.product {
+  padding: 100px 8%;
+  text-align: center;
 }
 
-.product h2{
-font-size:40px;
-margin-bottom:40px;
+.product h2 {
+  font-size: 40px;
+  margin-bottom: 40px;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.products{
-display:flex;
-justify-content:center;
-gap:40px;
+.products {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 
-.card{
-background:rgba(255,255,255,0.03);
-border:1px solid rgba(255,255,255,0.1);
-padding:30px;
-border-radius:20px;
-width:260px;
-transition:0.4s;
-backdrop-filter:blur(10px);
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+  width: 260px;
+  transition: 0.4s;
+  backdrop-filter: blur(10px);
 }
 
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 20px 40px rgba(0,0,0,0.6);
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
-.card img{
-width:180px;
-margin-bottom:15px;
+.card img {
+  width: 180px;
+  margin-bottom: 15px;
 }
 
-.card h3{
-margin-bottom:10px;
+.card h3 {
+  margin-bottom: 10px;
+  color: white;
 }
 
-.card button{
-padding:10px 20px;
-border:none;
-border-radius:20px;
-background:linear-gradient(90deg,#38bdf8,#22c55e);
-color:white;
-cursor:pointer;
+.card p {
+  margin-bottom: 15px;
+  color: #94a3b8;
+}
+
+.card button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card button:hover {
+  transform: scale(1.05);
 }
 
 /* FEATURES */
-
-.techfeatures{
-padding:100px 8%;
-text-align:center;
+.techfeatures, .bodyfeatures, .customization-section {
+  padding: 100px 8%;
+  text-align: center;
 }
 
-.featureGrid{
-display:flex;
-justify-content:center;
-gap:40px;
-margin-top:40px;
+.featureGrid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+  flex-wrap: wrap;
 }
 
-.techfeature{
-background:rgba(255,255,255,0.03);
-padding:40px;
-border-radius:15px;
-width:280px;
+.techfeature, .bodyfeature, .customization {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 40px 30px;
+  border-radius: 15px;
+  width: 280px;
+  transition: transform 0.3s ease;
 }
 
-/*bodyfeatures*/
-
-  
-.bodyfeatures{
-  padding:100px 8%;
-  text-align:center;
+.techfeature:hover, .bodyfeature:hover, .customization:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.featureGrid{
-  display:flex;
-  justify-content:center;
-  gap:40px;
-  margin-top:40px;
+/* Style for headings */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.bodyfeature{
-  background:rgba(255,255,255,0.03);
-  padding:40px;
-  border-radius:15px;
-  width:280px;
+h3 {
+  margin-bottom: 15px;
+  color: #fff;
+  font-size: 1.5rem;
 }
 
-/*customization*/
-
-.customization{
-  padding:100px 8%;
-  text-align:center;
-  background:rgba(255,255,255,0.03);
-  border-radius:15px;
-  width:280px;
+p {
+  line-height: 1.6;
+  color: #ccc;
 }
 
-.featureGrid{
-  display:flex;
-  justify-content:center;
-  gap:40px;
-  margin-top:40px;
-}
 /* ORDER */
-
-.order{
-padding:100px 8%;
-text-align:center;
+.order {
+  padding: 100px 8%;
+  text-align: center;
 }
 
-.order form{
-display:flex;
-flex-direction:column;
-width:350px;
-margin:auto;
-gap:15px;
+.order form {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin: auto;
+  gap: 15px;
 }
 
 .order input,
-.order select{
-padding:12px;
-border-radius:8px;
-border:none;
-background:#1e293b;
-color:white;
+.order select {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #1e293b;
+  color: white;
 }
 
-.order button{
-padding:12px;
-border:none;
-border-radius:25px;
-background:linear-gradient(90deg,#22c55e,#38bdf8);
-color:white;
-cursor:pointer;
+.order button {
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #22c55e, #38bdf8);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.order button:hover {
+  transform: scale(1.02);
 }
 
 /* CONTACT */
-
-.contact{
-padding:100px 8%;
-text-align:center;
+.contact {
+  padding: 100px 8%;
+  text-align: center;
 }
 
-.contact form{
-display:flex;
-flex-direction:column;
-width:350px;
-margin:auto;
-gap:15px;
+.contactInfo {
+  margin-bottom: 40px;
+}
+
+.contactInfo p {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+.contact form {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin: auto;
+  gap: 15px;
 }
 
 .contact input,
-.contact textarea{
-padding:12px;
-border:none;
-border-radius:8px;
-background:#1e293b;
-color:white;
+.contact textarea {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #1e293b;
+  color: white;
+  resize: vertical;
 }
 
-.contact button{
-padding:12px;
-border:none;
-border-radius:25px;
-background:linear-gradient(90deg,#38bdf8,#22c55e);
-color:white;
-cursor:pointer;
+.contact button {
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
 }
-    .hydration{
-        color:black
-    }
+
+.contact button:hover {
+  transform: scale(1.02);
+}
 
 /* FOOTER */
+footer {
+  padding: 30px;
+  text-align: center;
+  background: #020617;
+  color: #94a3b8;
+}
 
-footer{
-padding:30px;
-text-align:center;
-background:#020617;
-color:#94a3b8;
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 5%;
+  }
+  
+  .hero-text h1 {
+    font-size: 40px;
+  }
+  
+  .heroImage img {
+    width: 280px;
+  }
+  
+  .products {
+    gap: 20px;
+  }
+  
+  .featureGrid {
+    gap: 20px;
+  }
+  
+  .techfeature, .bodyfeature, .customization {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .order form,
+  .contact form {
+    width: 90%;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 32px;
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 280px;
+  }
 }
 </style>
 </head>
@@ -326,248 +400,181 @@ color:#94a3b8;
 <body>
 
 <header>
-<div class="logo">HydroSmart</div>
-
-<nav>
-<ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#product">Product</a></li>
-<li><a href="#techfeatures"> Tech Features</a></li>
-<li><a href="#bodyfeatures"> Body Features</a></li>
-<li><a href="#customization"> Customization</a></li>
-<li><a href="#order">Order</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
-
-<div class="searchBox">
-<input type="text" placeholder="Search...">
-</div>
-
+  <div class="logo">HydroSmart</div>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#product">Product</a></li>
+      <li><a href="#techfeatures">Tech Features</a></li>
+      <li><a href="#bodyfeatures">Body Features</a></li>
+      <li><a href="#customization">Customization</a></li>
+      <li><a href="#order">Order</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="searchBox">
+    <input type="text" placeholder="Search...">
+  </div>
 </header>
 
-
 <section class="hero" id="home">
-
-<div class="heroText">
-<h1 class="hydration" >Hydration Perfected.</h1>
-<p>The smartest water bottle ever created. Stay focused, energized and hydrated with Hydro Smart.</p>
-
-<button class="buyBtn" id="orderNowBtn">Order Now</button>
-
-</div>
-
-<div class="heroImage">
-<!-- together.png content: three bottles mockup, kept as is -->
-<img src="Hydro Smart logo in futuristic glow.png">
-</div>
-
+  <div class="hero-text">
+    <h1>Hydration Perfected.</h1>
+    <p>The smartest water bottle ever created. Stay focused, energized and hydrated with Hydro Smart.</p>
+    <button class="buyBtn" id="orderNowBtn">Order Now</button>
+  </div>
+  <div class="heroImage">
+    <img src="Logo.png" alt="Hydro Smart Bottle">
+  </div>
 </section>
-
 
 <section class="product" id="product">
-
-<h2>Our Smart Bottles</h2>
-
-<div class="products">
-
-<div class="card" data-product="Ocean Blue">
-<!-- bottle_blue.png content represented -->
-<img src="bottle_blue.png">
-<h3>Ocean Blue</h3>
-<p>$9.99</p>
-<button class="buy-card-btn">Buy</button>
-</div>
-
-<div class="card" data-product="Energy Green">
-<!-- bottle_green.png content represented -->
-<img src="bottle_green.png">
-<h3>Energy Green</h3>
-<p>$9.99</p>
-<button class="buy-card-btn">Buy</button>
-</div>
-
-<div class="card" data-product="Galaxy Purple">
-<!-- bottle_purple.png content represented -->
-<img src="bottle_purple.png">
-<h3>Galaxy Purple</h3>
-<p>$9.99</p>
-<button class="buy-card-btn">Buy</button>
-</div>
-    
-<div class="card" data-product="Arctic White">
-<!--white.png content represented -->
-<img src="white.png">
-<h3>Arctic White (Special Edition)</h3>
-<p>$7.99</p>
-<button class="buy-card-btn">Buy</button>
-</div>
-    
-<div class="card" data-product="Rose Red">
-<!-- red.png content represented -->
-<img src="red.png">
-<h3>Rose Red(Special Edition)</h3>
-<p>$7.99</p>
-<button class="buy-card-btn">Buy</button>
-</div>
-
+  <h2>Our Smart Bottles</h2>
+  <div class="products">
+    <div class="card" data-product="Ocean Blue">
+      <img src="bottle_blue.png" alt="Ocean Blue Bottle">
+      <h3>Ocean Blue</h3>
+      <p>$9.99</p>
+      <button class="buy-card-btn">Buy</button>
+    </div>
+    <div class="card" data-product="Energy Green">
+      <img src="bottle_green.png" alt="Energy Green Bottle">
+      <h3>Energy Green</h3>
+      <p>$9.99</p>
+      <button class="buy-card-btn">Buy</button>
+    </div>
+    <div class="card" data-product="Galaxy Purple">
+      <img src="bottle_purple.png" alt="Galaxy Purple Bottle">
+      <h3>Galaxy Purple</h3>
+      <p>$9.99</p>
+      <button class="buy-card-btn">Buy</button>
+    </div>
+    <div class="card" data-product="Arctic White">
+      <img src="white.png" alt="Arctic White Bottle">
+      <h3>Arctic White (Special Edition)</h3>
+      <p>$7.99</p>
+      <button class="buy-card-btn">Buy</button>
+    </div>
+    <div class="card" data-product="Rose Red">
+      <img src="red.png" alt="Rose Red Bottle">
+      <h3>Rose Red (Special Edition)</h3>
+      <p>$7.99</p>
+      <button class="buy-card-btn">Buy</button>
+    </div>
+  </div>
 </section>
 
-
 <section class="techfeatures" id="techfeatures">
-
-<h2>Smart Features</h2>
-
-<div class="featureGrid">
-
-<div class="techfeature">
-<h3>Temperature Detection</h3>
-<p>Know the temperature of your drink instantly.</p>
-</div>
-
-<div class="techfeature">
-<h3>Smart Reminder</h3>
-<p>Never forget to hydrate with automated reminders.</p>
-</div>
-
-<div class="techfeature">
-<h3>Touch Display</h3>
-<p>Elegant touch interface with alerts.</p>
-</div>
-
-<div class="techfeature">  
-<h3>Time Display</h3>
-<p>Shows the international time.(time can be fixed depending on the region)</p>
-</div> 
-
-</div>
+  <h2>Smart Features</h2>
+  <div class="featureGrid">
+    <div class="techfeature">
+      <h3>Temperature Detection</h3>
+      <p>Know the temperature of your drink instantly.</p>
+    </div>
+    <div class="techfeature">
+      <h3>Smart Reminder</h3>
+      <p>Never forget to hydrate with automated reminders.</p>
+    </div>
+    <div class="techfeature">
+      <h3>Touch Display</h3>
+      <p>Elegant touch interface with alerts.</p>
+    </div>
+    <div class="techfeature">  
+      <h3>Time Display</h3>
+      <p>Shows the international time. (time can be fixed depending on the region)</p>
+    </div> 
+  </div>
 </section>
 
 <section class="bodyfeatures" id="bodyfeatures">
-
-<h2>Bottle's Own Features</h2>
-
-<div class="featureGrid">
-  
-<div class="bodyfeature">  
-<h3>Body Material</h3>
-<p>Made with stainless steel to prevent rusting.</p>
-</div>
-  
-<div class="bodyfeature">  
-<h3>ThermoLock Technology</h3>
-<p>Keep hot water for 2h+ and cold water for 6h+.</p>
-</div>
-  
-</div>
-
+  <h2>Bottle's Own Features</h2>
+  <div class="featureGrid">
+    <div class="bodyfeature">  
+      <h3>Body Material</h3>
+      <p>Made with stainless steel to prevent rusting.</p>
+    </div>
+    <div class="bodyfeature">  
+      <h3>ThermoLock Technology</h3>
+      <p>Keep hot water for 2h+ and cold water for 6h+.</p>
+    </div>
+  </div>
 </section>
 
-<section class="customization" id="customization">
-
-<h2>Personal Customization</h2>
-
-<div class="featureGrid">
-  
-<div class="customization">  
-<h3>Custom Colours</h3>
-<p>Custom colour bottles can be produced by extra payment.($1)</p>
-</div>
-  
-<div class="customization">  
-<h3>Self-cleaning Technology</h3>
-<p>Uses UV rays to clean the bottle automatticly by extra payment.($7)</p>
-</div>
-  
-</div>
-
+<section class="customization-section" id="customization">
+  <h2>Personal Customization</h2>
+  <div class="featureGrid">
+    <div class="customization">  
+      <h3>Custom Colours</h3>
+      <p>Custom colour bottles can be produced by extra payment. ($1)</p>
+    </div>
+    <div class="customization">  
+      <h3>Self-cleaning Technology</h3>
+      <p>Uses UV rays to clean the bottle automatically by extra payment. ($7)</p>
+    </div>
+  </div>
 </section>
-  
+
 <section class="order" id="order">
-
-<h2>Order Your Hydro Smart</h2>
-
-<form id="orderForm">
-
-<input type="text" placeholder="Full Name" id="fullName" required>
-<input type="email" placeholder="Email" id="email" required>
-
-<select id="bottleColor" required>
-<option value="">Select Bottle Color</option>
-<option value="Ocean Blue">Ocean Blue</option>
-<option value="Energy Green">Energy Green</option>
-<option value="Galaxy Purple">Galaxy Purple</option>
-<option value="Arctic White">Arctic White</option>
-<option value="Rose Red">Rose Red</option>
-</select>
-
-<input type="number" placeholder="Quantity" id="quantity" min="1" required>
-
-<button type="submit">Place Order</button>
-
-</form>
-
+  <h2>Order Your Hydro Smart</h2>
+  <form id="orderForm">
+    <input type="text" placeholder="Full Name" id="fullName" required>
+    <input type="email" placeholder="Email" id="email" required>
+    <select id="bottleColor" required>
+      <option value="">Select Bottle Color</option>
+      <option value="Ocean Blue">Ocean Blue</option>
+      <option value="Energy Green">Energy Green</option>
+      <option value="Galaxy Purple">Galaxy Purple</option>
+      <option value="Arctic White">Arctic White</option>
+      <option value="Rose Red">Rose Red</option>
+    </select>
+    <input type="number" placeholder="Quantity" id="quantity" min="1" required>
+    <button type="submit">Place Order</button>
+  </form>
 </section>
-
-
 
 <section class="contact" id="contact">
-
-<h2>Contact Us For Any Issue</h2>
-
-<div class="contactInfo">
-
-<p>Email: support@hydrosmart.com</p>
-<p>Phone: +880 1234 567890</p>
-<p>Location: Dhaka, Bangladesh</p>
-
-</div>
-
-<form id="contactForm">
-
-<input type="text" placeholder="Name" required>
-<input type="email" placeholder="Email" required>
-<textarea placeholder="Your message" required></textarea>
-
-<button type="submit">Send Message</button>
-
-</form>
-
+  <h2>Contact Us For Any Issue</h2>
+  <div class="contactInfo">
+    <p>Email: support@hydrosmart.com</p>
+    <p>Phone: +880 1234 567890</p>
+    <p>Location: Dhaka, Bangladesh</p>
+  </div>
+  <form id="contactForm">
+    <input type="text" placeholder="Name" required>
+    <input type="email" placeholder="Email" required>
+    <textarea placeholder="Your message" rows="5" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
 </section>
 
-
 <footer>
-
-<p>© 2026 Hydro Smart. All rights reserved.</p>
-
+  <p>© 2026 Hydro Smart. All rights reserved.</p>
 </footer>
 
-
 <script>
-// === ORDER NOW / BUY BUTTONS REDIRECT TO ORDER SECTION ===
 // Function to smoothly scroll to order section
 function scrollToOrder() {
     document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
 }
 
 // Attach to main "Order Now" button in hero
-document.getElementById('orderNowBtn').addEventListener('click', function(e) {
-    e.preventDefault();
-    scrollToOrder();
-});
+const orderNowBtn = document.getElementById('orderNowBtn');
+if (orderNowBtn) {
+    orderNowBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        scrollToOrder();
+    });
+}
 
 // Attach to all "Buy" buttons on product cards
 document.querySelectorAll('.buy-card-btn').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
         e.preventDefault();
-        // Optional: pre-fill color based on card? we can try to set select option
-        // Find the parent card to extract product name
         let card = this.closest('.card');
         if (card) {
-            let productName = card.querySelector('h3')?.innerText; // e.g., "Ocean Blue"
+            let productName = card.querySelector('h3')?.innerText;
             let colorSelect = document.getElementById('bottleColor');
             if (colorSelect && productName) {
-                // Loop options to find match
                 for (let opt of colorSelect.options) {
                     if (opt.text === productName) {
                         opt.selected = true;
@@ -580,7 +587,7 @@ document.querySelectorAll('.buy-card-btn').forEach(function(btn) {
     });
 });
 
-// SEARCH FUNCTIONALITY (as in original js.js)
+// SEARCH FUNCTIONALITY
 const searchInput = document.querySelector(".searchBox input");
 if (searchInput) {
     searchInput.addEventListener("keyup", function() {
@@ -597,24 +604,26 @@ if (searchInput) {
     });
 }
 
-// FORM SUBMISSION HANDLING (prevent default + alert)
+// FORM SUBMISSION HANDLING
 document.querySelectorAll("form").forEach(function(form) {
     form.addEventListener("submit", function(e) {
         e.preventDefault();
         alert("Thank you! Your request has been received.");
-        // Optionally reset the form
-        // form.reset();
+        form.reset();
     });
 });
 
-// Also handle the contact form separately if needed, but same behavior
-// (the above loop covers both order and contact forms)
-
-// Additional: make sure the order form reset doesn't conflict, but alert is fine.
-// Small improvement: pre-fill color from URL or something? Not needed.
-
-// Ensure that the buy button also triggers pre-fill as we already did.
-
+// Smooth scrolling for navigation links
+document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
 </script>
 
 </body>
