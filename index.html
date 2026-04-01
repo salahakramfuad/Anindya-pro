@@ -68,6 +68,12 @@ nav a:hover {
   color: #38bdf8;
 }
 
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .searchBox input {
   padding: 8px 15px;
   border-radius: 20px;
@@ -75,6 +81,22 @@ nav a:hover {
   outline: none;
   background: #1e293b;
   color: white;
+}
+
+.search-btn {
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: none;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.search-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
 }
 
 /* HERO */
@@ -168,6 +190,7 @@ nav a:hover {
 .card h3 {
   margin-bottom: 10px;
   color: white;
+  font-size: 1.1rem;
 }
 
 .card p {
@@ -190,7 +213,7 @@ nav a:hover {
 }
 
 /* FEATURES */
-.techfeatures, .bodyfeatures, .customization-section {
+.techfeatures, .bodyfeatures, .customization-section, .membership {
   padding: 100px 8%;
   text-align: center;
 }
@@ -216,43 +239,7 @@ nav a:hover {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* Style for headings */
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 2.5rem;
-  background: linear-gradient(90deg, #38bdf8, #22c55e);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-h3 {
-  margin-bottom: 15px;
-  color: #fff;
-  font-size: 1.5rem;
-}
-
-p {
-  line-height: 1.6;
-  color: #ccc;
-}
-
-/* MEMBERSHIP SECTION */
-.membership {
-  padding: 100px 8%;
-  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-}
-
-.membership h2 {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
-  background: linear-gradient(90deg, #38bdf8, #22c55e);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
+/* MEMBERSHIP STYLES */
 .membership-subtitle {
   text-align: center;
   color: #94a3b8;
@@ -341,14 +328,6 @@ p {
 .price .period {
   font-size: 14px;
   color: #94a3b8;
-}
-
-.description {
-  text-align: center;
-  font-size: 14px;
-  color: #94a3b8;
-  margin-bottom: 20px;
-  min-height: 60px;
 }
 
 .membership-features {
@@ -472,55 +451,28 @@ p {
   display: block;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .membership-card.featured {
-    transform: scale(1);
-  }
-  
-  .membership-card.featured:hover {
-    transform: translateY(-10px);
-  }
+/* Style for headings */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-@media (max-width: 768px) {
-  .membership {
-    padding: 60px 5%;
-  }
-  
-  .membership h2 {
-    font-size: 2rem;
-  }
-  
-  .membership-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
-  .comparison-table {
-    font-size: 12px;
-  }
-  
-  .comparison-table th,
-  .comparison-table td {
-    padding: 10px;
-  }
-  
-  .faq-grid {
-    grid-template-columns: 1fr;
-  }
+h3 {
+  margin-bottom: 15px;
+  color: #fff;
+  font-size: 1.5rem;
 }
 
-@media (max-width: 480px) {
-  .comparison-table {
-    font-size: 10px;
-  }
-  
-  .membership-faq {
-    padding: 20px;
-  }
+p {
+  line-height: 1.6;
+  color: #ccc;
 }
-  
+
 /* ORDER */
 .order {
   padding: 100px 8%;
@@ -605,6 +557,34 @@ p {
   transform: scale(1.02);
 }
 
+/* Result Counter & No Results */
+.result-counter {
+  text-align: center;
+  margin-top: 20px;
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.no-results-message {
+  text-align: center;
+  padding: 40px;
+  color: #94a3b8;
+  font-size: 18px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* FOOTER */
 footer {
   padding: 30px;
@@ -614,6 +594,16 @@ footer {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .membership-card.featured {
+    transform: scale(1);
+  }
+  
+  .membership-card.featured:hover {
+    transform: translateY(-10px);
+  }
+}
+
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -665,6 +655,32 @@ footer {
   h3 {
     font-size: 1.3rem;
   }
+  
+  .membership {
+    padding: 60px 5%;
+  }
+  
+  .membership-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .comparison-table {
+    font-size: 12px;
+  }
+  
+  .comparison-table th,
+  .comparison-table td {
+    padding: 10px;
+  }
+  
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .membership-faq {
+    padding: 20px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -675,6 +691,10 @@ footer {
   .card {
     width: 100%;
     max-width: 280px;
+  }
+  
+  .comparison-table {
+    font-size: 10px;
   }
 }
 </style>
@@ -713,11 +733,12 @@ footer {
 </section>
 
 <section class="product" id="product">
-  <h2>Our Smart Bottles.                                             (Pictures do not describe its true size except special editions ones which are smaller)</h2>
+  <h2>Our Smart Bottles</h2>
+  <p style="text-align: center; margin-bottom: 30px; color: #94a3b8;">Pictures do not describe its true size except special editions ones which are smaller</p>
   <div class="products">
     <div class="card" data-product="Ocean Blue">
       <img src="bottle_blue.png" alt="Ocean Blue Bottle">
-      <h3>Ocean Blue(This bottle shows the true size of normal bottles)</h3>
+      <h3>Ocean Blue</h3>
       <p>$9.99</p>
       <button class="buy-card-btn">Buy</button>
     </div>
@@ -733,28 +754,24 @@ footer {
       <p>$9.99</p>
       <button class="buy-card-btn">Buy</button>
     </div>
-
-<div class="card" data-product="Classic Bottle">
+    <div class="card" data-product="Classic Steel">
       <img src="Whitebottle.png" alt="Classic Steel Bottle">
       <h3>Classic Steel</h3>
       <p>$9.99</p>
       <button class="buy-card-btn">Buy</button>
     </div>
-
-    <div class="card" data-product="Bright Battle">
+    <div class="card" data-product="Bright Black">
       <img src="blackbottle.png" alt="Bright Black Bottle">
       <h3>Bright Black</h3>
       <p>$9.99</p>
       <button class="buy-card-btn">Buy</button>
     </div>
-
     <div class="card" data-product="Hot Pink">
       <img src="pinkbottle.png" alt="Hot Pink Bottle">
       <h3>Hot Pink</h3>
       <p>$9.99</p>
       <button class="buy-card-btn">Buy</button>
     </div>
-    
     <div class="card" data-product="Arctic White">
       <img src="white.png" alt="Arctic White Bottle">
       <h3>Arctic White (Special Edition)</h3>
@@ -820,12 +837,12 @@ footer {
   </div>
 </section>
 
-  <section class="membership" id="membership">
+<!-- MEMBERSHIP SECTION -->
+<section class="membership" id="membership">
   <h2>Join HydroSmart Membership</h2>
   <p class="membership-subtitle">Get exclusive benefits and save more with our premium membership plans</p>
   
   <div class="membership-grid">
-    
     <!-- Basic Plan -->
     <div class="membership-card basic">
       <div class="membership-badge">Popular</div>
@@ -836,7 +853,6 @@ footer {
         <span class="amount">4.99</span>
         <span class="period">/month</span>
       </div>
-      <p class="description">Perfect for casual users who want smart hydration features</p>
       <ul class="membership-features">
         <li>✓ Smart hydration reminders</li>
         <li>✓ Temperature tracking</li>
@@ -858,7 +874,6 @@ footer {
         <span class="amount">9.99</span>
         <span class="period">/month</span>
       </div>
-      <p class="description">Complete hydration solution with all premium features</p>
       <ul class="membership-features">
         <li>✓ All Basic features</li>
         <li>✓ Self-cleaning technology ($7 value)</li>
@@ -880,7 +895,6 @@ footer {
         <span class="amount">19.99</span>
         <span class="period">/month</span>
       </div>
-      <p class="description">For families with up to 4 members</p>
       <ul class="membership-features">
         <li>✓ All Premium features</li>
         <li>✓ Up to 4 family members</li>
@@ -902,7 +916,6 @@ footer {
         <span class="amount">95.99</span>
         <span class="period">/year</span>
       </div>
-      <p class="description">Best value with 2 months free!</p>
       <ul class="membership-features">
         <li>✓ All Premium features</li>
         <li>✓ Save $23.88 annually</li>
@@ -913,7 +926,6 @@ footer {
       </ul>
       <button class="membership-btn" data-plan="Annual Premium">Get Annual Plan</button>
     </div>
-    
   </div>
   
   <!-- Membership Comparison Table -->
@@ -930,62 +942,14 @@ footer {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Smart Hydration Reminders</td>
-          <td>✓</td>
-          <td>✓</td>
-          <td>✓</td>
-          <td>✓</td>
-        </tr>
-        <tr>
-          <td>Temperature Tracking</td>
-          <td>✓</td>
-          <td>✓</td>
-          <td>✓</td>
-          <td>✓</td>
-        </tr>
-        <tr>
-          <td>Self-cleaning Technology</td>
-          <td>✗</td>
-          <td>✓</td>
-          <td>✓</td>
-          <td>✓</td>
-        </tr>
-        <tr>
-          <td>Custom Color Options</td>
-          <td>✗</td>
-          <td>✓</td>
-          <td>✓</td>
-          <td>✓</td>
-        </tr>
-        <tr>
-          <td>Priority Support</td>
-          <td>✗</td>
-          <td>✓</td>
-          <td>✓</td>
-          <td>✓</td>
-        </tr>
-        <tr>
-          <td>Family Members</td>
-          <td>1</td>
-          <td>1</td>
-          <td>4</td>
-          <td>1</td>
-        </tr>
-        <tr>
-          <td>Discount on Bottles</td>
-          <td>0%</td>
-          <td>20%</td>
-          <td>30%</td>
-          <td>25%</td>
-        </tr>
-        <tr>
-          <td>Free Shipping</td>
-          <td>✗</td>
-          <td>✗</td>
-          <td>✓</td>
-          <td>✓</td>
-        </tr>
+        <tr><td>Smart Hydration Reminders</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Temperature Tracking</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Self-cleaning Technology</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Custom Color Options</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Priority Support</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Family Members</td><td>1</td><td>1</td><td>4</td><td>1</td></tr>
+        <tr><td>Discount on Bottles</td><td>0%</td><td>20%</td><td>30%</td><td>25%</td></tr>
+        <tr><td>Free Shipping</td><td>✗</td><td>✗</td><td>✓</td><td>✓</td></tr>
       </tbody>
     </table>
   </div>
@@ -1023,10 +987,10 @@ footer {
       <option value="">Select Bottle Color</option>
       <option value="Ocean Blue">Ocean Blue</option>
       <option value="Energy Green">Energy Green</option>
-     <option value="Galaxy Purple">Galaxy Purple</option>
-       <option value="Classic Steel">Clasic Steel</option>
-       <option value="Bright Black">Bright Black</option>
-       <option value="Hot Pink">Hot pink</option>
+      <option value="Galaxy Purple">Galaxy Purple</option>
+      <option value="Classic Steel">Classic Steel</option>
+      <option value="Bright Black">Bright Black</option>
+      <option value="Hot Pink">Hot Pink</option>
       <option value="Arctic White">Arctic White</option>
       <option value="Rose Red">Rose Red</option>
     </select>
@@ -1055,22 +1019,359 @@ footer {
 </footer>
 
 <script>
-// Function to smoothly scroll to order section
+// ========== CUSTOM ALERT FUNCTION ==========
+function showMessage(message, type = 'success') {
+    const existingMsg = document.querySelector('.custom-alert');
+    if (existingMsg) existingMsg.remove();
+    
+    const alert = document.createElement('div');
+    alert.className = `custom-alert ${type}`;
+    alert.innerHTML = `
+        <div class="alert-content">
+            <span class="alert-icon">${type === 'success' ? '✓' : 'ℹ'}</span>
+            <p>${message}</p>
+        </div>
+    `;
+    
+    document.body.appendChild(alert);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .custom-alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+            max-width: 350px;
+        }
+        .alert-content {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-left: 4px solid ${type === 'success' ? '#22c55e' : '#38bdf8'};
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .alert-icon {
+            width: 30px;
+            height: 30px;
+            background: ${type === 'success' ? '#22c55e' : '#38bdf8'};
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+        .alert-content p {
+            margin: 0;
+            color: white;
+            font-size: 14px;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    setTimeout(() => {
+        alert.style.animation = 'slideOut 0.3s ease forwards';
+        setTimeout(() => alert.remove(), 300);
+    }, 4000);
+}
+
+// ========== ORDER FORM HANDLING ==========
+const orderForm = document.getElementById('orderForm');
+if (orderForm) {
+    orderForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const fullName = document.getElementById('fullName')?.value || '';
+        const email = document.getElementById('email')?.value || '';
+        const bottleColor = document.getElementById('bottleColor')?.value || '';
+        const quantity = document.getElementById('quantity')?.value || '';
+        
+        if (!fullName || !email || !bottleColor || !quantity) {
+            showMessage('Please fill in all fields!', 'error');
+            return;
+        }
+        
+        showMessage(`Thank you ${fullName}! Your order for ${quantity} ${bottleColor} bottle(s) has been received. We'll contact you at ${email} within 24 hours.`, 'success');
+        orderForm.reset();
+    });
+}
+
+// ========== CONTACT FORM HANDLING ==========
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = this.querySelector('input[placeholder="Name"]')?.value || '';
+        const email = this.querySelector('input[placeholder="Email"]')?.value || '';
+        const message = this.querySelector('textarea')?.value || '';
+        
+        if (!name || !email || !message) {
+            showMessage('Please fill in all contact fields!', 'error');
+            return;
+        }
+        
+        showMessage(`Thank you ${name}! Your message has been sent. We'll respond within 24 hours.`, 'success');
+        this.reset();
+    });
+}
+
+// ========== MEMBERSHIP MODAL FUNCTION ==========
+function showMembershipModal(plan) {
+    const existingModal = document.querySelector('.membership-modal');
+    if (existingModal) existingModal.remove();
+    
+    const modal = document.createElement('div');
+    modal.className = 'membership-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Complete Your ${plan} Membership</h2>
+            <form id="membershipForm">
+                <input type="text" id="memName" placeholder="Full Name" required>
+                <input type="email" id="memEmail" placeholder="Email" required>
+                <input type="tel" id="memPhone" placeholder="Phone Number" required>
+                <select id="memPayment" required>
+                    <option value="">Select Payment Method</option>
+                    <option value="credit_card">Credit Card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="apple_pay">Apple Pay</option>
+                </select>
+                <div class="plan-summary">
+                    <h3>Selected Plan: ${plan}</h3>
+                    <p>7-day free trial included!</p>
+                    <p class="price-info">No charges during trial period</p>
+                </div>
+                <button type="submit">Start Free Trial</button>
+            </form>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .membership-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-content {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            animation: modalPop 0.3s ease;
+        }
+        @keyframes modalPop {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #94a3b8;
+            transition: 0.3s;
+        }
+        .close-modal:hover {
+            color: #38bdf8;
+            transform: rotate(90deg);
+        }
+        .modal-content h2 {
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        .modal-content input,
+        .modal-content select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        .plan-summary {
+            background: rgba(56, 189, 248, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .plan-summary h3 {
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+        .price-info {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 5px;
+        }
+        .modal-content button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(90deg, #38bdf8, #22c55e);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .modal-content button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
+        }
+    `;
+    document.head.appendChild(style);
+    
+    modal.querySelector('.close-modal').addEventListener('click', () => modal.remove());
+    modal.querySelector('#membershipForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('memName').value;
+        const email = document.getElementById('memEmail').value;
+        showMessage(`🎉 Welcome ${name}! Your ${plan} membership has been activated. Check your email at ${email} for details.`, 'success');
+        modal.remove();
+    });
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+}
+
+// ========== MEMBERSHIP BUTTONS ==========
+document.querySelectorAll('.membership-btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const plan = this.getAttribute('data-plan');
+        showMembershipModal(plan);
+    });
+});
+
+// ========== FAQ TOGGLE ==========
+document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', function() {
+        this.classList.toggle('active');
+    });
+});
+
+// ========== SEARCH FUNCTIONALITY ==========
+const searchInput = document.querySelector(".searchBox input");
+const productsContainer = document.querySelector(".products");
+let allCards = Array.from(document.querySelectorAll(".card"));
+
+const resultCounter = document.createElement("div");
+resultCounter.className = "result-counter";
+if (productsContainer) {
+    productsContainer.parentNode.insertBefore(resultCounter, productsContainer.nextSibling);
+}
+
+function updateResultCount(visibleCount, totalCount) {
+    if (resultCounter) {
+        if (visibleCount === totalCount) {
+            resultCounter.textContent = `Showing all ${totalCount} bottles`;
+        } else {
+            resultCounter.textContent = `Showing ${visibleCount} of ${totalCount} bottles`;
+        }
+    }
+}
+
+function showNoResultsMessage(searchTerm) {
+    let noResultsMsg = document.querySelector(".no-results-message");
+    if (!noResultsMsg && productsContainer) {
+        noResultsMsg = document.createElement("div");
+        noResultsMsg.className = "no-results-message";
+        productsContainer.parentNode.insertBefore(noResultsMsg, productsContainer.nextSibling);
+    }
+    if (noResultsMsg) {
+        noResultsMsg.innerHTML = `🔍 No bottles found matching "${searchTerm}". Try another search!`;
+        noResultsMsg.style.display = "block";
+    }
+}
+
+function hideNoResultsMessage() {
+    const noResultsMsg = document.querySelector(".no-results-message");
+    if (noResultsMsg) noResultsMsg.style.display = "none";
+}
+
+function filterProducts(searchValue) {
+    const value = searchValue.toLowerCase().trim();
+    let visibleCount = 0;
+    
+    if (value === "") {
+        allCards.forEach(card => { card.style.display = "block"; visibleCount++; });
+        updateResultCount(visibleCount, allCards.length);
+        hideNoResultsMessage();
+        return;
+    }
+    
+    allCards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(value)) {
+            card.style.display = "block";
+            visibleCount++;
+        } else {
+            card.style.display = "none";
+        }
+    });
+    
+    updateResultCount(visibleCount, allCards.length);
+    if (visibleCount === 0) showNoResultsMessage(value);
+    else hideNoResultsMessage();
+}
+
+if (searchInput) {
+    searchInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            filterProducts(this.value);
+        }
+    });
+    searchInput.addEventListener("input", function() { if (this.value === "") filterProducts(""); });
+}
+
+const searchBox = document.querySelector(".searchBox");
+if (searchBox && !searchBox.querySelector(".search-btn")) {
+    const searchBtn = document.createElement("button");
+    searchBtn.innerHTML = "🔍 Search";
+    searchBtn.className = "search-btn";
+    searchBtn.addEventListener("click", () => filterProducts(searchInput.value));
+    searchBox.appendChild(searchBtn);
+}
+
+updateResultCount(allCards.length, allCards.length);
+
+// ========== SCROLL FUNCTIONS ==========
 function scrollToOrder() {
     document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
 }
 
-// Attach to main "Order Now" button in hero
-const orderNowBtn = document.getElementById('orderNowBtn');
-if (orderNowBtn) {
-    orderNowBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        scrollToOrder();
-    });
-}
+document.getElementById('orderNowBtn')?.addEventListener('click', (e) => { e.preventDefault(); scrollToOrder(); });
 
-// Attach to all "Buy" buttons on product cards
-document.querySelectorAll('.buy-card-btn').forEach(function(btn) {
+document.querySelectorAll('.buy-card-btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
         e.preventDefault();
         let card = this.closest('.card');
@@ -1090,42 +1391,12 @@ document.querySelectorAll('.buy-card-btn').forEach(function(btn) {
     });
 });
 
-// SEARCH FUNCTIONALITY
-const searchInput = document.querySelector(".searchBox input");
-if (searchInput) {
-    searchInput.addEventListener("keyup", function() {
-        let value = searchInput.value.toLowerCase();
-        let products = document.querySelectorAll(".card");
-        products.forEach(function(card) {
-            let text = card.innerText.toLowerCase();
-            if (text.includes(value)) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-            }
-        });
-    });
-}
-
-// FORM SUBMISSION HANDLING
-document.querySelectorAll("form").forEach(function(form) {
-    form.addEventListener("submit", function(e) {
-        e.preventDefault();
-        alert("Thank you! Your request has been received. You will be messaged and informed about your product and delivery through you email very soon.");
-        form.reset();
-    });
-});
-
-  
-// Smooth scrolling for navigation links
 document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth' });
     });
 });
 </script>
