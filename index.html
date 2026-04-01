@@ -1263,58 +1263,12 @@ footer {
     display: block;
   }
   
-  /* Adjust search box position on mobile */
-  .searchBox {
-    margin-left: auto;
-  }
-  
-  .searchBox input {
-    width: 150px;
-  }
-}
-
-@media (max-width: 768px) {
-  header {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  
-  .logo {
-    font-size: 22px;
-  }
-  
-  .searchBox input {
-    width: 120px;
-    font-size: 12px;
-  }
-  
-  .search-btn {
-    padding: 8px 12px;
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .searchBox input {
-    width: 100px;
-  }
-  
-  .search-btn {
-    padding: 8px 10px;
-    font-size: 11px;
-  }
-  
-  nav {
-    width: 85%;
-  }
-}
-
-/* Fix for Search Button */
+/* Search Box - Button Below Input */
 .searchBox {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 8px;
-  flex-shrink: 0;
+  align-items: flex-end;
 }
 
 .searchBox input {
@@ -1324,11 +1278,11 @@ footer {
   outline: none;
   background: #1e293b;
   color: white;
-  min-width: 140px;
+  width: 180px;
 }
 
 .search-btn {
-  padding: 8px 18px;
+  padding: 6px 20px;
   border-radius: 20px;
   border: none;
   background: linear-gradient(90deg, #38bdf8, #22c55e);
@@ -1336,8 +1290,8 @@ footer {
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 500;
-  white-space: nowrap;
-  flex-shrink: 0;
+  font-size: 13px;
+  width: auto;
 }
 
 .search-btn:hover {
@@ -1345,91 +1299,31 @@ footer {
   box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
 }
 
-/* Responsive adjustments for header */
-@media (max-width: 1200px) {
-  header {
-    padding: 15px 5%;
-    gap: 15px;
-    flex-wrap: wrap;
-  }
-  
-  .logo {
-    font-size: 24px;
-  }
-  
-  .searchBox input {
-    min-width: 120px;
-  }
-  
-  .search-btn {
-    padding: 8px 14px;
-    font-size: 13px;
-  }
-}
-
+/* Responsive adjustments */
 @media (max-width: 1024px) {
-  header {
-    flex-wrap: nowrap;
-    justify-content: space-between;
-  }
-  
-  .searchBox {
-    margin-left: auto;
-  }
-  
   .searchBox input {
-    width: 130px;
-    min-width: 100px;
-  }
-  
-  .search-btn {
-    padding: 8px 12px;
-    font-size: 12px;
+    width: 150px;
   }
 }
 
 @media (max-width: 768px) {
-  .searchBox input {
-    width: 100px;
-    min-width: 80px;
-    font-size: 12px;
-    padding: 6px 10px;
+  .searchBox {
+    align-items: center;
   }
   
-  .search-btn {
-    padding: 6px 10px;
-    font-size: 11px;
+  .searchBox input {
+    width: 130px;
   }
 }
 
 @media (max-width: 580px) {
-  header {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  
-  .logo {
-    order: 1;
-  }
-  
-  .mobile-menu-btn {
-    order: 2;
-  }
-  
   .searchBox {
-    order: 3;
     width: 100%;
-    justify-content: center;
-    margin-left: 0;
+    align-items: center;
   }
   
   .searchBox input {
-    width: 60%;
-    min-width: 150px;
-  }
-  
-  .search-btn {
-    padding: 8px 15px;
+    width: 80%;
   }
 }
   
@@ -1465,9 +1359,10 @@ footer {
   
   <div class="searchBox">
     <input type="text" placeholder="Search...">
+    <button class="search-btn">🔍 Search</button>
   </div>
 </header>
-
+  
   <!-- Navigation Overlay -->
 <div class="nav-overlay" id="navOverlay"></div>
 
