@@ -1015,7 +1015,17 @@ footer {
       <option value="Hot Pink">Hot Pink</option>
       <option value="Arctic White">Arctic White</option>
       <option value="Rose Red">Rose Red</option>
+      <option value="Custom Color">🎨 Custom Color (+$1)</option>
     </select>
+    
+    <!-- Custom Color Upload Field - Hidden by default -->
+    <div id="customColorUpload" style="display: none;">
+      <label style="display: block; text-align: left; margin-bottom: 5px; color: #38bdf8;">Upload Your Custom Color Reference:</label>
+      <input type="file" id="customColorImage" accept="image/*" style="padding: 8px; background: #1e293b; color: white; border-radius: 8px; width: 100%;">
+      <input type="text" id="customColorCode" placeholder="Or enter color code (e.g., #FF5733, RGB(255,87,51))" style="margin-top: 10px; padding: 12px; border-radius: 8px; border: none; background: #1e293b; color: white; width: 100%;">
+      <p style="font-size: 12px; color: #94a3b8; margin-top: 5px;">Upload an image or enter a color code for your custom bottle color. Additional $1 charge applies.</p>
+    </div>
+    
     <input type="number" placeholder="Quantity" id="quantity" min="1" required>
     <button type="submit">Place Order</button>
   </form>
@@ -1037,7 +1047,7 @@ footer {
 </section>
 
 <footer>
-  <p>© 2026 Hydro Smart. All rights reserved.</p>
+  <p>© 2026 Hydro Smart. All copyrights reserved.</p>
 </footer>
 
 <script>
