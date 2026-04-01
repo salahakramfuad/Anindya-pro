@@ -612,148 +612,22 @@ document.querySelectorAll('.buy-card-btn').forEach(function(btn) {
     });
 });
 
-// ADVANCED SEARCH FUNCTIONALITY - With result counter
+
+// SEARCH FUNCTIONALITY
 const searchInput = document.querySelector(".searchBox input");
-const productsContainer = document.querySelector(".products");
-let allCards = Array.from(document.querySelectorAll(".card"));
-
-// Create result counter element
-const resultCounter = document.createElement("div");
-resultCounter.className = "result-counter";
-resultCounter.style.textAlign = "center";
-resultCounter.style.marginTop = "20px";
-resultCounter.style.color = "#94a3b8";
-resultCounter.style.fontSize = "14px";
-productsContainer.parentNode.insertBefore(resultCounter, productsContainer.nextSibling);
-
-// Function to update result counter
-function updateResultCount(visibleCount, totalCount) {
-    if (visibleCount === totalCount) {
-        resultCounter.textContent = `Showing all ${totalCount} bottles`;
-    } else {
-        resultCounter.textContent = `Showing ${visibleCount} of ${totalCount} bottles`;
-    }
-}
-
-// Function to filter and display products
-function filterProducts(searchValue) {
-    const value = searchValue.toLowerCase().trim();
-    let visibleCount = 0;
-    
-    if (value === "") {
-        // If search is empty, show all cards
-        allCards.forEach(card => {
-            card.style.display = "block";
-            visibleCount++;
-        });
-        updateResultCount(visibleCount, allCards.length);
-        hideNoResultsMessage();
-        return;
-    }
-    
-    // Filter cards that match the search
-    allCards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        const productName = card.querySelector("h3")?.innerText.toLowerCase() || "";
-        const price = card.querySelector("p")?.innerText.toLowerCase() || "";
-        
-        if (text.includes(value) || productName.includes(value) || price.includes(value)) {
-            card.style.display = "block";
-            visibleCount++;
-        } else {
-            card.style.display = "none";
-        }
-    });
-    
-    updateResultCount(visibleCount, allCards.length);
-    
-    // Show/hide no results message
-    if (visibleCount === 0) {
-        showNoResultsMessage(value);
-    } else {
-        hideNoResultsMessage();
-    }
-}
-
-// Function to show "no results" message
-function showNoResultsMessage(searchTerm) {
-    let noResultsMsg = document.querySelector(".no-results-message");
-    if (!noResultsMsg) {
-        noResultsMsg = document.createElement("div");
-        noResultsMsg.className = "no-results-message";
-        noResultsMsg.style.textAlign = "center";
-        noResultsMsg.style.padding = "40px";
-        noResultsMsg.style.color = "#94a3b8";
-        noResultsMsg.style.fontSize = "18px";
-        productsContainer.parentNode.insertBefore(noResultsMsg, productsContainer.nextSibling);
-    }
-    noResultsMsg.innerHTML = `🔍 No bottles found matching "${searchTerm}". Try another search!`;
-    noResultsMsg.style.display = "block";
-}
-
-function hideNoResultsMessage() {
-    const noResultsMsg = document.querySelector(".no-results-message");
-    if (noResultsMsg) {
-        noResultsMsg.style.display = "none";
-    }
-}
-
-// Event listener for Enter key
 if (searchInput) {
-    searchInput.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            filterProducts(this.value);
-        }
+    searchInput.addEventListener("keyup", function() {
+        let value = searchInput.value.toLowerCase();
+        let products = document.querySelectorAll(".card");
+        products.forEach(function(card) {
+            let text = card.innerText.toLowerCase();
+            if (text.includes(value)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
     });
-    
-    // Optional: Clear search and show all when input is cleared
-    searchInput.addEventListener("input", function() {
-        if (this.value === "") {
-            filterProducts("");
-        }
-    });
-}
-
-// Add search button
-const searchBox = document.querySelector(".searchBox");
-if (searchBox && !searchBox.querySelector(".search-btn")) {
-    const searchBtn = document.createElement("button");
-    searchBtn.innerHTML = "🔍 Search";
-    searchBtn.className = "search-btn";
-    searchBtn.style.marginLeft = "10px";
-    searchBtn.style.padding = "8px 20px";
-    searchBtn.style.borderRadius = "20px";
-    searchBtn.style.border = "none";
-    searchBtn.style.background = "linear-gradient(90deg, #38bdf8, #22c55e)";
-    searchBtn.style.color = "white";
-    searchBtn.style.cursor = "pointer";
-    searchBtn.style.transition = "0.3s";
-    searchBtn.style.fontWeight = "500";
-    
-    searchBtn.addEventListener("click", function() {
-        filterProducts(searchInput.value);
-    });
-    
-    searchBtn.addEventListener("mouseenter", function() {
-        this.style.transform = "scale(1.05");
-        this.style.boxShadow = "0 0 15px rgba(56, 189, 248, 0.5)";
-    });
-    
-    searchBtn.addEventListener("mouseleave", function() {
-        this.style.transform = "scale(1)";
-        this.style.boxShadow = "none";
-    });
-    
-    searchBox.style.display = "flex";
-    searchBox.style.alignItems = "center";
-    searchBox.style.gap = "10px";
-    searchBox.appendChild(searchBtn);
-}
-
-// Initialize result counter
-updateResultCount(allCards.length, allCards.length);
-
 // FORM SUBMISSION HANDLING
 document.querySelectorAll("form").forEach(function(form) {
     form.addEventListener("submit", function(e) {
