@@ -1244,24 +1244,68 @@ function showMessage(message, type = 'success') {
 }
 
 // ========== ORDER FORM HANDLING ==========
+// ========== CUSTOM ALERT FUNCTION ==========
+function showMessage(message, type = 'success') {
+    // ... (keep your existing showMessage function)
+}
+
+// ========== ORDER FORM HANDLING ==========
 const orderForm = document.getElementById('orderForm');
 if (orderForm) {
     orderForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const fullName = document.getElementById('fullName')?.value || '';
-        const email = document.getElementById('email')?.value || '';
-        const bottleColor = document.getElementById('bottleColor')?.value || '';
-        const quantity = document.getElementById('quantity')?.value || '';
-        
-        if (!fullName || !email || !bottleColor || !quantity) {
-            showMessage('Please fill in all fields!', 'error');
-            return;
-        }
-        
-        showMessage(`Thank you ${fullName}! Your order for ${quantity} ${bottleColor} bottle(s) has been received. We'll contact you at ${email} within 24 hours.`, 'success');
-        orderForm.reset();
+        // ... (keep your existing order form code)
     });
 }
+
+// ========== CONTACT FORM HANDLING ==========
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        // ... (keep your existing contact form code)
+    });
+}
+
+// ========== MEMBERSHIP MODAL FUNCTION ==========
+function showMembershipModal(plan) {
+    // ... (keep your existing membership modal code)
+}
+
+// ========== CUSTOM COLOR MODAL AND ORDER FORM - REPLACE THIS SECTION ==========
+// Store custom color data
+let selectedCustomColor = null;
+let isCustomColorSelected = false;
+
+// Custom Color Modal Function
+function showCustomColorModal() {
+  // ... (paste the entire custom color modal function here)
+}
+
+// Handle custom color selection from dropdown
+const bottleColorSelect = document.getElementById('bottleColor');
+if (bottleColorSelect) {
+  bottleColorSelect.addEventListener('change', function(e) {
+    // ... (paste the dropdown handler code here)
+  });
+}
+
+// Updated order form submission
+const orderFormElement = document.getElementById('orderForm');
+if (orderFormElement) {
+  orderFormElement.addEventListener('submit', function(e) {
+    // ... (paste the updated order form submission code here)
+  });
+}
+
+// Fix for buy buttons to preserve custom color selection
+document.querySelectorAll('.buy-card-btn').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    // ... (paste the buy buttons code here)
+  });
+});
+
+// ========== REST OF YOUR EXISTING JAVASCRIPT ==========
+// FAQ toggle, search functionality, smooth scrolling, etc.
+// ... (keep all your other JavaScript functions here)
 
 // ========== CONTACT FORM HANDLING ==========
 const contactForm = document.getElementById('contactForm');
@@ -1752,6 +1796,8 @@ if (orderFormElement) {
     selectedCustomColor = null;
   });
 }
+
+  
   
 </script>
 
