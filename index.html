@@ -1682,6 +1682,34 @@ document.querySelectorAll('.buy-card-btn').forEach(btn => {
         document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
     });
 });
+
+// SEARCH FUNCTIONALITY
+const searchInput = document.querySelector(".searchBox input");
+if (searchInput) {
+    searchInput.addEventListener("keyup", function() {
+        let value = searchInput.value.toLowerCase();
+        let products = document.querySelectorAll(".card");
+        products.forEach(function(card) {
+            let text = card.innerText.toLowerCase();
+            if (text.includes(value)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    });
+}
+
+// FORM SUBMISSION HANDLING
+document.querySelectorAll("form").forEach(function(form) {
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        alert("Thank you! Your request has been received. You will be messaged and informed about your product and delivery through you email very soon.");
+        form.reset();
+    });
+});
+
+  
 // Smooth scrolling for navigation links
 document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
