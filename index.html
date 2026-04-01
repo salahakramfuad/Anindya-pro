@@ -612,7 +612,6 @@ document.querySelectorAll('.buy-card-btn').forEach(function(btn) {
     });
 });
 
-
 // SEARCH FUNCTIONALITY
 const searchInput = document.querySelector(".searchBox input");
 if (searchInput) {
@@ -628,11 +627,13 @@ if (searchInput) {
             }
         });
     });
+}
+
 // FORM SUBMISSION HANDLING
 document.querySelectorAll("form").forEach(function(form) {
     form.addEventListener("submit", function(e) {
         e.preventDefault();
-        alert("Thank you! Your request has been received.You will be messaged through your email soon.");
+        alert("Thank you! Your request has been received.");
         form.reset();
     });
 });
