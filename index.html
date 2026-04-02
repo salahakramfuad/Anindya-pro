@@ -427,18 +427,6 @@ nav a:hover {
     background-size: cover;
 }
 
-/* ========== CUSTOM CURSOR ========== */
-.custom-cursor {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #38bdf8;
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s;
-}
-
 /* ========== BACK IN STOCK ALERT ========== */
 .back-in-stock {
     margin-top: 10px;
@@ -3672,18 +3660,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// ========== 35. CUSTOM CURSOR ==========
-const cursor = document.createElement('div');
-cursor.className = 'custom-cursor';
-document.body.appendChild(cursor);
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX - 10 + 'px';
-    cursor.style.top = e.clientY - 10 + 'px';
-});
-document.querySelectorAll('button, a, .card').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(1.5)');
-    el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
-});
 
 // ========== 36. BACK IN STOCK ALERT ==========
 document.querySelectorAll('.card').forEach(card => {
