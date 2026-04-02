@@ -14,44 +14,23 @@
 <style>
 
 /* ========== DARK/LIGHT MODE ========== */
-/* Light Mode Styles */
+:root {
+    --bg-primary: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    --bg-secondary: #0f172a;
+    --text-primary: white;
+    --text-secondary: #cbd5f5;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
 body.light-mode {
-    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    --bg-primary: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    --bg-secondary: #f0f9ff;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --card-bg: rgba(0, 0, 0, 0.03);
+    --border-color: rgba(0, 0, 0, 0.1);
     color: #0f172a;
-}
-
-body.light-mode header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(15px);
-}
-
-body.light-mode .logo {
-    background: linear-gradient(90deg, #0284c7, #15803d);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-body.light-mode nav a {
-    color: #0f172a;
-}
-
-body.light-mode nav a:hover {
-    color: #0284c7;
-}
-
-body.light-mode .search-input {
-    background: #e2e8f0;
-    color: #0f172a;
-}
-
-body.light-mode .search-input::placeholder {
-    color: #64748b;
-}
-
-body.light-mode .search-container {
-    background: rgba(226, 232, 240, 0.9);
-    border: 1px solid rgba(2, 132, 199, 0.3);
 }
 
 body.light-mode .card,
@@ -60,97 +39,38 @@ body.light-mode .bodyfeature,
 body.light-mode .customization,
 body.light-mode .membership-card,
 body.light-mode .social-card,
-body.light-mode .benefit-card,
-body.light-mode .review-card,
-body.light-mode .fact-card,
-body.light-mode .compare-card,
-body.light-mode .quiz-card,
-body.light-mode .quiz-result-card {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+body.light-mode .benefit-card {
+    background: rgba(255, 255, 255, 0.8);
+    color: #0f172a;
 }
 
 body.light-mode .card h3,
 body.light-mode .techfeature h3,
-body.light-mode .bodyfeature h3,
-body.light-mode .customization h3,
-body.light-mode .membership-card h3,
-body.light-mode .review-card h3,
-body.light-mode .benefit-card h3 {
+body.light-mode .bodyfeature h3 {
     color: #0f172a;
 }
 
 body.light-mode .card p,
 body.light-mode .techfeature p,
-body.light-mode .bodyfeature p,
-body.light-mode .customization p,
-body.light-mode .review-text,
-body.light-mode .benefit-content p,
-body.light-mode .benefit-content ul li {
+body.light-mode .bodyfeature p {
     color: #334155;
 }
 
-body.light-mode .hero-text p,
-body.light-mode .section-subtitle {
-    color: #475569;
+body.light-mode header {
+    background: rgba(255, 255, 255, 0.9);
 }
 
-body.light-mode .order input,
-body.light-mode .order select,
-body.light-mode .contact input,
-body.light-mode .contact textarea {
+body.light-mode .search-input {
     background: #e2e8f0;
     color: #0f172a;
 }
 
-body.light-mode .order input::placeholder,
-body.light-mode .contact input::placeholder {
-    color: #64748b;
-}
-
-body.light-mode footer {
-    background: #e2e8f0;
-    color: #475569;
-}
-
-body.light-mode .comparison-table th,
-body.light-mode .comparison-table td {
-    color: #0f172a;
-}
-
-body.light-mode .price .amount,
-body.light-mode .price .currency {
-    color: #0284c7;
-}
-
-body.light-mode .membership-badge {
-    background: linear-gradient(90deg, #0284c7, #15803d);
-}
-
-body.light-mode .quiz-option {
-    background: rgba(0, 0, 0, 0.05);
-    color: #0f172a;
-}
-
-body.light-mode .quiz-text {
-    color: #0f172a;
-}
-
-body.light-mode .hydration-fact {
-    background: rgba(0, 0, 0, 0.05);
-}
-
-body.light-mode .fact-text {
-    color: #334155;
-}
-
-/* Mode Toggle Button */
 .mode-toggle {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: linear-gradient(135deg, #38bdf8, #22c55e);
     border: none;
@@ -160,9 +80,6 @@ body.light-mode .fact-text {
     z-index: 1000;
     transition: 0.3s;
     box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .mode-toggle:hover {
@@ -5605,53 +5522,28 @@ window.addEventListener('online', () => {
     setTimeout(() => offlineMsg.classList.remove('show'), 3000);
 });
 
-// ========== DARK/LIGHT MODE TOGGLE (FIXED) ==========
-// Function to apply dark/light mode
-function setDarkLightMode(isLight) {
-    const body = document.body;
-    const modeToggle = document.getElementById('modeToggle');
-    
-    if (isLight) {
-        body.classList.add('light-mode');
-        if (modeToggle) modeToggle.textContent = '☀️';
-        localStorage.setItem('mode', 'light');
-    } else {
-        body.classList.remove('light-mode');
-        if (modeToggle) modeToggle.textContent = '🌙';
-        localStorage.setItem('mode', 'dark');
-    }
-}
+// ========== DARK/LIGHT MODE TOGGLE ==========
+const modeToggle = document.getElementById('modeToggle');
+const body = document.body;
 
-// Check for saved preference on page load
+// Check for saved preference
 const savedMode = localStorage.getItem('mode');
 if (savedMode === 'light') {
-    setDarkLightMode(true);
-} else {
-    setDarkLightMode(false);
+    body.classList.add('light-mode');
+    modeToggle.textContent = '☀️';
 }
 
-// Add click event to mode toggle button
-const modeToggle = document.getElementById('modeToggle');
-if (modeToggle) {
-    // Remove any existing event listeners
-    const newModeToggle = modeToggle.cloneNode(true);
-    modeToggle.parentNode.replaceChild(newModeToggle, modeToggle);
-    
-    newModeToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        const body = document.body;
-        const isCurrentlyLight = body.classList.contains('light-mode');
-        
-        if (isCurrentlyLight) {
-            setDarkLightMode(false);
-            console.log('Switched to Dark Mode');
-        } else {
-            setDarkLightMode(true);
-            console.log('Switched to Light Mode');
-        }
-    });
-}
+modeToggle?.addEventListener('click', () => {
+    body.classList.toggle('light-mode');
+    if (body.classList.contains('light-mode')) {
+        modeToggle.textContent = '☀️';
+        localStorage.setItem('mode', 'light');
+    } else {
+        modeToggle.textContent = '🌙';
+        localStorage.setItem('mode', 'dark');
+    }
+});
+
 // ========== BOTTLE QUIZ (FULLY WORKING) ==========
 const quizQuestions = [
     {
@@ -5798,15 +5690,6 @@ document.getElementById('quizPrev')?.addEventListener('click', prevQuestion);
 // Initialize quiz
 if (document.getElementById('quizOptions')) {
     loadQuestion();
-}
-
-<button onclick="testMode()" style="position: fixed; bottom: 90px; right: 20px; z-index: 1000; padding: 5px 10px; background: red; color: white;">Test Mode</button>
-
-<script>
-function testMode() {
-    const body = document.body;
-    body.classList.toggle('light-mode');
-    console.log('Mode toggled, current classes:', body.className);
 }
     
 </script>
