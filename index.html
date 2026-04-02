@@ -13,6 +13,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
+.wishlist-count {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: #ef4444;
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 100;
+    cursor: pointer;
+}
+    
 /* HEADER - Fixed for long navigation */
 header {
     display: flex;
@@ -1337,6 +1355,26 @@ p {
   margin-right: 10px;
 }
 
+.rotate-img {
+    width: 100%;
+    transition: transform 0.1s linear;
+    border-radius: 20px;
+}
+
+.rotate-viewer {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+    perspective: 1000px;
+}
+
+.rotate-img {
+    width: 100%;
+    transition: transform 0.1s linear;
+    object-fit: contain;
+}
+    
 .custom-color-modal-content button {
   width: 100%;
   padding: 12px;
@@ -2605,6 +2643,7 @@ select option:hover {
 <section class="product" id="product">
   <h2>Our Smart Bottles</h2>
   <p style="text-align: center; margin-bottom: 30px; color: #94a3b8;">Pictures do not describe its true size except special editions ones which are smaller</p>
+<button class="buyBtn" onclick="openRotateViewer()" style="margin: 10px;">🔄 View 360° Rotation</button>
   <div class="products">
     <div class="card" data-product="Ocean Blue">
       <img src="bottle_blue.png" alt="Ocean Blue Bottle">
@@ -3561,38 +3600,69 @@ document.querySelectorAll('.water-fill').forEach(fill => {
     });
 });
 
-// ========== 32. PRICE DROP ALERT ==========
+// ========== 32. PRICE DROP ALERT (ON HOVER ONLY) ==========
 document.querySelectorAll('.card').forEach(card => {
     const price = card.querySelector('p')?.innerText || '$9.99';
     const alertDiv = document.createElement('div');
     alertDiv.className = 'price-alert';
+    alertDiv.style.display = 'none';
     alertDiv.innerHTML = `
-        <input type="email" placeholder="Email for price alert" id="alertEmail_${Math.random()}">
-        <button class="buyBtn" style="padding: 5px; font-size: 12px;">Notify Me</button>
+        <input type="email" placeholder="Email for price alert">
+        <button class="buyBtn" style="padding: 5px; font-size: 12px; margin-top: 5px;">Notify Me</button>
     `;
     alertDiv.querySelector('button').onclick = () => {
         alert('✅ You will be notified when price drops!');
+        alertDiv.style.display = 'none';
     };
     card.appendChild(alertDiv);
+    
+    card.addEventListener('mouseenter', () => alertDiv.style.display = 'block');
+    card.addEventListener('mouseleave', () => alertDiv.style.display = 'none');
 });
 
-// ========== 33. 360° VIEWER ==========
+// ========== 33. 360° VIEWER (FIXED) ==========
 let currentAngle = 0;
+let rotationInterval = null;
+
 function openRotateViewer() {
-    document.getElementById('rotateViewer').style.display = 'flex';
-}
-function closeRotateViewer() {
-    document.getElementById('rotateViewer').style.display = 'none';
-}
-function rotateLeft() {
-    currentAngle -= 15;
-    document.getElementById('rotateImg').style.transform = `rotateY(${currentAngle}deg)`;
-}
-function rotateRight() {
-    currentAngle += 15;
-    document.getElementById('rotateImg').style.transform = `rotateY(${currentAngle}deg)`;
+    const viewer = document.getElementById('rotateViewer');
+    if (viewer) viewer.style.display = 'flex';
+    currentAngle = 0;
+    const img = document.getElementById('rotateImg');
+    if (img) img.style.transform = 'rotateY(0deg)';
 }
 
+function closeRotateViewer() {
+    const viewer = document.getElementById('rotateViewer');
+    if (viewer) viewer.style.display = 'none';
+    if (rotationInterval) clearInterval(rotationInterval);
+}
+
+function rotateLeft() {
+    currentAngle -= 15;
+    const img = document.getElementById('rotateImg');
+    if (img) img.style.transform = `rotateY(${currentAngle}deg)`;
+}
+
+function rotateRight() {
+    currentAngle += 15;
+    const img = document.getElementById('rotateImg');
+    if (img) img.style.transform = `rotateY(${currentAngle}deg)`;
+}
+
+// Auto-rotate feature
+function startAutoRotate() {
+    if (rotationInterval) clearInterval(rotationInterval);
+    rotationInterval = setInterval(() => {
+        currentAngle += 5;
+        const img = document.getElementById('rotateImg');
+        if (img) img.style.transform = `rotateY(${currentAngle}deg)`;
+    }, 50);
+}
+
+function stopAutoRotate() {
+    if (rotationInterval) clearInterval(rotationInterval);
+}
 // ========== 34. PARALLAX SCROLL ==========
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
