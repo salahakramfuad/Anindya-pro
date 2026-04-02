@@ -1,0 +1,219 @@
+/* HydroSmart — Compare grid, nav overlay, responsive breakpoints (pre-hero) */
+/* ========== COMPARE BOTTLES ========== */
+.compare-section {
+  padding: 100px 8%;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.compare-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.compare-card.selected {
+  border: 2px solid #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+}
+
+.compare-table {
+  margin-top: 30px;
+  overflow-x: auto;
+  display: none;
+}
+
+.compare-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 15px;
+}
+
+/* Navigation Overlay */
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 140;
+  display: none;
+}
+
+.nav-overlay.active {
+  display: block;
+}
+
+/* Desktop view - navigation visible */
+@media (min-width: 1025px) {
+  .mobile-menu-btn {
+    display: none !important;
+  }
+
+  nav {
+    display: block !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    background: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  nav ul {
+    flex-direction: row !important;
+  }
+}
+
+/* Tablet view */
+@media (max-width: 1024px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 80px 25px 30px;
+    transition: right 0.3s ease;
+    z-index: 150;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+    order: 4;
+  }
+
+  nav.active {
+    right: 0;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav ul li {
+    width: 100%;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 10px 0;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .search-container {
+    margin-left: auto;
+  }
+}
+
+/* Desktop large screens */
+@media (min-width: 1025px) and (max-width: 1400px) {
+  nav a {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+
+  nav ul {
+    gap: 8px;
+  }
+
+  .search-input {
+    width: 140px;
+  }
+}
+
+/* Desktop extra large screens */
+@media (min-width: 1401px) {
+  nav a {
+    font-size: 13px;
+  }
+
+  nav ul {
+    gap: 15px;
+  }
+}
+
+/* Mobile small screens */
+@media (max-width: 768px) {
+  header {
+    padding: 12px 4%;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .search-input {
+    width: 120px;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .search-button {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 580px) {
+  .search-container {
+    width: 100%;
+    order: 4;
+    margin-top: 8px;
+    justify-content: center;
+  }
+
+  .search-input {
+    width: 60%;
+    flex: 1;
+  }
+
+  .logo {
+    order: 0;
+  }
+
+  .mobile-menu-btn {
+    order: 1;
+  }
+}
+
+body.light-mode .compare-section {
+  background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+}
+
+body.light-mode .compare-card {
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+}
+
+body.light-mode .compare-card h4 {
+  color: #0f172a;
+}
+
+body.light-mode .compare-table table {
+  background: rgba(255, 255, 255, 0.95);
+  color: #0f172a;
+}
+
+body.light-mode .compare-table th,
+body.light-mode .compare-table td {
+  border-color: rgba(15, 23, 42, 0.1);
+}
+
