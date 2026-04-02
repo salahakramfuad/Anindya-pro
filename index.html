@@ -13,6 +13,79 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
+/* ========== DARK/LIGHT MODE ========== */
+:root {
+    --bg-primary: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    --bg-secondary: #0f172a;
+    --text-primary: white;
+    --text-secondary: #cbd5f5;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode {
+    --bg-primary: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    --bg-secondary: #f0f9ff;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --card-bg: rgba(0, 0, 0, 0.03);
+    --border-color: rgba(0, 0, 0, 0.1);
+    color: #0f172a;
+}
+
+body.light-mode .card,
+body.light-mode .techfeature,
+body.light-mode .bodyfeature,
+body.light-mode .customization,
+body.light-mode .membership-card,
+body.light-mode .social-card,
+body.light-mode .benefit-card {
+    background: rgba(255, 255, 255, 0.8);
+    color: #0f172a;
+}
+
+body.light-mode .card h3,
+body.light-mode .techfeature h3,
+body.light-mode .bodyfeature h3 {
+    color: #0f172a;
+}
+
+body.light-mode .card p,
+body.light-mode .techfeature p,
+body.light-mode .bodyfeature p {
+    color: #334155;
+}
+
+body.light-mode header {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+body.light-mode .search-input {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #38bdf8, #22c55e);
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: 0.3s;
+    box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
+}
+
+.mode-toggle:hover {
+    transform: scale(1.1);
+}
+    
 .wishlist-count {
     position: fixed;
     top: 80px;
@@ -1621,6 +1694,137 @@ footer {
   margin-top: 20px;
 }
 
+/* ========== BOTTLE QUIZ ========== */
+.quiz-section {
+    padding: 100px 8%;
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+}
+
+.quiz-container {
+    max-width: 600px;
+    margin: 50px auto 0;
+}
+
+.quiz-card, .quiz-result-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.quiz-question {
+    color: #38bdf8;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.quiz-text {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.quiz-option {
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+}
+
+.quiz-option:hover {
+    background: rgba(56, 189, 248, 0.2);
+    transform: translateX(5px);
+}
+
+.quiz-option.selected {
+    background: linear-gradient(135deg, #38bdf8, #22c55e);
+    border-color: transparent;
+}
+
+.quiz-progress {
+    height: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.quiz-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #38bdf8, #22c55e);
+    transition: width 0.3s ease;
+}
+
+.quiz-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.quiz-prev, .quiz-next, .quiz-restart {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.quiz-prev {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.quiz-next {
+    background: linear-gradient(135deg, #38bdf8, #22c55e);
+    color: white;
+}
+
+.quiz-restart {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    margin-top: 20px;
+}
+
+.quiz-result-card {
+    text-align: center;
+}
+
+.result-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.result-bottle {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(56, 189, 248, 0.1);
+    border-radius: 15px;
+}
+
+body.light-mode .quiz-card,
+body.light-mode .quiz-result-card {
+    background: white;
+}
+
+body.light-mode .quiz-text,
+body.light-mode .quiz-option {
+    color: #0f172a;
+}     
+    
 .social-card {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
@@ -2606,6 +2810,7 @@ select option:hover {
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#shipping-calc">Ship</a></li>
         <li><a href="#hydration-calc">Hydration Calculator</a></li>
+        <li><a href="#quiz">Quiz</a></li>
     </ul>
 </nav>
   
@@ -2682,6 +2887,38 @@ select option:hover {
       <button class="buy-card-btn">Buy</button>
     </div>
   </div>
+</section>
+
+    <!-- ========== BOTTLE QUIZ SECTION ========== -->
+<section class="quiz-section" id="quiz">
+    <h2>🎯 Find Your Perfect Bottle</h2>
+    <p class="section-subtitle">Answer 5 simple questions and get personalized recommendation</p>
+    
+    <div class="quiz-container" id="quizContainer">
+        <div class="quiz-card" id="quizCard">
+            <div class="quiz-question" id="quizQuestion">Question 1/5</div>
+            <div class="quiz-text" id="quizText">How often do you drink water?</div>
+            <div class="quiz-options" id="quizOptions"></div>
+            <div class="quiz-progress">
+                <div class="quiz-progress-bar" id="quizProgressBar"></div>
+            </div>
+            <div class="quiz-buttons">
+                <button class="quiz-prev" id="quizPrev" style="display: none;">◀ Previous</button>
+                <button class="quiz-next" id="quizNext">Next ▶</button>
+            </div>
+        </div>
+        
+        <div class="quiz-result" id="quizResult" style="display: none;">
+            <div class="quiz-result-card">
+                <div class="result-icon" id="resultIcon">🏆</div>
+                <h3 id="resultTitle">Your Perfect Bottle</h3>
+                <p id="resultDescription"></p>
+                <div class="result-bottle" id="resultBottle"></div>
+                <button class="buyBtn" onclick="document.getElementById('order').scrollIntoView({ behavior: 'smooth' })">Order Now →</button>
+                <button class="quiz-restart" onclick="resetQuiz()">Take Quiz Again ↻</button>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="techfeatures" id="techfeatures">
@@ -3520,16 +3757,71 @@ function refreshFact() {
 }
 refreshFact();
 
-// ========== 4. PRINTABLE SIZE CHART ==========
+// ========== PRINTABLE SIZE CHART (FIXED) ==========
 function printSizeChart() {
-    const printContent = document.getElementById('sizeChartPrint').innerHTML;
-    const originalContent = document.body.innerHTML;
-    document.body.innerHTML = printContent;
-    window.print();
-    document.body.innerHTML = originalContent;
-    location.reload();
+    const chartHTML = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>HydroSmart Size Chart</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    padding: 40px;
+                    background: white;
+                    color: black;
+                }
+                h1 {
+                    color: #38bdf8;
+                    text-align: center;
+                }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 30px;
+                }
+                th, td {
+                    border: 1px solid #ddd;
+                    padding: 12px;
+                    text-align: center;
+                }
+                th {
+                    background: #38bdf8;
+                    color: white;
+                }
+                .footer {
+                    margin-top: 30px;
+                    text-align: center;
+                    font-size: 12px;
+                    color: #666;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>💧 HydroSmart Bottle Size Guide</h1>
+            <table>
+                <thead>
+                    <tr><th>Size</th><th>Capacity</th><th>Height</th><th>Diameter</th><th>Best For</th><th>Price</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Small</td><td>500ml</td><td>20cm</td><td>6.5cm</td><td>Kids, Light hydration</td><td>$7.99</td></tr>
+                    <tr style="background:#f0f9ff;"><td>Medium (Most Popular)</td><td>750ml</td><td>25cm</td><td>7cm</td><td>Daily use, Students</td><td>$9.99</td></tr>
+                    <tr><td>Large</td><td>1000ml</td><td>30cm</td><td>7.5cm</td><td>Athletes, Heavy drinkers</td><td>$12.99</td></tr>
+                </tbody>
+            </table>
+            <div class="footer">
+                <p>📧 Visit: www.hydrosmart.com | 📞 Call: +880 1234 567890</p>
+                <p>© 2026 HydroSmart - Smart Hydration Solutions</p>
+            </div>
+            <script>window.print();<\/script>
+        </body>
+        </html>
+    `;
+    
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(chartHTML);
+    printWindow.document.close();
 }
-
 // ========== 5. SAVE FOR LATER (WISHLIST) ==========
 let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 function updateWishlistCount() {
@@ -5229,7 +5521,177 @@ window.addEventListener('online', () => {
     offlineMsg.classList.add('show');
     setTimeout(() => offlineMsg.classList.remove('show'), 3000);
 });
-  
+
+// ========== DARK/LIGHT MODE TOGGLE ==========
+const modeToggle = document.getElementById('modeToggle');
+const body = document.body;
+
+// Check for saved preference
+const savedMode = localStorage.getItem('mode');
+if (savedMode === 'light') {
+    body.classList.add('light-mode');
+    modeToggle.textContent = '☀️';
+}
+
+modeToggle?.addEventListener('click', () => {
+    body.classList.toggle('light-mode');
+    if (body.classList.contains('light-mode')) {
+        modeToggle.textContent = '☀️';
+        localStorage.setItem('mode', 'light');
+    } else {
+        modeToggle.textContent = '🌙';
+        localStorage.setItem('mode', 'dark');
+    }
+});
+
+// ========== BOTTLE QUIZ (FULLY WORKING) ==========
+const quizQuestions = [
+    {
+        text: "How often do you drink water?",
+        options: ["Rarely (1-2 glasses/day)", "Sometimes (3-4 glasses/day)", "Often (5-6 glasses/day)", "Always (7-8+ glasses/day)"],
+        scores: [1, 2, 3, 4]
+    },
+    {
+        text: "What's your main activity?",
+        options: ["Student/Sedentary job", "Light exercise", "Regular sports/athlete", "Outdoor worker"],
+        scores: [1, 2, 3, 4]
+    },
+    {
+        text: "Do you want smart features?",
+        options: ["No, just a basic bottle", "Maybe, temperature display", "Yes, reminders and tracking", "Yes, all features + self-cleaning"],
+        scores: [1, 2, 3, 4]
+    },
+    {
+        text: "What's your budget?",
+        options: ["Under $10", "$10-$15", "$15-$20", "$20+"],
+        scores: [1, 2, 3, 4]
+    },
+    {
+        text: "Do you care about bottle color?",
+        options: ["Not at all", "A little", "Yes, want options", "I want custom colors"],
+        scores: [1, 2, 3, 4]
+    }
+];
+
+let currentQuestion = 0;
+let userAnswers = [];
+let quizAnswers = [];
+
+function loadQuestion() {
+    const q = quizQuestions[currentQuestion];
+    document.getElementById('quizQuestion').textContent = `Question ${currentQuestion + 1}/${quizQuestions.length}`;
+    document.getElementById('quizText').textContent = q.text;
+    
+    const optionsDiv = document.getElementById('quizOptions');
+    optionsDiv.innerHTML = '';
+    q.options.forEach((option, idx) => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'quiz-option';
+        if (quizAnswers[currentQuestion] === idx) optionDiv.classList.add('selected');
+        optionDiv.textContent = option;
+        optionDiv.onclick = () => selectOption(idx);
+        optionsDiv.appendChild(optionDiv);
+    });
+    
+    const progress = ((currentQuestion + 1) / quizQuestions.length) * 100;
+    document.getElementById('quizProgressBar').style.width = `${progress}%`;
+    
+    document.getElementById('quizPrev').style.display = currentQuestion === 0 ? 'none' : 'inline-block';
+    document.getElementById('quizNext').textContent = currentQuestion === quizQuestions.length - 1 ? 'See Result →' : 'Next ▶';
+}
+
+function selectOption(optionIndex) {
+    quizAnswers[currentQuestion] = optionIndex;
+    document.querySelectorAll('.quiz-option').forEach((opt, idx) => {
+        if (idx === optionIndex) opt.classList.add('selected');
+        else opt.classList.remove('selected');
+    });
+}
+
+function nextQuestion() {
+    if (quizAnswers[currentQuestion] === undefined) {
+        alert('Please select an answer!');
+        return;
+    }
+    
+    if (currentQuestion === quizQuestions.length - 1) {
+        showResult();
+    } else {
+        currentQuestion++;
+        loadQuestion();
+    }
+}
+
+function prevQuestion() {
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        loadQuestion();
+    }
+}
+
+function showResult() {
+    let totalScore = 0;
+    quizAnswers.forEach((answer, idx) => {
+        totalScore += quizQuestions[idx].scores[answer];
+    });
+    
+    let result = {};
+    if (totalScore <= 8) {
+        result = {
+            title: "💧 Classic Steel",
+            description: "Perfect for beginners! Basic hydration with stainless steel durability. Affordable and reliable.",
+            bottle: "Classic Steel - $9.99",
+            icon: "🥤"
+        };
+    } else if (totalScore <= 12) {
+        result = {
+            title: "🎨 Color Edition",
+            description: "Express your style! Choose from 8 vibrant colors. Includes temperature display.",
+            bottle: "Ocean Blue / Energy Green / Hot Pink - $9.99",
+            icon: "🎨"
+        };
+    } else if (totalScore <= 16) {
+        result = {
+            title: "⚡ Smart Hydration",
+            description: "Smart reminders + touch display + temperature tracking. Perfect for health-conscious users.",
+            bottle: "Premium Smart Bottle - $9.99 + Membership",
+            icon: "⚡"
+        };
+    } else {
+        result = {
+            title: "🚀 Ultimate Pro",
+            description: "All smart features + self-cleaning UV technology + custom colors. The ultimate hydration experience!",
+            bottle: "HydroSmart Pro + Premium Membership",
+            icon: "🚀"
+        };
+    }
+    
+    document.getElementById('resultIcon').textContent = result.icon;
+    document.getElementById('resultTitle').textContent = result.title;
+    document.getElementById('resultDescription').innerHTML = `${result.description}<br><br><strong>Recommended: ${result.bottle}</strong>`;
+    document.getElementById('resultBottle').innerHTML = `<div class="water-fill" style="width: 80px; height: 120px; margin: 0 auto;"><div class="water-level" style="height: 70%;"></div></div>`;
+    
+    document.getElementById('quizCard').style.display = 'none';
+    document.getElementById('quizResult').style.display = 'block';
+}
+
+function resetQuiz() {
+    currentQuestion = 0;
+    quizAnswers = [];
+    document.getElementById('quizCard').style.display = 'block';
+    document.getElementById('quizResult').style.display = 'none';
+    loadQuestion();
+}
+
+// Event listeners
+document.getElementById('quizNext')?.addEventListener('click', nextQuestion);
+document.getElementById('quizPrev')?.addEventListener('click', prevQuestion);
+
+// Initialize quiz
+if (document.getElementById('quizOptions')) {
+    loadQuestion();
+}
+    
 </script>
 
 <!-- SERVICES AND POLICIES OVERLAY -->
@@ -5250,6 +5712,8 @@ window.addEventListener('online', () => {
 
 <!-- BACK TO TOP BUTTON -->
 <button class="back-to-top" id="backToTopBtn">↑</button>
-  
+<!-- Dark/Light Mode Toggle Button -->
+<button class="mode-toggle" id="modeToggle" title="Toggle Dark/Light Mode">🌙</button>
+    
 </body>
 </html>
