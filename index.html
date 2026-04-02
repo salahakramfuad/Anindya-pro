@@ -1950,6 +1950,76 @@ footer {
 .offline-message.show {
     transform: translateY(0);
 }
+
+  /* ========== FIX FOR SHIPPING CALCULATOR DROPDOWN ========== */
+.shipping-form select {
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    background: #1e293b;
+    color: white;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.shipping-form select option {
+    background: #0f172a;
+    color: white;
+    padding: 12px;
+}
+
+.shipping-form select option:hover {
+    background: #38bdf8;
+    color: white;
+}
+
+.shipping-form select:focus {
+    outline: none;
+    border-color: #38bdf8;
+}
+
+/* Fix for hydration calculator dropdown */
+.calc-input-group select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    background: #1e293b;
+    color: white;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.calc-input-group select option {
+    background: #0f172a;
+    color: white;
+    padding: 10px;
+}
+
+.calc-input-group select option:hover {
+    background: #38bdf8;
+}
+
+/* Fix for all dropdowns in the website */
+select {
+    background: #1e293b;
+    color: white;
+    cursor: pointer;
+}
+
+select option {
+    background: #0f172a;
+    color: white;
+    padding: 10px;
+}
+
+select option:hover {
+    background: #38bdf8;
+}
   
 </style>
 </head>
@@ -1978,6 +2048,8 @@ footer {
       <li><a href="#contact">Contact</a></li>
       <li><a href="#social">Community</a></li>
       <li><a href="#why">Why Us</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#shipping-calc">Shipping</a></li>
     </ul>
   </nav>
   
@@ -2576,6 +2648,7 @@ footer {
 </section>
 
 <!-- ========== SHIPPING CALCULATOR SECTION ========== -->
+<!-- ========== SHIPPING CALCULATOR SECTION ========== -->
 <section class="shipping-calculator-section" id="shipping-calc">
     <h2>Shipping Calculator</h2>
     <p class="section-subtitle">Estimate your shipping cost and time</p>
@@ -2583,23 +2656,24 @@ footer {
     <div class="shipping-calculator">
         <div class="shipping-form">
             <select id="shippingCountry">
-                <option value="">Select Country</option>
-                <option value="us">United States</option>
-                <option value="bd">Bangladesh</option>
-                <option value="uk">United Kingdom</option>
-                <option value="ca">Canada</option>
-                <option value="au">Australia</option>
+                <option value="" disabled selected>Select Country</option>
+                <option value="us">🇺🇸 United States</option>
+                <option value="bd">🇧🇩 Bangladesh</option>
+                <option value="uk">🇬🇧 United Kingdom</option>
+                <option value="ca">🇨🇦 Canada</option>
+                <option value="au">🇦🇺 Australia</option>
             </select>
             <select id="shippingType">
-                <option value="">Select Shipping Type</option>
-                <option value="standard">Standard (3-5 days)</option>
-                <option value="express">Express (1-2 days)</option>
+                <option value="" disabled selected>Select Shipping Type</option>
+                <option value="standard">📦 Standard (3-5 days) - $4.99</option>
+                <option value="express">⚡ Express (1-2 days) - $9.99</option>
             </select>
             <button class="buyBtn" id="calculateShipping">Calculate</button>
         </div>
         <div class="shipping-result" id="shippingResult">
             <p>🚚 Estimated Shipping: <strong id="shippingCost">$0.00</strong></p>
             <p>📦 Delivery Time: <strong id="deliveryTime">-</strong></p>
+            <p style="font-size: 12px; margin-top: 10px;">✨ Free shipping for Bangladesh!</p>
         </div>
     </div>
 </section>
@@ -2642,14 +2716,14 @@ footer {
             <label>⚖️ Weight (kg)</label>
             <input type="number" id="weight" placeholder="Enter your weight">
         </div>
-        <div class="calc-input-group">
-            <label>🏃 Activity Level</label>
-            <select id="activity">
-                <option value="sedentary">Sedentary (little exercise)</option>
-                <option value="moderate">Moderate (exercise 3-4 times/week)</option>
-                <option value="active">Active (daily exercise)</option>
-            </select>
-        </div>
+       <div class="calc-input-group">
+    <label>🏃 Activity Level</label>
+    <select id="activity">
+        <option value="sedentary">🛋️ Sedentary (little exercise)</option>
+        <option value="moderate">🚶 Moderate (exercise 3-4 times/week)</option>
+        <option value="active">🏃 Active (daily exercise)</option>
+    </select>
+</div>
         <button class="buyBtn" id="calculateHydration">Calculate</button>
         
         <div class="calc-result" id="hydrationResult" style="display: none;">
