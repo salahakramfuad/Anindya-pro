@@ -77,10 +77,13 @@ function renderProductCards ( container, data )
     card.dataset.tier = product.tier
     if ( product.popular ) card.dataset.popular = 'true'
 
+    const media = document.createElement( 'div' )
+    media.className = 'card__media'
     const img = document.createElement( 'img' )
     img.src = product.image
     img.alt = product.imageAlt || product.title
-    card.appendChild( img )
+    media.appendChild( img )
+    card.appendChild( media )
 
     const h3 = document.createElement( 'h3' )
     h3.textContent = product.title
@@ -324,6 +327,36 @@ function initCatalogEditor ( grid, getData, setData, rerender )
   syncSelect()
 }
 
+function rebuildOrderBottleOptions ()
+{
+  const sel = document.getElementById( 'bottleColor' )
+  const catalog = window.__productsCatalogData
+  if ( !sel || !catalog?.products?.length ) return
+  const previous = sel.value
+  sel.replaceChildren()
+  const placeholder = document.createElement( 'option' )
+  placeholder.value = ''
+  placeholder.textContent = 'Select bottle color'
+  sel.appendChild( placeholder )
+  catalog.products.forEach( p =>
+  {
+    const o = document.createElement( 'option' )
+    o.value = p.id
+    o.textContent = p.title
+    sel.appendChild( o )
+  } )
+  const custom = document.createElement( 'option' )
+  custom.value = 'Custom Color'
+  custom.textContent = '🎨 Custom Color (+$1)'
+  sel.appendChild( custom )
+  if ( previous && [ ...sel.options ].some( opt => opt.value === previous ) )
+  {
+    sel.value = previous
+  }
+}
+
+window.rebuildOrderBottleOptions = rebuildOrderBottleOptions
+
 async function bootstrap ()
 {
   const grid = document.getElementById( 'productsGrid' )
@@ -354,12 +387,14 @@ async function bootstrap ()
   const rerender = () =>
   {
     renderProductCards( grid, window.__productsCatalogData )
+    rebuildOrderBottleOptions()
     window.dispatchEvent( new CustomEvent( 'hydro:productsCatalogRendered', {
       detail: { count: window.__productsCatalogData.products.length }
     } ) )
   }
 
   renderProductCards( grid, data )
+  rebuildOrderBottleOptions()
   initCatalogEditor(
     grid,
     () => window.__productsCatalogData,

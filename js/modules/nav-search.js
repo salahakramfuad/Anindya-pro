@@ -159,26 +159,11 @@ if ( productsContainer )
     if ( !btn || !productsContainer.contains( btn ) ) return
     e.preventDefault()
     const card = btn.closest( '.card' )
-    if ( card )
+    const sku = card?.dataset?.product
+    if ( typeof openOrderModal === 'function' )
     {
-      const productName = card.querySelector( 'h3' )?.innerText
-      const colorSelect = document.getElementById( 'bottleColor' )
-      if ( colorSelect && productName )
-      {
-        for ( const opt of colorSelect.options )
-        {
-          if ( opt.text === productName )
-          {
-            opt.selected = true
-            if ( opt.value !== 'Custom Color' )
-            {
-              selectedCustomColor = null
-              isCustomColorSelected = false
-            }
-            break
-          }
-        }
-      }
+      openOrderModal( { productId: sku || '' } )
+      return
     }
     scrollToOrder()
   } )

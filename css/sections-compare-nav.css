@@ -283,6 +283,9 @@ body.light-mode .product-catalog__filter-heading {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+  background: rgba(2, 6, 23, 0.25);
 }
 
 .compare-table.compare-table--embedded[hidden] {
@@ -307,23 +310,66 @@ body.light-mode .product-catalog__filter-heading {
 }
 
 .compare-spec-table thead th {
-  background: rgba(56, 189, 248, 0.12);
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.2) 0%, rgba(56, 189, 248, 0.08) 100%);
   font-weight: 600;
   color: var(--text-primary);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  box-shadow: 0 1px 0 var(--border-color);
+  white-space: nowrap;
 }
 
 .compare-spec-table tbody th[scope="row"] {
-  background: rgba(15, 23, 42, 0.35);
+  background: rgba(15, 23, 42, 0.45);
   font-weight: 500;
   color: var(--text-secondary);
   position: sticky;
   left: 0;
   z-index: 1;
   min-width: 10.5rem;
+  box-shadow: 1px 0 0 var(--border-color);
+}
+
+.compare-spec-table tbody tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.compare-spec-table tbody tr:nth-child(even) th[scope="row"] {
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.compare-spec-table tbody tr:hover td,
+.compare-spec-table tbody tr:hover th[scope="row"] {
+  background: rgba(56, 189, 248, 0.09);
 }
 
 .compare-spec-table tbody td {
   color: var(--text-secondary);
+  vertical-align: top;
+  line-height: 1.45;
+}
+
+body.light-mode .compare-table.compare-table--embedded {
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.65);
+}
+
+body.light-mode .compare-spec-table tbody tr:nth-child(even) td {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+body.light-mode .compare-spec-table tbody tr:nth-child(even) th[scope="row"] {
+  background: rgba(241, 245, 249, 0.95);
+}
+
+body.light-mode .compare-spec-table tbody tr:hover td,
+body.light-mode .compare-spec-table tbody tr:hover th[scope="row"] {
+  background: rgba(224, 242, 254, 0.65);
+}
+
+body.light-mode .compare-spec-table tbody th[scope="row"] {
+  background: rgba(248, 250, 252, 0.98);
 }
 
 /* Legacy compare section (unused on products; kept for older bookmarks) */

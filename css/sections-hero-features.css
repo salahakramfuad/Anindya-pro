@@ -202,6 +202,63 @@ body.light-mode .card--compare-selected {
   box-shadow: 0 12px 32px rgba(14, 165, 233, 0.12);
 }
 
+/* Product catalog page — consistent card ratio + grid */
+.product-catalog .products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
+  justify-items: stretch;
+}
+
+.product-catalog .card {
+  width: auto;
+  max-width: none;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: clamp(1rem, 2.5vw, 1.35rem);
+  text-align: center;
+}
+
+.product-catalog .card__media {
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  margin: 0 auto 0.75rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-catalog .card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  margin: 0;
+}
+
+.product-catalog .card h3 {
+  margin-top: 0;
+}
+
+.product-catalog .card__items {
+  flex: 1;
+}
+
+.product-catalog .card__actions {
+  margin-top: auto;
+}
+
+body.light-mode .product-catalog .card__media {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
 /* FEATURES */
 .techfeatures,
 .bodyfeatures,

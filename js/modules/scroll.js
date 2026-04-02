@@ -1,16 +1,20 @@
 /**
- * scrollToOrder — same page #order or go to order.html#order
+ * scrollToOrder — open order modal on products, else go to products?order=1
  */
 // ========== SCROLL FUNCTIONS ==========
 function scrollToOrder ()
 {
+  if ( typeof openOrderModal === 'function' && document.getElementById( 'orderModal' ) )
+  {
+    openOrderModal( {} )
+    return
+  }
   const el = document.getElementById( 'order' )
   if ( el )
   {
     el.scrollIntoView( { behavior: 'smooth' } )
-  } else
-  {
-    window.location.href = 'order.html#order'
+    return
   }
+  window.location.href = 'products.html?order=1'
 }
 

@@ -243,13 +243,13 @@ function updateDeliveryEstimate ()
     existingDiv.innerHTML = `📦 Estimated Delivery: ${formattedDate} (${deliveryDays} business days)`
   } else
   {
-    const orderSection = document.querySelector( '.order form' )
-    if ( orderSection )
+    const orderFormEl = document.getElementById( 'orderForm' )
+    if ( orderFormEl )
     {
       const deliveryDiv = document.createElement( 'div' )
       deliveryDiv.className = 'delivery-estimate'
       deliveryDiv.innerHTML = `📦 Estimated Delivery: ${formattedDate} (${deliveryDays} business days)`
-      orderSection.appendChild( deliveryDiv )
+      orderFormEl.appendChild( deliveryDiv )
     }
   }
 }
