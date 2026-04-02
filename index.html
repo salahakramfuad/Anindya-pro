@@ -4350,39 +4350,111 @@ document.querySelectorAll('.card').forEach((card, index) => {
     card.appendChild(badge);
 });
 
-// ========== ESTIMATED DELIVERY (Add to order section) ==========
-const orderSection = document.querySelector('.order form');
-if (orderSection) {
-    const deliveryDiv = document.createElement('div');
+// ========== ESTIMATED DELIVERY (FIXED - Shows below order form) ==========
+function updateDeliveryEstimate() {
+    let existingDiv = document.querySelector('.delivery-estimate');
+    
+    // Get selected shipping type if available
+    const shippingType = document.getElementById('shippingType')?.value || 'standard';
+    
+    // Calculate delivery days based on shipping type
+    let deliveryDays = 5; // default standard
+    if (shippingType === 'express') {
+        deliveryDays = 2;
+    } else if (shippingType === 'standard') {
+        deliveryDays = 5;
+    }
+    
+    // Calculate delivery date
     const today = new Date();
     const deliveryDate = new Date(today);
-    deliveryDate.setDate(today.getDate() + 5);
-    deliveryDiv.className = 'delivery-estimate';
-    deliveryDiv.innerHTML = `📦 Estimated Delivery: ${deliveryDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
-    orderSection.appendChild(deliveryDiv);
+    deliveryDate.setDate(today.getDate() + deliveryDays);
+    
+    // Format date
+    const formattedDate = deliveryDate.toLocaleDateString('en-US', { 
+        weekday: 'long', 
+        month: 'long', 
+        day: 'numeric', 
+        year: 'numeric' 
+    });
+    
+    // Update or create delivery div
+    if (existingDiv) {
+        existingDiv.innerHTML = `📦 Estimated Delivery: ${formattedDate} (${deliveryDays} business days)`;
+    } else {
+        const orderSection = document.querySelector('.order form');
+        if (orderSection) {
+            const deliveryDiv = document.createElement('div');
+            deliveryDiv.className = 'delivery-estimate';
+            deliveryDiv.innerHTML = `📦 Estimated Delivery: ${formattedDate} (${deliveryDays} business days)`;
+            orderSection.appendChild(deliveryDiv);
+        }
+    }
 }
 
-// ========== GIFT MESSAGE OPTION ==========
-const orderForm = document.getElementById('orderForm');
-if (orderForm) {
-    const giftDiv = document.createElement('div');
-    giftDiv.className = 'gift-option';
-    giftDiv.innerHTML = `
-        <label class="gift-checkbox">
-            <input type="checkbox" id="giftCheckbox"> 🎁 This is a gift (+$2)
-        </label>
-        <textarea id="giftMessage" class="gift-message-input" placeholder="Enter your gift message..." rows="3"></textarea>
-    `;
-    orderForm.insertBefore(giftDiv, orderForm.querySelector('button'));
+// Call function when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    updateDeliveryEstimate();
     
-    document.getElementById('giftCheckbox')?.addEventListener('change', function() {
-        const msgInput = document.getElementById('giftMessage');
-        if (this.checked) {
-            msgInput.classList.add('show');
+    // Update delivery estimate when shipping type changes
+    const shippingTypeSelect = document.getElementById('shippingType');
+    if (shippingTypeSelect) {
+        shippingTypeSelect.addEventListener('change', updateDeliveryEstimate);
+    }
+});
+
+// Also add delivery estimate to the order summary
+const style = document.createElement('style');
+style.textContent = `
+    .delivery-estimate {
+        margin-top: 15px;
+        padding: 12px;
+        background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(34, 197, 94, 0.1));
+        border-radius: 10px;
+        text-align: center;
+        font-size: 14px;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        animation: fadeIn 0.5s ease;
+    }
+`;
+document.head.appendChild(style);
+
+// ========== GIFT MESSAGE OPTION (FIXED) ==========
+const orderFormElement2 = document.getElementById('orderForm');
+if (orderFormElement2) {
+    // Check if gift option already exists to avoid duplicate
+    if (!document.querySelector('.gift-option')) {
+        const giftDiv = document.createElement('div');
+        giftDiv.className = 'gift-option';
+        giftDiv.innerHTML = `
+            <label class="gift-checkbox">
+                <input type="checkbox" id="giftCheckbox"> 🎁 This is a gift (+$2)
+            </label>
+            <textarea id="giftMessage" class="gift-message-input" placeholder="Enter your gift message..." rows="3"></textarea>
+        `;
+        
+        // Insert before the submit button
+        const submitBtn = orderFormElement2.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            orderFormElement2.insertBefore(giftDiv, submitBtn);
         } else {
-            msgInput.classList.remove('show');
+            orderFormElement2.appendChild(giftDiv);
         }
-    });
+        
+        // Add event listener for checkbox
+        const giftCheckbox = document.getElementById('giftCheckbox');
+        const giftMessage = document.getElementById('giftMessage');
+        
+        if (giftCheckbox && giftMessage) {
+            giftCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    giftMessage.classList.add('show');
+                } else {
+                    giftMessage.classList.remove('show');
+                }
+            });
+        }
+    }
 }
 
 // ========== KEYBOARD SHORTCUTS (FIXED - No interference with typing) ==========
