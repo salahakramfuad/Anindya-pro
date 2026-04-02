@@ -1492,6 +1492,464 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* ========== FAQ ACCORDION SECTION ========== */
+.faq-accordion-section {
+    padding: 100px 8%;
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+}
+
+.faq-accordion {
+    max-width: 800px;
+    margin: 50px auto 0;
+}
+
+.accordion-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.accordion-question {
+    padding: 20px 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: #38bdf8;
+    font-size: 1.1rem;
+}
+
+.accordion-question:hover {
+    background: rgba(56, 189, 248, 0.1);
+}
+
+.accordion-icon {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-icon {
+    transform: rotate(45deg);
+}
+
+.accordion-answer {
+    padding: 0 25px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+.accordion-item.active .accordion-answer {
+    padding: 0 25px 20px 25px;
+    max-height: 200px;
+}
+
+/* ========== PRODUCT FILTER SYSTEM ========== */
+.filter-section {
+    padding: 0 8% 50px 8%;
+    text-align: center;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.filter-btn {
+    padding: 10px 25px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 30px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: linear-gradient(90deg, #38bdf8, #22c55e);
+    border-color: transparent;
+}
+
+/* ========== SHIPPING CALCULATOR ========== */
+.shipping-calculator {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.shipping-form {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.shipping-form select, .shipping-form input {
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+}
+
+.shipping-result {
+    text-align: center;
+    padding: 15px;
+    background: rgba(56, 189, 248, 0.1);
+    border-radius: 15px;
+    display: none;
+}
+
+.shipping-result.show {
+    display: block;
+}
+
+/* ========== SIZE COMPARISON GUIDE ========== */
+.size-guide {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.size-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    width: 200px;
+    transition: all 0.3s ease;
+}
+
+.size-card:hover {
+    transform: translateY(-5px);
+    background: rgba(56, 189, 248, 0.1);
+}
+
+.size-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.size-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #38bdf8;
+    margin-bottom: 10px;
+}
+
+.size-desc {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+/* ========== HYDRATION CALCULATOR ========== */
+.hydration-calculator {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 500px;
+    margin: 30px auto 0;
+}
+
+.calc-input-group {
+    margin-bottom: 20px;
+}
+
+.calc-input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #38bdf8;
+}
+
+.calc-input-group input, .calc-input-group select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.calc-result {
+    text-align: center;
+    padding: 20px;
+    background: rgba(56, 189, 248, 0.1);
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.calc-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: #38bdf8;
+}
+
+/* ========== COLOR PREVIEW GALLERY ========== */
+.color-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.color-swatch {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+}
+
+.color-swatch.selected {
+    border-color: white;
+    transform: scale(1.1);
+}
+
+.color-preview-large {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.color-preview-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    border: 3px solid #38bdf8;
+}
+
+/* ========== VIDEO TUTORIAL SECTION ========== */
+.video-tutorial {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+}
+
+.video-placeholder {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 60px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.video-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+/* ========== PRICE COMPARISON TABLE ========== */
+.price-compare-table {
+    overflow-x: auto;
+    margin-top: 40px;
+}
+
+.price-compare-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+}
+
+.price-compare-table th, .price-compare-table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.price-compare-table th {
+    background: rgba(56, 189, 248, 0.2);
+    color: #38bdf8;
+}
+
+.price-compare-table .highlight {
+    color: #22c55e;
+    font-weight: bold;
+}
+
+/* ========== GIFT MESSAGE OPTION ========== */
+.gift-option {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(56, 189, 248, 0.05);
+    border-radius: 10px;
+}
+
+.gift-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.gift-message-input {
+    display: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    resize: vertical;
+}
+
+.gift-message-input.show {
+    display: block;
+}
+
+/* ========== SHARE BUTTON ========== */
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.share-btn.whatsapp { background: #25D366; color: white; }
+.share-btn.facebook { background: #1877F2; color: white; }
+.share-btn.twitter { background: #1DA1F2; color: white; }
+.share-btn.copy { background: #64748b; color: white; }
+
+.share-btn:hover {
+    transform: scale(1.05);
+}
+
+/* ========== STOCK BADGE ========== */
+.stock-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.stock-badge.in-stock {
+    background: #22c55e;
+    color: white;
+}
+
+.stock-badge.limited {
+    background: #f97316;
+    color: white;
+}
+
+.stock-badge.out-stock {
+    background: #ef4444;
+    color: white;
+}
+
+/* ========== ESTIMATED DELIVERY ========== */
+.delivery-estimate {
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(56, 189, 248, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* ========== KEYBOARD SHORTCUTS GUIDE ========== */
+.keyboard-shortcuts {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-size: 12px;
+    color: #94a3b8;
+    z-index: 999;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.keyboard-shortcuts:hover {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+.shortcuts-popup {
+    position: fixed;
+    bottom: 70px;
+    left: 20px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    display: none;
+    z-index: 1000;
+    min-width: 250px;
+}
+
+.shortcuts-popup.show {
+    display: block;
+}
+
+.shortcuts-popup h4 {
+    color: #38bdf8;
+    margin-bottom: 10px;
+}
+
+.shortcuts-popup p {
+    margin: 8px 0;
+    font-size: 13px;
+}
+
+/* ========== OFFLINE MODE MESSAGE ========== */
+.offline-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #f97316;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    z-index: 2000;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+.offline-message.show {
+    transform: translateY(0);
+}
   
 </style>
 </head>
@@ -2058,7 +2516,267 @@ footer {
         </div>
     </div>
 </section>
-  
+
+  <!-- ========== FAQ ACCORDION SECTION ========== -->
+<section class="faq-accordion-section" id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <p class="section-subtitle">Got questions? We've got answers!</p>
+    
+    <div class="faq-accordion">
+        <div class="accordion-item">
+            <div class="accordion-question">
+                <span>How long does shipping take?</span>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-answer">Standard shipping takes 3-5 business days. Express shipping takes 1-2 business days. International shipping takes 7-14 business days.</div>
+        </div>
+        
+        <div class="accordion-item">
+            <div class="accordion-question">
+                <span>Can I return my bottle?</span>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-answer">Yes! We offer a 30-day return policy for unused bottles in original packaging. Custom color bottles are non-returnable.</div>
+        </div>
+        
+        <div class="accordion-item">
+            <div class="accordion-question">
+                <span>How does the self-cleaning work?</span>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-answer">UV-C light technology eliminates 99.9% of bacteria automatically every 4 hours when the bottle is stationary.</div>
+        </div>
+        
+        <div class="accordion-item">
+            <div class="accordion-question">
+                <span>What payment methods do you accept?</span>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-answer">We accept all major credit cards (Visa, Mastercard, Amex), PayPal, and Apple Pay.</div>
+        </div>
+        
+        <div class="accordion-item">
+            <div class="accordion-question">
+                <span>Is there a warranty?</span>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-answer">Yes! 2-year limited warranty covering manufacturing defects. Self-cleaning components have 1-year warranty.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PRODUCT FILTER SECTION ========== -->
+<section class="filter-section">
+    <h3 style="margin-bottom: 20px;">Filter Bottles</h3>
+    <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All Bottles</button>
+        <button class="filter-btn" data-filter="standard">Standard ($9.99)</button>
+        <button class="filter-btn" data-filter="special">Special Edition ($7.99)</button>
+    </div>
+</section>
+
+<!-- ========== SHIPPING CALCULATOR SECTION ========== -->
+<section class="shipping-calculator-section" id="shipping-calc">
+    <h2>Shipping Calculator</h2>
+    <p class="section-subtitle">Estimate your shipping cost and time</p>
+    
+    <div class="shipping-calculator">
+        <div class="shipping-form">
+            <select id="shippingCountry">
+                <option value="">Select Country</option>
+                <option value="us">United States</option>
+                <option value="bd">Bangladesh</option>
+                <option value="uk">United Kingdom</option>
+                <option value="ca">Canada</option>
+                <option value="au">Australia</option>
+            </select>
+            <select id="shippingType">
+                <option value="">Select Shipping Type</option>
+                <option value="standard">Standard (3-5 days)</option>
+                <option value="express">Express (1-2 days)</option>
+            </select>
+            <button class="buyBtn" id="calculateShipping">Calculate</button>
+        </div>
+        <div class="shipping-result" id="shippingResult">
+            <p>🚚 Estimated Shipping: <strong id="shippingCost">$0.00</strong></p>
+            <p>📦 Delivery Time: <strong id="deliveryTime">-</strong></p>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SIZE COMPARISON GUIDE ========== -->
+<section class="size-guide-section">
+    <h2>Size Comparison Guide</h2>
+    <p class="section-subtitle">Find the perfect size for your needs</p>
+    
+    <div class="size-guide">
+        <div class="size-card">
+            <div class="size-icon">🥤</div>
+            <div class="size-name">500ml</div>
+            <div class="size-desc">Perfect for kids & light hydration</div>
+        </div>
+        <div class="size-card">
+            <div class="size-icon">🧴</div>
+            <div class="size-name">750ml</div>
+            <div class="size-desc">Most popular - daily use</div>
+        </div>
+        <div class="size-card">
+            <div class="size-icon">💪</div>
+            <div class="size-name">1000ml</div>
+            <div class="size-desc">For athletes & heavy drinkers</div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== HYDRATION CALCULATOR ========== -->
+<section class="hydration-calculator-section">
+    <h2>Hydration Calculator</h2>
+    <p class="section-subtitle">Find out how much water you need daily</p>
+    
+    <div class="hydration-calculator">
+        <div class="calc-input-group">
+            <label>👤 Age (years)</label>
+            <input type="number" id="age" placeholder="Enter your age">
+        </div>
+        <div class="calc-input-group">
+            <label>⚖️ Weight (kg)</label>
+            <input type="number" id="weight" placeholder="Enter your weight">
+        </div>
+        <div class="calc-input-group">
+            <label>🏃 Activity Level</label>
+            <select id="activity">
+                <option value="sedentary">Sedentary (little exercise)</option>
+                <option value="moderate">Moderate (exercise 3-4 times/week)</option>
+                <option value="active">Active (daily exercise)</option>
+            </select>
+        </div>
+        <button class="buyBtn" id="calculateHydration">Calculate</button>
+        
+        <div class="calc-result" id="hydrationResult" style="display: none;">
+            <p>💧 You should drink approximately</p>
+            <div class="calc-number" id="waterAmount">0</div>
+            <p>ml of water per day</p>
+        </div>
+    </div>
+</section>
+
+<!-- ========== COLOR PREVIEW GALLERY ========== -->
+<section class="color-gallery-section">
+    <h2>Color Preview Gallery</h2>
+    <p class="section-subtitle">Click any color to see preview</p>
+    
+    <div class="color-gallery" id="colorGallery">
+        <div class="color-swatch" style="background: #1e3a8a;" data-color="Ocean Blue"></div>
+        <div class="color-swatch" style="background: #15803d;" data-color="Energy Green"></div>
+        <div class="color-swatch" style="background: #7e22ce;" data-color="Galaxy Purple"></div>
+        <div class="color-swatch" style="background: #4b5563;" data-color="Classic Steel"></div>
+        <div class="color-swatch" style="background: #111827;" data-color="Bright Black"></div>
+        <div class="color-swatch" style="background: #f43f5e;" data-color="Hot Pink"></div>
+        <div class="color-swatch" style="background: #f8fafc;" data-color="Arctic White"></div>
+        <div class="color-swatch" style="background: #dc2626;" data-color="Rose Red"></div>
+    </div>
+    <div class="color-preview-large" id="colorPreviewLarge">
+        <div class="color-preview-circle" style="background: #1e3a8a;"></div>
+        <p>Ocean Blue</p>
+    </div>
+</section>
+
+<!-- ========== VIDEO TUTORIAL SECTION ========== -->
+<section class="video-tutorial-section">
+    <h2>Video Tutorials</h2>
+    <p class="section-subtitle">Learn how to use your HydroSmart bottle</p>
+    
+    <div class="video-tutorial">
+        <div class="video-placeholder" onclick="alert('Video: How to use smart features 🎥\n\n1. Turn on the bottle\n2. Connect to app\n3. Set reminders\n4. Enjoy hydration!')">
+            <div class="video-icon">▶️</div>
+            <p>Click to watch: How to use smart features</p>
+        </div>
+        <div class="video-placeholder" style="margin-top: 15px;" onclick="alert('Video: How to clean your bottle 🧼\n\n1. Rinse with warm water\n2. Use UV self-cleaning\n3. Wipe dry\n4. Ready to use!')">
+            <div class="video-icon">🧼</div>
+            <p>Click to watch: How to clean your bottle</p>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PRICE COMPARISON TABLE ========== -->
+<section class="price-comparison-section">
+    <h2>Price Comparison</h2>
+    <p class="section-subtitle">See why HydroSmart is the best value</p>
+    
+    <div class="price-compare-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Brand</th>
+                    <th>Smart Features</th>
+                    <th>Self-Cleaning</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>HydroSmart</strong></td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td class="highlight">$9.99</td>
+                </tr>
+                <tr>
+                    <td>Competitor A</td>
+                    <td>✓</td>
+                    <td>✗</td>
+                    <td>$14.99</td>
+                </tr>
+                <tr>
+                    <td>Competitor B</td>
+                    <td>✗</td>
+                    <td>✗</td>
+                    <td>$12.99</td>
+                </tr>
+                <tr>
+                    <td>Competitor C</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>$24.99</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- ========== GIFT MESSAGE OPTION IN ORDER FORM ========== -->
+<!-- Add this inside your order form -->
+<script>
+// Gift message HTML will be added by JavaScript
+</script>
+
+<!-- ========== SHARE BUTTON SECTION ========== -->
+<section class="share-section">
+    <h2>Share This Page</h2>
+    <p class="section-subtitle">Share HydroSmart with your friends!</p>
+    
+    <div class="share-buttons">
+        <button class="share-btn whatsapp" onclick="shareOnWhatsApp()">📱 WhatsApp</button>
+        <button class="share-btn facebook" onclick="shareOnFacebook()">📘 Facebook</button>
+        <button class="share-btn twitter" onclick="shareOnTwitter()">🐦 Twitter</button>
+        <button class="share-btn copy" onclick="copyLink()">🔗 Copy Link</button>
+    </div>
+</section>
+
+<!-- ========== ESTIMATED DELIVERY (Added to Order Section) ========== -->
+<!-- This will be added by JavaScript -->
+
+<!-- ========== KEYBOARD SHORTCUTS GUIDE ========== -->
+<div class="keyboard-shortcuts" id="shortcutsBtn">
+    ⌨️ Keyboard Shortcuts
+</div>
+<div class="shortcuts-popup" id="shortcutsPopup">
+    <h4>⌨️ Shortcuts</h4>
+    <p>🔍 Press <strong>S</strong> - Focus Search</p>
+    <p>🏠 Press <strong>H</strong> - Go to Home</p>
+    <p>📦 Press <strong>O</strong> - Go to Order</p>
+    <p>💬 Press <strong>?</strong> - Show Shortcuts</p>
+    <p>❌ Press <strong>ESC</strong> - Close</p>
+</div>
 
 <footer>
   <p>© 2026 Hydro Smart. All rights reserved.</p>
@@ -3238,6 +3956,218 @@ document.querySelectorAll('a[href="#reviews"], a[href="#facts"]').forEach(anchor
             targetElement.scrollIntoView({ behavior: 'smooth' });
         }
     });
+});
+
+// ========== FAQ ACCORDION ==========
+document.querySelectorAll('.accordion-question').forEach(question => {
+    question.addEventListener('click', () => {
+        const item = question.parentElement;
+        item.classList.toggle('active');
+    });
+});
+
+// ========== PRODUCT FILTER ==========
+const filterBtns = document.querySelectorAll('.filter-btn');
+const productCards = document.querySelectorAll('.card');
+
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const filter = btn.dataset.filter;
+        
+        productCards.forEach(card => {
+            const price = card.querySelector('p')?.innerText || '';
+            if (filter === 'all') {
+                card.style.display = 'block';
+            } else if (filter === 'standard' && price === '$9.99') {
+                card.style.display = 'block';
+            } else if (filter === 'special' && price === '$7.99') {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+
+// ========== SHIPPING CALCULATOR ==========
+document.getElementById('calculateShipping')?.addEventListener('click', () => {
+    const country = document.getElementById('shippingCountry').value;
+    const type = document.getElementById('shippingType').value;
+    const resultDiv = document.getElementById('shippingResult');
+    
+    if (!country || !type) {
+        alert('Please select both country and shipping type');
+        return;
+    }
+    
+    let cost = 0;
+    let time = '';
+    
+    if (type === 'standard') {
+        cost = country === 'us' ? 4.99 : country === 'bd' ? 2.99 : 9.99;
+        time = '3-5 business days';
+    } else {
+        cost = country === 'us' ? 9.99 : country === 'bd' ? 5.99 : 14.99;
+        time = '1-2 business days';
+    }
+    
+    if (country === 'bd') cost = 0;
+    
+    document.getElementById('shippingCost').textContent = `$${cost.toFixed(2)}`;
+    document.getElementById('deliveryTime').textContent = time;
+    resultDiv.classList.add('show');
+});
+
+// ========== HYDRATION CALCULATOR ==========
+document.getElementById('calculateHydration')?.addEventListener('click', () => {
+    const age = parseInt(document.getElementById('age').value);
+    const weight = parseInt(document.getElementById('weight').value);
+    const activity = document.getElementById('activity').value;
+    
+    if (!age || !weight) {
+        alert('Please enter your age and weight');
+        return;
+    }
+    
+    let water = weight * 30;
+    
+    if (activity === 'moderate') water += 300;
+    if (activity === 'active') water += 600;
+    if (age > 65) water -= 200;
+    
+    document.getElementById('waterAmount').textContent = water;
+    document.getElementById('hydrationResult').style.display = 'block';
+});
+
+// ========== COLOR PREVIEW GALLERY ==========
+const colorSwatches = document.querySelectorAll('.color-swatch');
+const previewCircle = document.querySelector('.color-preview-circle');
+const previewText = document.querySelector('.color-preview-large p');
+
+colorSwatches.forEach(swatch => {
+    swatch.addEventListener('click', () => {
+        colorSwatches.forEach(s => s.classList.remove('selected'));
+        swatch.classList.add('selected');
+        previewCircle.style.background = swatch.style.background;
+        previewText.textContent = swatch.dataset.color;
+    });
+});
+
+// ========== SHARE FUNCTIONS ==========
+function shareOnWhatsApp() {
+    window.open(`https://wa.me/?text=Check out HydroSmart! The smartest water bottle ever created! ${window.location.href}`, '_blank');
+}
+
+function shareOnFacebook() {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`, '_blank');
+}
+
+function shareOnTwitter() {
+    window.open(`https://twitter.com/intent/tweet?text=Check out HydroSmart! The smartest water bottle ever created!&url=${window.location.href}`, '_blank');
+}
+
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('Link copied to clipboard! 📋');
+}
+
+// ========== STOCK BADGES (Add to product cards) ==========
+document.querySelectorAll('.card').forEach((card, index) => {
+    const badge = document.createElement('div');
+    if (index < 5) {
+        badge.className = 'stock-badge in-stock';
+        badge.textContent = '✓ In Stock';
+    } else {
+        badge.className = 'stock-badge limited';
+        badge.textContent = '⚠️ Limited Stock';
+    }
+    card.appendChild(badge);
+});
+
+// ========== ESTIMATED DELIVERY (Add to order section) ==========
+const orderSection = document.querySelector('.order form');
+if (orderSection) {
+    const deliveryDiv = document.createElement('div');
+    const today = new Date();
+    const deliveryDate = new Date(today);
+    deliveryDate.setDate(today.getDate() + 5);
+    deliveryDiv.className = 'delivery-estimate';
+    deliveryDiv.innerHTML = `📦 Estimated Delivery: ${deliveryDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
+    orderSection.appendChild(deliveryDiv);
+}
+
+// ========== GIFT MESSAGE OPTION ==========
+const orderForm = document.getElementById('orderForm');
+if (orderForm) {
+    const giftDiv = document.createElement('div');
+    giftDiv.className = 'gift-option';
+    giftDiv.innerHTML = `
+        <label class="gift-checkbox">
+            <input type="checkbox" id="giftCheckbox"> 🎁 This is a gift (+$2)
+        </label>
+        <textarea id="giftMessage" class="gift-message-input" placeholder="Enter your gift message..." rows="3"></textarea>
+    `;
+    orderForm.insertBefore(giftDiv, orderForm.querySelector('button'));
+    
+    document.getElementById('giftCheckbox')?.addEventListener('change', function() {
+        const msgInput = document.getElementById('giftMessage');
+        if (this.checked) {
+            msgInput.classList.add('show');
+        } else {
+            msgInput.classList.remove('show');
+        }
+    });
+}
+
+// ========== KEYBOARD SHORTCUTS ==========
+const shortcutsBtn = document.getElementById('shortcutsBtn');
+const shortcutsPopup = document.getElementById('shortcutsPopup');
+
+shortcutsBtn?.addEventListener('click', () => {
+    shortcutsPopup.classList.toggle('show');
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 's' || e.key === 'S') {
+        e.preventDefault();
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) searchInput.focus();
+    }
+    if (e.key === 'h' || e.key === 'H') {
+        e.preventDefault();
+        document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+    }
+    if (e.key === 'o' || e.key === 'O') {
+        e.preventDefault();
+        document.getElementById('order')?.scrollIntoView({ behavior: 'smooth' });
+    }
+    if (e.key === '?' || e.key === '/') {
+        e.preventDefault();
+        shortcutsPopup.classList.toggle('show');
+    }
+    if (e.key === 'Escape') {
+        shortcutsPopup.classList.remove('show');
+    }
+});
+
+// ========== OFFLINE MODE ==========
+const offlineMsg = document.createElement('div');
+offlineMsg.className = 'offline-message';
+offlineMsg.innerHTML = '⚠️ You are offline! Some features may not work.';
+document.body.appendChild(offlineMsg);
+
+window.addEventListener('offline', () => {
+    offlineMsg.classList.add('show');
+    setTimeout(() => offlineMsg.classList.remove('show'), 3000);
+});
+
+window.addEventListener('online', () => {
+    offlineMsg.innerHTML = '✅ You are back online!';
+    offlineMsg.classList.add('show');
+    setTimeout(() => offlineMsg.classList.remove('show'), 3000);
 });
   
 </script>
