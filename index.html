@@ -4385,33 +4385,57 @@ if (orderForm) {
     });
 }
 
-// ========== KEYBOARD SHORTCUTS ==========
+// ========== KEYBOARD SHORTCUTS (FIXED - No interference with typing) ==========
 const shortcutsBtn = document.getElementById('shortcutsBtn');
 const shortcutsPopup = document.getElementById('shortcutsPopup');
 
-shortcutsBtn?.addEventListener('click', () => {
-    shortcutsPopup.classList.toggle('show');
+if (shortcutsBtn) {
+    shortcutsBtn.addEventListener('click', () => {
+        shortcutsPopup.classList.toggle('show');
+    });
+}
+
+// Close popup when clicking outside
+document.addEventListener('click', (e) => {
+    if (shortcutsPopup && shortcutsBtn) {
+        if (!shortcutsPopup.contains(e.target) && !shortcutsBtn.contains(e.target)) {
+            shortcutsPopup.classList.remove('show');
+        }
+    }
 });
 
+// Keyboard shortcuts - ONLY work when NOT typing in input/textarea
 document.addEventListener('keydown', (e) => {
+    // Check if user is typing in an input, textarea, or select
+    const activeElement = document.activeElement;
+    const isTyping = activeElement.tagName === 'INPUT' || 
+                     activeElement.tagName === 'TEXTAREA' || 
+                     activeElement.tagName === 'SELECT';
+    
+    // If typing, do nothing (let normal typing happen)
+    if (isTyping) {
+        return;
+    }
+    
+    // Only trigger shortcuts when NOT typing
     if (e.key === 's' || e.key === 'S') {
         e.preventDefault();
         const searchInput = document.getElementById('searchInput');
         if (searchInput) searchInput.focus();
     }
-    if (e.key === 'h' || e.key === 'H') {
+    else if (e.key === 'h' || e.key === 'H') {
         e.preventDefault();
         document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
     }
-    if (e.key === 'o' || e.key === 'O') {
+    else if (e.key === 'o' || e.key === 'O') {
         e.preventDefault();
         document.getElementById('order')?.scrollIntoView({ behavior: 'smooth' });
     }
-    if (e.key === '?' || e.key === '/') {
+    else if (e.key === '?' || e.key === '/') {
         e.preventDefault();
         shortcutsPopup.classList.toggle('show');
     }
-    if (e.key === 'Escape') {
+    else if (e.key === 'Escape') {
         shortcutsPopup.classList.remove('show');
     }
 });
