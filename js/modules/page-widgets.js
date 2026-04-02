@@ -13,7 +13,6 @@ document.querySelectorAll( '.accordion-question' ).forEach( question =>
 
 // ========== PRODUCT FILTER ==========
 const filterBtns = document.querySelectorAll( '.filter-btn' )
-const productCards = document.querySelectorAll( '.card' )
 
 filterBtns.forEach( btn =>
 {
@@ -23,6 +22,7 @@ filterBtns.forEach( btn =>
     btn.classList.add( 'active' )
 
     const filter = btn.dataset.filter
+    const productCards = document.querySelectorAll( '.products .card' )
 
     productCards.forEach( card =>
     {

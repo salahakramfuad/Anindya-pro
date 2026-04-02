@@ -15,21 +15,6 @@ if ( visitorElement )
   }, 10000 )
 }
 
-// ========== 2. MOST POPULAR BADGE ==========
-const popularBottles = [ 'Ocean Blue', 'Energy Green' ]
-document.querySelectorAll( '.card' ).forEach( card =>
-{
-  const title = card.querySelector( 'h3' )?.innerText || ''
-  if ( popularBottles.includes( title ) )
-  {
-    const badge = document.createElement( 'div' )
-    badge.className = 'popular-badge'
-    badge.innerHTML = '🔥 MOST POPULAR'
-    card.style.position = 'relative'
-    card.appendChild( badge )
-  }
-} )
-
 // ========== 3. DAILY HYDRATION FACT ==========
 const facts = [
   "💧 Your brain is 73% water! Stay hydrated for better focus.",
@@ -145,31 +130,6 @@ function updateWishlistCount ()
 }
 updateWishlistCount()
 
-document.querySelectorAll( '.card' ).forEach( ( card, index ) =>
-{
-  const productName = card.querySelector( 'h3' )?.innerText || `Product ${index}`
-  const wishBtn = document.createElement( 'button' )
-  wishBtn.innerHTML = wishlist.includes( productName ) ? '❤️ Saved' : '🤍 Save for Later'
-  wishBtn.className = 'wishlist-btn'
-  wishBtn.onclick = () =>
-  {
-    if ( wishlist.includes( productName ) )
-    {
-      wishlist = wishlist.filter( p => p !== productName )
-      wishBtn.innerHTML = '🤍 Save for Later'
-      showWishlistPopup( `Removed ${productName} from wishlist` )
-    } else
-    {
-      wishlist.push( productName )
-      wishBtn.innerHTML = '❤️ Saved'
-      showWishlistPopup( `Added ${productName} to wishlist` )
-    }
-    localStorage.setItem( 'wishlist', JSON.stringify( wishlist ) )
-    updateWishlistCount()
-  }
-  card.appendChild( wishBtn )
-} )
-
 function showWishlistPopup ( message )
 {
   const popup = document.createElement( 'div' )
@@ -190,11 +150,6 @@ function closeViewer ()
   const v = document.getElementById( 'bottleViewer' )
   if ( v ) v.style.display = 'none'
 }
-document.querySelectorAll( '.card img' ).forEach( img =>
-{
-  img.addEventListener( 'click', open3DViewer )
-} )
-
 // ========== 31. ANIMATED WATER FILL ==========
 document.querySelectorAll( '.water-fill' ).forEach( fill =>
 {
@@ -205,28 +160,6 @@ document.querySelectorAll( '.water-fill' ).forEach( fill =>
     const newHeight = currentHeight === 60 ? 90 : 60
     level.style.height = `${newHeight}%`
   } )
-} )
-
-// ========== 32. PRICE DROP ALERT (ON HOVER ONLY) ==========
-document.querySelectorAll( '.card' ).forEach( card =>
-{
-  const price = card.querySelector( 'p' )?.innerText || '$9.99'
-  const alertDiv = document.createElement( 'div' )
-  alertDiv.className = 'price-alert'
-  alertDiv.style.display = 'none'
-  alertDiv.innerHTML = `
-  <input type="email" placeholder="Email for price alert">
-  <button class="buyBtn" style="padding: 5px; font-size: 12px; margin-top: 5px;">Notify Me</button>
-    `
-  alertDiv.querySelector( 'button' ).onclick = () =>
-  {
-    alert( '✅ You will be notified when price drops!' )
-    alertDiv.style.display = 'none'
-  }
-  card.appendChild( alertDiv )
-
-  card.addEventListener( 'mouseenter', () => alertDiv.style.display = 'block' )
-  card.addEventListener( 'mouseleave', () => alertDiv.style.display = 'none' )
 } )
 
 // ========== 33. 360° VIEWER (FIXED) ==========
@@ -293,110 +226,293 @@ window.addEventListener( 'scroll', () =>
   } )
 }, { passive: true } )
 
-// ========== 41. COMPARE BOTTLES ==========
-function escapeHtml ( str )
+// ========== 41. COMPARE BOTTLES (unified catalog cards) ==========
+const MAX_COMPARE = 3
+let selectedProductIds = []
+
+function findProductCard ( productId )
 {
-  const d = document.createElement( 'div' )
-  d.textContent = str
-  return d.innerHTML
+  for ( const el of document.querySelectorAll( '.card[data-product]' ) )
+  {
+    if ( el.getAttribute( 'data-product' ) === productId ) return el
+  }
+  return null
 }
 
-let selectedBottles = []
-function toggleCompare ( bottleName, element )
+function displayNameForCard ( card )
 {
-  if ( selectedBottles.includes( bottleName ) )
+  return card?.querySelector( 'h3' )?.textContent?.trim() || ''
+}
+
+function specForProductId ( productId )
+{
+  const card = findProductCard( productId )
+  if ( !card ) return null
+  const tier = card.dataset.tier === 'special' ? 'special' : 'standard'
+  const priceEl = card.querySelector( 'p' )
+  const price = priceEl?.textContent?.trim() || '—'
+  if ( tier === 'special' )
   {
-    selectedBottles = selectedBottles.filter( b => b !== bottleName )
-    element.classList.remove( 'selected' )
-  } else if ( selectedBottles.length < 3 )
-  {
-    selectedBottles.push( bottleName )
-    element.classList.add( 'selected' )
-  } else
-  {
-    alert( 'You can compare up to 3 bottles at a time!' )
+    return {
+      title: displayNameForCard( card ),
+      price,
+      edition: 'Special edition',
+      capacity: '500 ml (compact)',
+      smart: 'Yes',
+      selfClean: 'Included in SE bundle',
+      tempDisplay: 'Yes',
+      warranty: '3 months'
+    }
   }
-  updateCompareTable()
+  return {
+    title: displayNameForCard( card ),
+    price,
+    edition: 'Standard',
+    capacity: '750 ml',
+    smart: 'Yes',
+    selfClean: 'Optional add-on (+$7)',
+    tempDisplay: 'Yes',
+    warranty: '6 months'
+  }
+}
+
+const COMPARE_ROWS = [
+  { key: 'price', label: 'Price' },
+  { key: 'edition', label: 'Line' },
+  { key: 'capacity', label: 'Capacity' },
+  { key: 'smart', label: 'Smart features' },
+  { key: 'selfClean', label: 'UV self-cleaning' },
+  { key: 'tempDisplay', label: 'Temperature display' },
+  { key: 'warranty', label: 'Warranty' }
+]
+
+function syncCompareChrome ()
+{
+  const statusEl = document.getElementById( 'compareStatus' )
+  const clearBtn = document.getElementById( 'compareClearBtn' )
+  const emptyEl = document.getElementById( 'compareEmpty' )
+  const tableWrap = document.getElementById( 'compareTable' )
+  const n = selectedProductIds.length
+
+  if ( clearBtn ) clearBtn.hidden = n === 0
+  if ( emptyEl ) emptyEl.hidden = n > 0
+  if ( tableWrap )
+  {
+    tableWrap.hidden = n === 0
+    if ( n === 0 ) tableWrap.textContent = ''
+  }
+
+  if ( statusEl )
+  {
+    if ( n === 0 )
+    {
+      statusEl.textContent = 'Select up to 3 bottles using Compare on each card.'
+    } else
+    {
+      const labels = selectedProductIds.map( id => specForProductId( id )?.title || id )
+      statusEl.textContent =
+        `Comparing ${n} of ${MAX_COMPARE}: ${labels.join( ', ' )}.`
+    }
+  }
+
+  document.querySelectorAll( '.card-compare-toggle' ).forEach( btn =>
+  {
+    const card = btn.closest( '.card' )
+    const id = card?.dataset?.product
+    if ( !id ) return
+    const on = selectedProductIds.includes( id )
+    const name = displayNameForCard( card ) || id
+    btn.setAttribute( 'aria-pressed', on ? 'true' : 'false' )
+    btn.textContent = on ? 'In compare' : 'Compare'
+    btn.setAttribute( 'aria-label', on ? `Remove ${name} from compare` : `Add ${name} to compare` )
+  } )
+
+  document.querySelectorAll( '.card' ).forEach( card =>
+  {
+    const id = card.dataset?.product
+    if ( id && selectedProductIds.includes( id ) ) card.classList.add( 'card--compare-selected' )
+    else card.classList.remove( 'card--compare-selected' )
+  } )
 }
 
 function updateCompareTable ()
 {
-  const tableDiv = document.getElementById( 'compareTable' )
-  if ( !tableDiv ) return
+  const tableWrap = document.getElementById( 'compareTable' )
+  if ( !tableWrap || selectedProductIds.length === 0 ) return
 
-  if ( selectedBottles.length === 0 )
+  tableWrap.textContent = ''
+  const table = document.createElement( 'table' )
+  table.className = 'compare-spec-table'
+
+  const thead = document.createElement( 'thead' )
+  const headTr = document.createElement( 'tr' )
+  const corner = document.createElement( 'th' )
+  corner.textContent = 'Feature'
+  corner.scope = 'col'
+  headTr.appendChild( corner )
+  selectedProductIds.forEach( id =>
   {
-    tableDiv.style.display = 'none'
-    tableDiv.innerHTML = ''
+    const th = document.createElement( 'th' )
+    th.scope = 'col'
+    const spec = specForProductId( id )
+    th.textContent = spec?.title || id
+    headTr.appendChild( th )
+  } )
+  thead.appendChild( headTr )
+
+  const tbody = document.createElement( 'tbody' )
+  COMPARE_ROWS.forEach( row =>
+  {
+    const tr = document.createElement( 'tr' )
+    const th = document.createElement( 'th' )
+    th.scope = 'row'
+    th.textContent = row.label
+    tr.appendChild( th )
+
+    selectedProductIds.forEach( id =>
+    {
+      const td = document.createElement( 'td' )
+      const spec = specForProductId( id )
+      td.textContent = spec ? spec[ row.key ] : '—'
+      tr.appendChild( td )
+    } )
+    tbody.appendChild( tr )
+  } )
+
+  table.appendChild( thead )
+  table.appendChild( tbody )
+  tableWrap.appendChild( table )
+}
+
+function toggleCompareForCard ( card )
+{
+  const productId = card?.dataset?.product
+  if ( !productId ) return
+
+  if ( selectedProductIds.includes( productId ) )
+  {
+    selectedProductIds = selectedProductIds.filter( id => id !== productId )
+  } else if ( selectedProductIds.length < MAX_COMPARE )
+  {
+    selectedProductIds.push( productId )
+  } else
+  {
+    if ( typeof showMessage === 'function' )
+    {
+      showMessage( 'You can compare up to 3 bottles at a time.', 'info' )
+    }
     return
   }
 
-  tableDiv.style.display = 'block'
-  const features = [ 'Price', 'Smart Features', 'Self-Cleaning', 'Temperature Display', 'Warranty' ]
-  const values = [ '$9.99', '✓', '✓ (+$7)', '✓', '6 months' ]
-
-  let tableHTML = '<table><thead><tr><th>Feature</th>'
-  selectedBottles.forEach( b => { tableHTML += `<th>${escapeHtml( b )}</th>` } )
-  tableHTML += '</tr></thead><tbody>'
-
-  features.forEach( ( feature, i ) =>
-  {
-    tableHTML += `<tr><td>${escapeHtml( feature )}</td>`
-    selectedBottles.forEach( () => { tableHTML += `<td>${escapeHtml( values[ i ] )}</td>` } )
-    tableHTML += '</tr>'
-  } )
-  tableHTML += '</tbody></table>'
-  tableDiv.innerHTML = tableHTML
+  syncCompareChrome()
+  updateCompareTable()
 }
 
-// Add compare section HTML
-const compareSection = document.createElement( 'section' )
-compareSection.className = 'compare-section'
-compareSection.innerHTML = `
-    <h2>Compare Bottles</h2>
-    <p class="section-subtitle">Select up to 3 bottles to compare</p>
-    <div class="compare-grid" id="compareGrid"></div>
-    <div class="compare-table" id="compareTable"></div>
-`
-const productGrid = document.querySelector( '.products' )
-if ( productGrid )
+function clearCompare ()
 {
-  productGrid.parentNode.insertBefore( compareSection, productGrid.nextSibling )
+  selectedProductIds = []
+  syncCompareChrome()
+  updateCompareTable()
 }
 
-// Populate compare grid
-const compareGrid = document.getElementById( 'compareGrid' )
-if ( compareGrid )
+document.getElementById( 'compareClearBtn' )?.addEventListener( 'click', clearCompare )
+
+function initProductsPageCardWidgets ()
 {
-  document.querySelectorAll( '.card' ).forEach( ( card, idx ) =>
+  document.querySelectorAll( '.card[data-popular="true"]' ).forEach( card =>
   {
-    const name = card.querySelector( 'h3' )?.innerText?.trim() || `Bottle ${idx + 1}`
-    const imgSrc = card.querySelector( 'img' )?.src || ''
-    const compareCard = document.createElement( 'div' )
-    compareCard.className = 'compare-card'
-
-    const imgEl = document.createElement( 'img' )
-    imgEl.src = imgSrc
-    imgEl.alt = ''
-    imgEl.width = 100
-    imgEl.style.width = '100px'
-    imgEl.style.marginBottom = '10px'
-
-    const h4 = document.createElement( 'h4' )
-    h4.textContent = name
-
-    const btn = document.createElement( 'button' )
-    btn.type = 'button'
-    btn.className = 'buyBtn'
-    btn.style.padding = '5px 10px'
-    btn.style.fontSize = '12px'
-    btn.textContent = 'Compare'
-    btn.addEventListener( 'click', () => toggleCompare( name, compareCard ) )
-
-    compareCard.appendChild( imgEl )
-    compareCard.appendChild( h4 )
-    compareCard.appendChild( btn )
-    compareGrid.appendChild( compareCard )
+    if ( card.querySelector( '.popular-badge' ) ) return
+    card.style.position = 'relative'
+    const badge = document.createElement( 'div' )
+    badge.className = 'popular-badge'
+    badge.innerHTML = '🔥 MOST POPULAR'
+    card.appendChild( badge )
   } )
+
+  document.querySelectorAll( '.card' ).forEach( ( card, index ) =>
+  {
+    if ( card.querySelector( '.wishlist-btn' ) ) return
+    const productName = card.querySelector( 'h3' )?.innerText || `Product ${index}`
+    const wishBtn = document.createElement( 'button' )
+    wishBtn.type = 'button'
+    wishBtn.innerHTML = wishlist.includes( productName ) ? '❤️ Saved' : '🤍 Save for Later'
+    wishBtn.className = 'wishlist-btn'
+    wishBtn.addEventListener( 'click', () =>
+    {
+      if ( wishlist.includes( productName ) )
+      {
+        wishlist = wishlist.filter( p => p !== productName )
+        wishBtn.innerHTML = '🤍 Save for Later'
+        showWishlistPopup( `Removed ${productName} from wishlist` )
+      } else
+      {
+        wishlist.push( productName )
+        wishBtn.innerHTML = '❤️ Saved'
+        showWishlistPopup( `Added ${productName} to wishlist` )
+      }
+      localStorage.setItem( 'wishlist', JSON.stringify( wishlist ) )
+      updateWishlistCount()
+    } )
+    card.appendChild( wishBtn )
+  } )
+
+  document.querySelectorAll( '.card img' ).forEach( img =>
+  {
+    img.replaceWith( img.cloneNode( true ) )
+  } )
+  document.querySelectorAll( '.card img' ).forEach( img =>
+  {
+    img.addEventListener( 'click', open3DViewer )
+  } )
+
+  document.querySelectorAll( '.card' ).forEach( card =>
+  {
+    if ( card.querySelector( '.price-alert' ) ) return
+    const alertDiv = document.createElement( 'div' )
+    alertDiv.className = 'price-alert'
+    alertDiv.style.display = 'none'
+    const emailInput = document.createElement( 'input' )
+    emailInput.type = 'email'
+    emailInput.placeholder = 'Email for price alert'
+    const notifyBtn = document.createElement( 'button' )
+    notifyBtn.type = 'button'
+    notifyBtn.className = 'buyBtn'
+    notifyBtn.style.padding = '5px'
+    notifyBtn.style.fontSize = '12px'
+    notifyBtn.style.marginTop = '5px'
+    notifyBtn.textContent = 'Notify Me'
+    notifyBtn.addEventListener( 'click', () =>
+    {
+      alert( '✅ You will be notified when price drops!' )
+      alertDiv.style.display = 'none'
+    } )
+    alertDiv.appendChild( emailInput )
+    alertDiv.appendChild( notifyBtn )
+    card.appendChild( alertDiv )
+    card.addEventListener( 'mouseenter', () => { alertDiv.style.display = 'block' } )
+    card.addEventListener( 'mouseleave', () => { alertDiv.style.display = 'none' } )
+  } )
+
+  document.querySelectorAll( '.card-compare-toggle' ).forEach( btn =>
+  {
+    btn.replaceWith( btn.cloneNode( true ) )
+  } )
+  document.querySelectorAll( '.card-compare-toggle' ).forEach( btn =>
+  {
+    btn.addEventListener( 'click', () =>
+    {
+      const card = btn.closest( '.card' )
+      if ( card ) toggleCompareForCard( card )
+    } )
+  } )
+
+  syncCompareChrome()
 }
 
+document.addEventListener( 'hydro:productsCatalogRendered', () =>
+{
+  clearCompare()
+  initProductsPageCardWidgets()
+} )
+
+syncCompareChrome()

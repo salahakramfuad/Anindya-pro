@@ -8,7 +8,11 @@ const navOverlay = document.getElementById( 'navOverlay' )
 
 function closeMobileMenu ()
 {
-  if ( mainNav ) mainNav.classList.remove( 'active' )
+  if ( mainNav )
+  {
+    mainNav.querySelectorAll( 'details.nav-details[open]' ).forEach( d => d.removeAttribute( 'open' ) )
+    mainNav.classList.remove( 'active' )
+  }
   if ( mobileMenuBtn )
   {
     mobileMenuBtn.classList.remove( 'active' )
@@ -58,11 +62,21 @@ document.querySelectorAll( 'nav a' ).forEach( link =>
 {
   link.addEventListener( 'click', function ( e )
   {
+    link.closest( 'details.nav-details' )?.removeAttribute( 'open' )
     if ( window.innerWidth <= 1024 )
     {
       closeMobileMenu()
     }
   } )
+} )
+
+// Close “More” panel when clicking outside (desktop)
+document.addEventListener( 'click', function ( e )
+{
+  if ( window.innerWidth <= 1024 ) return
+  const t = e.target
+  if ( t.closest?.( '.nav-details' ) ) return
+  document.querySelectorAll( 'details.nav-details[open]' ).forEach( d => d.removeAttribute( 'open' ) )
 } )
 
 // Close menu on window resize if screen becomes larger
@@ -77,9 +91,10 @@ window.addEventListener( 'resize', function ()
 // Close menu on Escape key
 document.addEventListener( 'keydown', function ( e )
 {
-  if ( e.key === 'Escape' && mainNav && mainNav.classList.contains( 'active' ) )
+  if ( e.key === 'Escape' )
   {
-    closeMobileMenu()
+    document.querySelectorAll( 'details.nav-details[open]' ).forEach( d => d.removeAttribute( 'open' ) )
+    if ( mainNav && mainNav.classList.contains( 'active' ) ) closeMobileMenu()
   }
 } )
 

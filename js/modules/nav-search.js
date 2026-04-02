@@ -18,6 +18,17 @@ const searchButton = document.getElementById( 'searchButton' )
 const productsContainer = document.querySelector( ".products" )
 let allCards = Array.from( document.querySelectorAll( ".card" ) )
 
+function refreshProductSearchCards ()
+{
+  allCards = Array.from( document.querySelectorAll( ".card" ) )
+  if ( productsContainer && allCards.length )
+  {
+    updateResultCount( allCards.length, allCards.length )
+  }
+}
+
+document.addEventListener( 'hydro:productsCatalogRendered', refreshProductSearchCards )
+
 const resultCounter = document.createElement( "div" )
 resultCounter.className = "result-counter"
 if ( productsContainer )
@@ -140,19 +151,21 @@ document.getElementById( 'orderNowBtn' )?.addEventListener( 'click', ( e ) =>
   scrollToOrder()
 } )
 
-document.querySelectorAll( '.buy-card-btn' ).forEach( btn =>
+if ( productsContainer )
 {
-  btn.addEventListener( 'click', function ( e )
+  productsContainer.addEventListener( 'click', function ( e )
   {
+    const btn = e.target.closest( '.buy-card-btn' )
+    if ( !btn || !productsContainer.contains( btn ) ) return
     e.preventDefault()
-    let card = this.closest( '.card' )
+    const card = btn.closest( '.card' )
     if ( card )
     {
-      let productName = card.querySelector( 'h3' )?.innerText
-      let colorSelect = document.getElementById( 'bottleColor' )
+      const productName = card.querySelector( 'h3' )?.innerText
+      const colorSelect = document.getElementById( 'bottleColor' )
       if ( colorSelect && productName )
       {
-        for ( let opt of colorSelect.options )
+        for ( const opt of colorSelect.options )
         {
           if ( opt.text === productName )
           {
@@ -169,7 +182,7 @@ document.querySelectorAll( '.buy-card-btn' ).forEach( btn =>
     }
     scrollToOrder()
   } )
-} )
+}
 
 // ========== SMOOTH SCROLLING FOR NAVIGATION (same-page #anchors only) ==========
 document.querySelectorAll( 'nav a[href^="#"]' ).forEach( anchor =>
