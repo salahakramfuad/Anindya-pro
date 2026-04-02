@@ -9,15 +9,25 @@ const navOverlay = document.getElementById( 'navOverlay' )
 function closeMobileMenu ()
 {
   if ( mainNav ) mainNav.classList.remove( 'active' )
-  if ( mobileMenuBtn ) mobileMenuBtn.classList.remove( 'active' )
+  if ( mobileMenuBtn )
+  {
+    mobileMenuBtn.classList.remove( 'active' )
+    mobileMenuBtn.setAttribute( 'aria-expanded', 'false' )
+    mobileMenuBtn.setAttribute( 'aria-label', 'Open menu' )
+  }
   if ( navOverlay ) navOverlay.classList.remove( 'active' )
-  document.body.style.overflow = 'auto'
+  document.body.style.overflow = ''
 }
 
 function openMobileMenu ()
 {
   if ( mainNav ) mainNav.classList.add( 'active' )
-  if ( mobileMenuBtn ) mobileMenuBtn.classList.add( 'active' )
+  if ( mobileMenuBtn )
+  {
+    mobileMenuBtn.classList.add( 'active' )
+    mobileMenuBtn.setAttribute( 'aria-expanded', 'true' )
+    mobileMenuBtn.setAttribute( 'aria-label', 'Close menu' )
+  }
   if ( navOverlay ) navOverlay.classList.add( 'active' )
   document.body.style.overflow = 'hidden'
 }

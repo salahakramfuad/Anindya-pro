@@ -379,12 +379,14 @@ document.addEventListener( 'keydown', ( e ) =>
   else if ( e.key === 'h' || e.key === 'H' )
   {
     e.preventDefault()
-    document.getElementById( 'home' )?.scrollIntoView( { behavior: 'smooth' } )
+    const homeEl = document.getElementById( 'home' )
+    if ( homeEl ) homeEl.scrollIntoView( { behavior: 'smooth' } )
+    else window.location.href = 'index.html#home'
   }
   else if ( e.key === 'o' || e.key === 'O' )
   {
     e.preventDefault()
-    document.getElementById( 'order' )?.scrollIntoView( { behavior: 'smooth' } )
+    if ( typeof scrollToOrder === 'function' ) scrollToOrder()
   }
   else if ( ( e.key === '?' || e.key === '/' ) && shortcutsPopup )
   {

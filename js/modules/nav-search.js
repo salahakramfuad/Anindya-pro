@@ -122,11 +122,20 @@ if ( searchInputField )
   } )
 }
 
-updateResultCount( allCards.length, allCards.length )
+if ( productsContainer && allCards.length )
+{
+  updateResultCount( allCards.length, allCards.length )
+}
 
 // ========== BUY BUTTONS ==========
 document.getElementById( 'orderNowBtn' )?.addEventListener( 'click', ( e ) =>
 {
+  const el = e.currentTarget
+  if ( el instanceof HTMLAnchorElement )
+  {
+    const href = el.getAttribute( 'href' ) || ''
+    if ( href && !href.startsWith( '#' ) ) return
+  }
   e.preventDefault()
   scrollToOrder()
 } )
@@ -162,15 +171,16 @@ document.querySelectorAll( '.buy-card-btn' ).forEach( btn =>
   } )
 } )
 
-// ========== SMOOTH SCROLLING FOR NAVIGATION ==========
-document.querySelectorAll( 'nav a' ).forEach( anchor =>
+// ========== SMOOTH SCROLLING FOR NAVIGATION (same-page #anchors only) ==========
+document.querySelectorAll( 'nav a[href^="#"]' ).forEach( anchor =>
 {
   anchor.addEventListener( 'click', function ( e )
   {
-    e.preventDefault()
     const targetId = this.getAttribute( 'href' )
     const targetElement = document.querySelector( targetId )
-    if ( targetElement ) targetElement.scrollIntoView( { behavior: 'smooth' } )
+    if ( !targetElement ) return
+    e.preventDefault()
+    targetElement.scrollIntoView( { behavior: 'smooth' } )
   } )
 } )
 

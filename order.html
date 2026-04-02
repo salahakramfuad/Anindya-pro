@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HydroSmart | Home</title>
+  <title>Order | HydroSmart</title>
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="hydrosmart-192.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -60,33 +60,28 @@
     </div>
   </header>
   <div class="nav-overlay" id="navOverlay"></div>
-
-  <main id="home">
-    <section class="hero">
-      <div class="hero-text">
-        <h1>Hydration Perfected.</h1>
-        <p>The smartest water bottle ever created. Stay focused, energized and hydrated with Hydro Smart.</p>
-        <a href="order.html" class="buyBtn" id="orderNowBtn">Order now</a>
-      </div>
-      <div class="heroImage">
-        <img src="Logo.png" alt="Hydro Smart Bottle">
-      </div>
+<main class="page-main">    <section class="order" id="order">
+      <h2>Order Your Hydro Smart</h2>
+      <form id="orderForm">
+        <input type="text" placeholder="Full Name" id="fullName" required>
+        <input type="email" placeholder="Email" id="email" required>
+        <select id="bottleColor" required>
+          <option value="">Select Bottle Color</option>
+          <option value="Ocean Blue">Ocean Blue</option>
+          <option value="Energy Green">Energy Green</option>
+          <option value="Galaxy Purple">Galaxy Purple</option>
+          <option value="Classic Steel">Classic Steel</option>
+          <option value="Bright Black">Bright Black</option>
+          <option value="Hot Pink">Hot Pink</option>
+          <option value="Arctic White">Arctic White</option>
+          <option value="Rose Red">Rose Red</option>
+          <option value="Custom Color">🎨 Custom Color (+$1)</option>
+        </select>
+        <input type="number" placeholder="Quantity" id="quantity" min="1" required>
+        <button type="submit">Place Order</button>
+      </form>
     </section>
-
-    <section class="page-hub" aria-label="Site sections">
-      <h2 class="page-hub__title">Explore HydroSmart</h2>
-      <p class="page-hub__intro section-subtitle">Jump to the page you need—each section is on its own screen for faster loading and simpler navigation.</p>
-<ul class="page-hub__grid">
-        <li><a class="page-hub__card" href="products.html"><span class="page-hub__icon">🛒</span><strong>Products</strong><span>Bottles, filters & 360° view</span></a></li>
-        <li><a class="page-hub__card" href="features.html"><span class="page-hub__icon">✨</span><strong>Features</strong><span>Smart tech &amp; customization</span></a></li>
-        <li><a class="page-hub__card" href="membership.html"><span class="page-hub__icon">💎</span><strong>Membership</strong><span>Plans &amp; perks</span></a></li>
-        <li><a class="page-hub__card" href="order.html"><span class="page-hub__icon">📦</span><strong>Order</strong><span>Checkout &amp; options</span></a></li>
-        <li><a class="page-hub__card" href="contact.html"><span class="page-hub__icon">✉️</span><strong>Contact</strong><span>Support &amp; questions</span></a></li>
-        <li><a class="page-hub__card" href="explore.html"><span class="page-hub__icon">🌐</span><strong>Community</strong><span>Reviews, impact &amp; share</span></a></li>
-        <li><a class="page-hub__card" href="help.html"><span class="page-hub__icon">❓</span><strong>Help center</strong><span>FAQ, tools &amp; guides</span></a></li>
-      </ul>
-    </section>
-  </main>
+</main>
 
     <footer class="site-footer" role="contentinfo">
       <div class="site-footer__inner">
@@ -148,6 +143,11 @@
     <script src="js/modules/mobile-menu.js"></script>
     <script src="js/modules/back-to-top.js"></script>
     <script src="js/modules/offline-theme.js"></script>
+
+    <script src="js/modules/membership-modal.js"></script>
+    <script src="js/modules/custom-color-modal.js"></script>
+    <script src="js/modules/forms.js"></script>
+    <script src="js/modules/page-widgets.js"></script>
 
 </body>
 </html>
