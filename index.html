@@ -5799,6 +5799,15 @@ document.getElementById('quizPrev')?.addEventListener('click', prevQuestion);
 if (document.getElementById('quizOptions')) {
     loadQuestion();
 }
+
+<button onclick="testMode()" style="position: fixed; bottom: 90px; right: 20px; z-index: 1000; padding: 5px 10px; background: red; color: white;">Test Mode</button>
+
+<script>
+function testMode() {
+    const body = document.body;
+    body.classList.toggle('light-mode');
+    console.log('Mode toggled, current classes:', body.className);
+}
     
 </script>
 
