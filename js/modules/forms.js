@@ -26,6 +26,8 @@ if ( orderFormElement )
     const email = document.getElementById( 'email' )?.value || ''
     const bottleColor = document.getElementById( 'bottleColor' )?.value || ''
     const quantity = document.getElementById( 'quantity' )?.value || ''
+    const membershipPlan = document.getElementById( 'membershipPlan' )?.value?.trim() || ''
+    const membershipHolderName = document.getElementById( 'membershipHolderName' )?.value?.trim() || ''
 
     if ( !fullName )
     {
@@ -63,10 +65,17 @@ if ( orderFormElement )
         `Custom Color (${selectedCustomColor.value || selectedCustomColor.colorCode})`
     }
 
-    showMessage( `Thank you ${fullName}! Your order for ${quantity} ${colorMessage} bottle(s) has been received. We'll contact you at ${email} within 24 hours.`, 'success' )
+    let thankYou = `Thank you ${fullName}! Your order for ${quantity} ${colorMessage} bottle(s) has been received. We'll contact you at ${email} within 24 hours.`
+    if ( membershipPlan )
+    {
+      thankYou += ` Membership: ${membershipPlan}.`
+      if ( membershipHolderName ) thankYou += ` Name on membership: ${membershipHolderName}.`
+    }
+    showMessage( thankYou, 'success' )
     orderFormElement.reset()
     selectedCustomColor = null
     isCustomColorSelected = false
+    if ( typeof closeOrderModal === 'function' ) closeOrderModal()
   } )
 }
 

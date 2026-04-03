@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "products": [
+    {
+      "id": "Ocean Blue",
+      "title": "Ocean Blue",
+      "price": "$9.99",
+      "tier": "standard",
+      "image": "bottle_blue.png",
+      "imageAlt": "Ocean Blue Bottle",
+      "popular": true,
+      "items": [
+        "750 ml capacity",
+        "Smart hydration tracking",
+        "Optional UV self-clean (+$7)"
+      ]
+    },
+    {
+      "id": "Energy Green",
+      "title": "Energy Green",
+      "price": "$9.99",
+      "tier": "standard",
+      "image": "bottle_green.png",
+      "imageAlt": "Energy Green Bottle",
+      "popular": true,
+      "items": [
+        "750 ml capacity",
+        "Temp display",
+        "BPA-free stainless steel"
+      ]
+    },
+    {
+      "id": "Galaxy Purple",
+      "title": "Galaxy Purple",
+      "price": "$9.99",
+      "tier": "standard",
+      "image": "bottle_purple.png",
+      "imageAlt": "Galaxy Purple Bottle",
+      "popular": false,
+      "items": [
+        "750 ml capacity",
+        "Leak-proof lid",
+        "App reminders"
+      ]
+    },
+    {
+      "id": "Classic Steel",
+      "title": "Classic Steel",
+      "price": "$9.99",
+      "tier": "standard",
+      "image": "Whitebottle.png",
+      "imageAlt": "Classic Steel Bottle",
+      "popular": false,
+      "items": [
+        "750 ml capacity",
+        "Matte finish",
+        "Wide mouth for ice"
+      ]
+    },
+    {
+      "id": "Bright Black",
+      "title": "Bright Black",
+      "price": "$9.99",
+      "tier": "standard",
+      "image": "blackbottle.png",
+      "imageAlt": "Bright Black Bottle",
+      "popular": false,
+      "items": [
+        "750 ml capacity",
+        "Fingerprint-resistant",
+        "Carry loop included"
+      ]
+    },
+    {
+      "id": "Hot Pink",
+      "title": "Hot Pink",
+      "price": "$9.99",
+      "tier": "standard",
+      "image": "pinkbottle.png",
+      "imageAlt": "Hot Pink Bottle",
+      "popular": false,
+      "items": [
+        "750 ml capacity",
+        "Bold finish",
+        "Dishwasher-safe lid"
+      ]
+    },
+    {
+      "id": "Arctic White",
+      "title": "Arctic White (Special Edition)",
+      "price": "$7.99",
+      "tier": "special",
+      "image": "white.png",
+      "imageAlt": "Arctic White Bottle",
+      "popular": false,
+      "items": [
+        "500 ml compact size",
+        "Self-clean bundle included",
+        "Limited colorway"
+      ]
+    },
+    {
+      "id": "Rose Red",
+      "title": "Rose Red (Special Edition)",
+      "price": "$7.99",
+      "tier": "special",
+      "image": "red.png",
+      "imageAlt": "Rose Red Bottle",
+      "popular": false,
+      "items": [
+        "500 ml compact size",
+        "Gift-ready packaging",
+        "Short warranty (3 mo)"
+      ]
+    }
+  ]
+}

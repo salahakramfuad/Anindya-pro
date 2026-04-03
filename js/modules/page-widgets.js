@@ -13,7 +13,6 @@ document.querySelectorAll( '.accordion-question' ).forEach( question =>
 
 // ========== PRODUCT FILTER ==========
 const filterBtns = document.querySelectorAll( '.filter-btn' )
-const productCards = document.querySelectorAll( '.card' )
 
 filterBtns.forEach( btn =>
 {
@@ -23,6 +22,7 @@ filterBtns.forEach( btn =>
     btn.classList.add( 'active' )
 
     const filter = btn.dataset.filter
+    const productCards = document.querySelectorAll( '.products .card' )
 
     productCards.forEach( card =>
     {
@@ -243,13 +243,13 @@ function updateDeliveryEstimate ()
     existingDiv.innerHTML = `📦 Estimated Delivery: ${formattedDate} (${deliveryDays} business days)`
   } else
   {
-    const orderSection = document.querySelector( '.order form' )
-    if ( orderSection )
+    const orderFormEl = document.getElementById( 'orderForm' )
+    if ( orderFormEl )
     {
       const deliveryDiv = document.createElement( 'div' )
       deliveryDiv.className = 'delivery-estimate'
       deliveryDiv.innerHTML = `📦 Estimated Delivery: ${formattedDate} (${deliveryDays} business days)`
-      orderSection.appendChild( deliveryDiv )
+      orderFormEl.appendChild( deliveryDiv )
     }
   }
 }
@@ -379,12 +379,14 @@ document.addEventListener( 'keydown', ( e ) =>
   else if ( e.key === 'h' || e.key === 'H' )
   {
     e.preventDefault()
-    document.getElementById( 'home' )?.scrollIntoView( { behavior: 'smooth' } )
+    const homeEl = document.getElementById( 'home' )
+    if ( homeEl ) homeEl.scrollIntoView( { behavior: 'smooth' } )
+    else window.location.href = 'index.html#home'
   }
   else if ( e.key === 'o' || e.key === 'O' )
   {
     e.preventDefault()
-    document.getElementById( 'order' )?.scrollIntoView( { behavior: 'smooth' } )
+    if ( typeof scrollToOrder === 'function' ) scrollToOrder()
   }
   else if ( ( e.key === '?' || e.key === '/' ) && shortcutsPopup )
   {

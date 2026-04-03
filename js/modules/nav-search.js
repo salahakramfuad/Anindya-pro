@@ -18,6 +18,17 @@ const searchButton = document.getElementById( 'searchButton' )
 const productsContainer = document.querySelector( ".products" )
 let allCards = Array.from( document.querySelectorAll( ".card" ) )
 
+function refreshProductSearchCards ()
+{
+  allCards = Array.from( document.querySelectorAll( ".card" ) )
+  if ( productsContainer && allCards.length )
+  {
+    updateResultCount( allCards.length, allCards.length )
+  }
+}
+
+document.addEventListener( 'hydro:productsCatalogRendered', refreshProductSearchCards )
+
 const resultCounter = document.createElement( "div" )
 resultCounter.className = "result-counter"
 if ( productsContainer )
@@ -122,55 +133,52 @@ if ( searchInputField )
   } )
 }
 
-updateResultCount( allCards.length, allCards.length )
+if ( productsContainer && allCards.length )
+{
+  updateResultCount( allCards.length, allCards.length )
+}
 
 // ========== BUY BUTTONS ==========
 document.getElementById( 'orderNowBtn' )?.addEventListener( 'click', ( e ) =>
 {
+  const el = e.currentTarget
+  if ( el instanceof HTMLAnchorElement )
+  {
+    const href = el.getAttribute( 'href' ) || ''
+    if ( href && !href.startsWith( '#' ) ) return
+  }
   e.preventDefault()
   scrollToOrder()
 } )
 
-document.querySelectorAll( '.buy-card-btn' ).forEach( btn =>
+if ( productsContainer )
 {
-  btn.addEventListener( 'click', function ( e )
+  productsContainer.addEventListener( 'click', function ( e )
   {
+    const btn = e.target.closest( '.buy-card-btn' )
+    if ( !btn || !productsContainer.contains( btn ) ) return
     e.preventDefault()
-    let card = this.closest( '.card' )
-    if ( card )
+    const card = btn.closest( '.card' )
+    const sku = card?.dataset?.product
+    if ( typeof openOrderModal === 'function' )
     {
-      let productName = card.querySelector( 'h3' )?.innerText
-      let colorSelect = document.getElementById( 'bottleColor' )
-      if ( colorSelect && productName )
-      {
-        for ( let opt of colorSelect.options )
-        {
-          if ( opt.text === productName )
-          {
-            opt.selected = true
-            if ( opt.value !== 'Custom Color' )
-            {
-              selectedCustomColor = null
-              isCustomColorSelected = false
-            }
-            break
-          }
-        }
-      }
+      openOrderModal( { productId: sku || '' } )
+      return
     }
     scrollToOrder()
   } )
-} )
+}
 
-// ========== SMOOTH SCROLLING FOR NAVIGATION ==========
-document.querySelectorAll( 'nav a' ).forEach( anchor =>
+// ========== SMOOTH SCROLLING FOR NAVIGATION (same-page #anchors only) ==========
+document.querySelectorAll( 'nav a[href^="#"]' ).forEach( anchor =>
 {
   anchor.addEventListener( 'click', function ( e )
   {
-    e.preventDefault()
     const targetId = this.getAttribute( 'href' )
     const targetElement = document.querySelector( targetId )
-    if ( targetElement ) targetElement.scrollIntoView( { behavior: 'smooth' } )
+    if ( !targetElement ) return
+    e.preventDefault()
+    targetElement.scrollIntoView( { behavior: 'smooth' } )
   } )
 } )
 
