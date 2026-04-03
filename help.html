@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Help | HydroSmart</title>
+  <title>Help Center | HydroSmart</title>
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="hydrosmart-192.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/sections-forms-community.css">
   <link rel="stylesheet" href="css/sections-quiz.css">
   <link rel="stylesheet" href="css/sections-misc.css">
+  <link rel="stylesheet" href="css/sections-help.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -38,7 +39,7 @@
         <li><a href="products.html">Products</a></li>
         <li><a href="features.html">Features</a></li>
         <li><a href="membership.html">Membership</a></li>
-        
+
         <li class="nav-item--more">
           <details class="nav-details">
             <summary class="nav-details__summary">More</summary>
@@ -46,7 +47,6 @@
               <li><a href="explore.html">Community</a></li>
               <li><a href="help.html">Help center</a></li>
               <li><a href="contact.html">Contact</a></li>
-              <li><a href="products.html#quiz">Bottle quiz</a></li>
               <li><a href="help.html#faq">FAQ</a></li>
               <li><a href="help.html#shipping-calc">Shipping calculator</a></li>
               <li><a href="help.html#hydration-calc">Hydration calculator</a></li>
@@ -63,313 +63,328 @@
     </div>
   </header>
   <div class="nav-overlay" id="navOverlay"></div>
-<main class="page-main">    <section class="faq-accordion-section" id="faq">
-      <h2>Frequently Asked Questions</h2>
-      <p class="section-subtitle">Got questions? We've got answers!</p>
+
+  <main class="page-main page-help">
+    <header class="help-hero">
+      <p class="help-hero__eyebrow">Help center</p>
+      <h1>How can we help you today?</h1>
+      <p class="help-hero__lead">Quick answers on orders and shipping, what’s in the box for each bottle line, and
+        tools to plan hydration. For account-specific issues, use <a href="contact.html">Contact</a>—we reply within
+        one business day for most requests.</p>
+      <ul class="help-toc" aria-label="On this page">
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#guides">Setup &amp; care</a></li>
+        <li><a href="#shipping-calc">Shipping estimate</a></li>
+        <li><a href="#sizes">Sizes</a></li>
+        <li><a href="#hydration-calc">Hydration tool</a></li>
+        <li><a href="#finishes">Finishes</a></li>
+      </ul>
+    </header>
+
+    <section class="faq-accordion-section help-section--muted" id="faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently asked questions</h2>
+      <p class="section-subtitle">Straight answers tied to how we actually sell and ship bottles today.</p>
 
       <div class="faq-accordion">
         <div class="accordion-item">
           <div class="accordion-question">
             <span>How long does shipping take?</span>
-            <span class="accordion-icon">+</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
           </div>
-          <div class="accordion-answer">Standard shipping takes 3-5 business days. Express shipping takes 1-2 business
-            days. International shipping takes 7-14 business days.</div>
+          <div class="accordion-answer">Orders usually leave our warehouse within 1–2 business days.
+            <strong>Standard</strong>
+            delivery is typically 3–5 business days after dispatch; <strong>express</strong> is often 1–2 business
+            days. International times vary by country and customs—use the estimator below for a ballpark, and see
+            your tracking email for the live date.
+          </div>
         </div>
 
         <div class="accordion-item">
           <div class="accordion-question">
             <span>Can I return my bottle?</span>
-            <span class="accordion-icon">+</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
           </div>
-          <div class="accordion-answer">Yes! We offer a 30-day return policy for unused bottles in original packaging.
-            Custom color bottles are non-returnable. If the bottle is defected,please record the unboxing of the bottle
-            so that we can send you another one if you give us the proof.</div>
+          <div class="accordion-answer">Unused bottles in original packaging may be returned within <strong>30
+              days</strong>
+            of delivery. Custom color orders are final once production starts—check your confirmation email. If
+            something
+            arrives <strong>damaged or clearly defective</strong>, contact us with your order number and, if possible,
+            photos or a short unboxing clip so we can replace it quickly.</div>
         </div>
 
         <div class="accordion-item">
           <div class="accordion-question">
-            <span>How does the self-cleaning work?</span>
-            <span class="accordion-icon">+</span>
+            <span>What does “self-clean” or UV mean on your site?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
           </div>
-          <div class="accordion-answer">UV-C light technology eliminates 99.9% of bacteria automatically every 4 hours
-            when the bottle is stationary.</div>
+          <div class="accordion-answer"><strong>Special edition</strong> Arctic White includes a self-clean bundle in
+            the
+            box. On <strong>Ocean Blue</strong>, UV self-clean is an <strong>optional add-on</strong> at checkout
+            (+$7)—not every bottle ships with UV hardware. Always read the bullet list on the product card so you know
+            exactly what’s included.</div>
         </div>
 
         <div class="accordion-item">
           <div class="accordion-question">
             <span>What payment methods do you accept?</span>
-            <span class="accordion-icon">+</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
           </div>
-          <div class="accordion-answer">We accept all major credit cards (Visa, Mastercard, Amex), PayPal, and Apple
-            Pay.</div>
+          <div class="accordion-answer">Major cards (Visa, Mastercard, American Express), PayPal, and Apple Pay where
+            available in your region. Final methods are shown at checkout.</div>
         </div>
 
         <div class="accordion-item">
           <div class="accordion-question">
-            <span>Is there a warranty?</span>
-            <span class="accordion-icon">+</span>
+            <span>What warranty do I get?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
           </div>
-          <div class="accordion-answer">Yes! 6 months limited warranty covering manufacturing defects. Self-cleaning
-            components have 3 months warranty.</div>
+          <div class="accordion-answer"><strong>Standard</strong> (750 ml, $9.99) bottles include a
+            <strong>6-month</strong>
+            limited warranty against manufacturing defects. <strong>Special edition</strong> compact bottles list their
+            own terms on the card—for example Rose Red notes a shorter warranty period. Keep your receipt or order
+            confirmation for any claim.
+          </div>
         </div>
 
         <div class="accordion-item">
           <div class="accordion-question">
-            <span>Does the bottle work with hot drinks?</span>
-            <span class="accordion-icon">+</span>
+            <span>Can I use it for hot drinks?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
           </div>
-          <div class="accordion-answer">Yes! ThermoLock technology keeps hot drinks hot for 2+ hours and cold drinks
-            cold for 6+ hours.</div>
+          <div class="accordion-answer">The bottles are insulated stainless steel and suitable for typical hot beverages
+            (coffee, tea) at normal drinking temperatures. Avoid overfilling, and let lids cool before opening. Do not
+            microwave.</div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-question">
+            <span>Membership vs one-time order?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </div>
+          <div class="accordion-answer">You can buy a bottle once from <a href="products.html">Products</a> without a
+            membership. <a href="membership.html">Membership</a> adds ongoing perks (reminders, deeper app features,
+            family plans). You can add or skip a plan in the order form.</div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-question">
+            <span>Do I need the app for every bottle?</span>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </div>
+          <div class="accordion-answer">No. <strong>Classic Steel</strong>, <strong>Bright Black</strong>, and similar
+            listings work fine as everyday bottles without pairing. Models that mention app reminders or smart
+            tracking use the app for those extras.</div>
         </div>
       </div>
     </section>
-    <section class="shipping-calculator-section" id="shipping-calc">
-      <h2>Shipping Calculator</h2>
-      <p class="section-subtitle">Estimate your shipping cost and time</p>
+
+    <section class="help-section" id="guides" aria-labelledby="guides-heading">
+      <h2 id="guides-heading">Setup, care, and what’s realistic</h2>
+      <p class="section-subtitle">Short guides based on how the lineup is described on the product page—no hype, just
+        steps that help the bottle last.</p>
+
+      <div class="help-grid">
+        <article class="help-card">
+          <div class="help-card__icon" aria-hidden="true">📱</div>
+          <h3>Apps, reminders, and tracking</h3>
+          <p>If your card lists app reminders or smart hydration tracking:</p>
+          <ol>
+            <li>Charge fully before first pairing.</li>
+            <li>Install HydroSmart from your app store and create an account.</li>
+            <li>Add the bottle from Settings → Add device and follow the on-screen pairing flow.</li>
+            <li>Set sip reminders to match your day—not everyone needs hourly buzzes.</li>
+          </ol>
+        </article>
+        <article class="help-card">
+          <div class="help-card__icon" aria-hidden="true">🧼</div>
+          <h3>Cleaning lids and seals</h3>
+          <p>Bottles with a dishwasher-safe lid can go through the top rack; others should be hand-washed with warm,
+            soapy water. Remove the seal weekly, rinse, and dry fully before reassembly to avoid odors.</p>
+        </article>
+        <article class="help-card">
+          <div class="help-card__icon" aria-hidden="true">☀️</div>
+          <h3>UV add-on (select models)</h3>
+          <p>If you purchased the UV option, run a cleaning cycle when the bottle has been sitting with water
+            overnight or after a trip. It does not replace washing the lid and mouthpiece.</p>
+        </article>
+      </div>
+
+      <div class="help-callout" role="note">
+        <strong>Pricing snapshot.</strong> Special editions start at <strong>$7.99</strong> (500 ml compact). The main
+        750 ml lineup is <strong>$9.99</strong>, with optional UV on eligible colors. Full specs and side-by-side
+        compare
+        are on <a href="products.html">Products</a>.
+      </div>
+    </section>
+
+    <section class="shipping-calculator-section help-section help-section--muted" id="shipping-calc">
+      <h2>Shipping estimate</h2>
+      <p class="section-subtitle">Rough costs and delivery windows for planning—your checkout total is always the
+        source of truth.</p>
 
       <div class="shipping-calculator">
         <div class="shipping-form">
-          <select id="shippingCountry">
-            <option value="" disabled selected>Select Country</option>
-            <option value="us">🇺🇸 United States</option>
-            <option value="bd">🇧🇩 Bangladesh</option>
-            <option value="uk">🇬🇧 United Kingdom</option>
-            <option value="ca">🇨🇦 Canada</option>
-            <option value="au">🇦🇺 Australia</option>
+          <select id="shippingCountry" aria-label="Country">
+            <option value="" disabled selected>Select country</option>
+            <option value="us">United States</option>
+            <option value="bd">Bangladesh</option>
+            <option value="uk">United Kingdom</option>
+            <option value="ca">Canada</option>
+            <option value="au">Australia</option>
           </select>
-          <select id="shippingType">
-            <option value="" disabled selected>Select Shipping Type</option>
-            <option value="standard">📦 Standard (3-5 days) - $4.99</option>
-            <option value="express">⚡ Express (1-2 days) - $9.99</option>
+          <select id="shippingType" aria-label="Shipping speed">
+            <option value="" disabled selected>Select shipping speed</option>
+            <option value="standard">Standard (3–5 business days) — from $4.99</option>
+            <option value="express">Express (1–2 business days) — from $9.99</option>
           </select>
-          <button class="buyBtn" id="calculateShipping">Calculate</button>
+          <button type="button" class="buyBtn" id="calculateShipping">Calculate</button>
         </div>
         <div class="shipping-result" id="shippingResult">
-          <p>🚚 Estimated Shipping: <strong id="shippingCost">$0.00</strong></p>
-          <p>📦 Delivery Time: <strong id="deliveryTime">-</strong></p>
-          <p style="font-size: 12px; margin-top: 10px;">✨ Free shipping for Bangladesh!</p>
+          <p>Estimated shipping: <strong id="shippingCost">$0.00</strong></p>
+          <p>Delivery window: <strong id="deliveryTime">—</strong></p>
+          <p style="font-size: 0.85rem; margin-top: 0.75rem; opacity: 0.9;">Promotional free shipping may apply for
+            Bangladesh on eligible campaigns—see checkout.</p>
         </div>
       </div>
     </section>
 
-    <!-- ========== SIZE COMPARISON GUIDE ========== -->
-    <section class="size-guide-section">
-      <h2>Size Comparison Guide</h2>
-      <p class="section-subtitle">Find the perfect size for your needs</p>
+    <section class="size-guide-section help-section" id="sizes" aria-labelledby="sizes-heading">
+      <h2 id="sizes-heading">Sizes that match our catalog</h2>
+      <p class="section-subtitle">We sell <strong>500 ml</strong> compact special editions and <strong>750 ml</strong>
+        standard bottles—compare colors and bullets on the product grid.</p>
 
       <div class="size-guide">
         <div class="size-card">
-          <div class="size-icon">🥤</div>
-          <div class="size-name">500ml</div>
-          <div class="size-desc">Perfect for kids & light hydration</div>
+          <div class="size-icon" aria-hidden="true">🥤</div>
+          <div class="size-name">500 ml</div>
+          <div class="size-desc">Special editions (e.g. Arctic White, Rose Red)—lighter in a bag; check each card for
+            bundle extras.</div>
         </div>
         <div class="size-card">
-          <div class="size-icon">🧴</div>
-          <div class="size-name">750ml</div>
-          <div class="size-desc">Most popular - daily use</div>
+          <div class="size-icon" aria-hidden="true">🧴</div>
+          <div class="size-name">750 ml</div>
+          <div class="size-desc">Standard line—daily hydration, widest color choice, optional UV on select SKUs.</div>
         </div>
         <div class="size-card">
-          <div class="size-icon">💪</div>
-          <div class="size-name">1000ml</div>
-          <div class="size-desc">For athletes & heavy drinkers</div>
+          <div class="size-icon" aria-hidden="true">⚖️</div>
+          <div class="size-name">Compare</div>
+          <div class="size-desc">Use <strong>Compare</strong> on up to several bottles at once on the
+            <a href="products.html">Products</a> page.
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ========== HYDRATION CALCULATOR ========== -->
-    <section class="hydration-calculator-section" id="hydration-calc">
-      <h2>Hydration Calculator</h2>
-      <p class="section-subtitle">Find out how much water you need daily</p>
+    <section class="hydration-calculator-section help-section help-section--muted" id="hydration-calc">
+      <h2>Hydration planner</h2>
+      <p class="section-subtitle">A simple daily water target from weight and activity—not medical advice, just a
+        starting point.</p>
 
       <div class="hydration-calculator">
         <div class="calc-input-group">
-          <label>👤 Age (years)</label>
-          <input type="number" id="age" placeholder="Enter your age">
+          <label for="age">Age (years)</label>
+          <input type="number" id="age" name="age" placeholder="e.g. 30" min="1" max="120" inputmode="numeric">
         </div>
         <div class="calc-input-group">
-          <label>⚖️ Weight (kg)</label>
-          <input type="number" id="weight" placeholder="Enter your weight">
+          <label for="weight">Weight (kg)</label>
+          <input type="number" id="weight" name="weight" placeholder="e.g. 70" min="1" inputmode="decimal">
         </div>
         <div class="calc-input-group">
-          <label>🏃 Activity Level</label>
-          <select id="activity">
-            <option value="sedentary">🛋️ Sedentary (little exercise)</option>
-            <option value="moderate">🚶 Moderate (exercise 3-4 times/week)</option>
-            <option value="active">🏃 Active (daily exercise)</option>
+          <label for="activity">Activity level</label>
+          <select id="activity" name="activity">
+            <option value="sedentary">Sedentary / desk-heavy</option>
+            <option value="moderate">Moderate (exercise a few times per week)</option>
+            <option value="active">Active (most days)</option>
           </select>
         </div>
-        <button class="buyBtn" id="calculateHydration">Calculate</button>
+        <button type="button" class="buyBtn" id="calculateHydration">Calculate</button>
 
-        <div class="calc-result" id="hydrationResult" style="display: none;">
-          <p>💧 You should drink approximately</p>
+        <div class="calc-result" id="hydrationResult" style="display: none;" role="status">
+          <p>Approximate target</p>
           <div class="calc-number" id="waterAmount">0</div>
-          <p>ml of water per day</p>
+          <p>ml water per day (adjust with your clinician if you have fluid restrictions)</p>
         </div>
       </div>
     </section>
 
-    <!-- ========== COLOR PREVIEW GALLERY ========== -->
-    <section class="color-gallery-section">
-      <h2>Color Preview Gallery</h2>
-      <p class="section-subtitle">Click any color to see preview</p>
 
-      <div class="color-gallery" id="colorGallery">
-        <div class="color-swatch" style="background: #1e3a8a;" data-color="Ocean Blue"></div>
-        <div class="color-swatch" style="background: #15803d;" data-color="Energy Green"></div>
-        <div class="color-swatch" style="background: #7e22ce;" data-color="Galaxy Purple"></div>
-        <div class="color-swatch" style="background: #4b5563;" data-color="Classic Steel"></div>
-        <div class="color-swatch" style="background: #111827;" data-color="Bright Black"></div>
-        <div class="color-swatch" style="background: #f43f5e;" data-color="Hot Pink"></div>
-        <div class="color-swatch" style="background: #f8fafc;" data-color="Arctic White"></div>
-        <div class="color-swatch" style="background: #dc2626;" data-color="Rose Red"></div>
-      </div>
-      <div class="color-preview-large" id="colorPreviewLarge">
-        <div class="color-preview-circle" style="background: #1e3a8a;"></div>
-        <p>Ocean Blue</p>
-      </div>
-    </section>
 
-    <!-- ========== VIDEO TUTORIAL SECTION ========== -->
-    <section class="video-tutorial-section">
-      <h2>Video Tutorials</h2>
-      <p class="section-subtitle">Learn how to use your HydroSmart bottle</p>
-
-      <div class="video-tutorial">
-        <div class="video-placeholder"
-          onclick="alert('Video: How to use smart features 🎥\n\n1. Turn on the bottle\n2. Connect to app\n3. Set reminders\n4. Enjoy hydration!')">
-          <div class="video-icon">▶️</div>
-          <p>Click to watch: How to use smart features</p>
-        </div>
-        <div class="video-placeholder" style="margin-top: 15px;"
-          onclick="alert('Video: How to clean your bottle 🧼\n\n1. Rinse with warm water\n2. Use UV self-cleaning\n3. Wipe dry\n4. Ready to use!')">
-          <div class="video-icon">🧼</div>
-          <p>Click to watch: How to clean your bottle</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== PRICE COMPARISON TABLE ========== -->
-    <section class="price-comparison-section">
-      <h2>Price Comparison</h2>
-      <p class="section-subtitle">See why HydroSmart is the best value</p>
-
-      <div class="price-compare-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Brand</th>
-              <th>Smart Features</th>
-              <th>Self-Cleaning</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>HydroSmart</strong></td>
-              <td>✓</td>
-              <td>✓</td>
-              <td class="highlight">$9.99</td>
-            </tr>
-            <tr>
-              <td>Competitor A</td>
-              <td>✓</td>
-              <td>✗</td>
-              <td>$14.99</td>
-            </tr>
-            <tr>
-              <td>Competitor B</td>
-              <td>✗</td>
-              <td>✗</td>
-              <td>$12.99</td>
-            </tr>
-            <tr>
-              <td>Competitor C</td>
-              <td>✓</td>
-              <td>✓</td>
-              <td>$24.99</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ========== KEYBOARD SHORTCUTS GUIDE ========== -->
-    <div class="keyboard-shortcuts" id="shortcutsBtn">
-      ⌨️ Keyboard Shortcuts
+    <div class="help-toolbar">
+      <button type="button" class="keyboard-shortcuts" id="shortcutsBtn" aria-expanded="false"
+        aria-controls="shortcutsPopup">Keyboard shortcuts</button>
     </div>
-    <div class="shortcuts-popup" id="shortcutsPopup">
-      <h4>⌨️ Shortcuts</h4>
-      <p>🔍 Press <strong>S</strong> - Focus Search</p>
-      <p>🏠 Press <strong>H</strong> - Go to Home</p>
-      <p>📦 Press <strong>O</strong> - Go to Order</p>
-      <p>💬 Press <strong>?</strong> - Show Shortcuts</p>
-      <p>❌ Press <strong>ESC</strong> - Close</p>
+    <div class="shortcuts-popup" id="shortcutsPopup" role="dialog" aria-label="Keyboard shortcuts">
+      <h4>Shortcuts</h4>
+      <p><kbd>S</kbd> — Focus search</p>
+      <p><kbd>H</kbd> — Home</p>
+      <p><kbd>O</kbd> — Open order</p>
+      <p><kbd>?</kbd> or <kbd>/</kbd> — Toggle this panel</p>
+      <p><kbd>Esc</kbd> — Close</p>
     </div>
-</main>
+  </main>
 
-    <footer class="site-footer" role="contentinfo">
-      <div class="site-footer__inner">
-        <div class="site-footer__brand">
-          <a href="index.html" class="site-footer__logo">HydroSmart</a>
-          <p class="site-footer__tagline">Smart hydration, zero guesswork.</p>
-        </div>
-        <nav class="site-footer__col" aria-label="Footer quick links">
-          <h2 class="site-footer__heading">Explore</h2>
-          <ul class="site-footer__links">
-            <li><a href="products.html">Products</a></li>
-            <li><a href="features.html">Features</a></li>
-            <li><a href="membership.html">Membership</a></li>
-            <li><a href="help.html">Help &amp; FAQ</a></li>
-          </ul>
-        </nav>
-        <nav class="site-footer__col" aria-label="Shop and tools">
-          <h2 class="site-footer__heading">Shop</h2>
-          <ul class="site-footer__links">
-            <li><a href="products.html?order=1">Order</a></li>
-            <li><a href="help.html#shipping-calc">Shipping estimator</a></li>
-            <li><a href="help.html#hydration-calc">Hydration calculator</a></li>
-            <li><a href="products.html#quiz">Bottle quiz</a></li>
-          </ul>
-        </nav>
-        <div class="site-footer__col site-footer__col--cta">
-          <h2 class="site-footer__heading">Support</h2>
-          <ul class="site-footer__links">
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="explore.html#reviews">Reviews</a></li>
-          </ul>
-          <button type="button" class="footer-policies-btn" id="openPoliciesBtn">Services &amp; policies</button>
-          <p class="site-footer__copy">© 2026 Hydro Smart. All rights reserved.</p>
-        </div>
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <a href="index.html" class="site-footer__logo">HydroSmart</a>
+        <p class="site-footer__tagline">Smart hydration, zero guesswork.</p>
       </div>
-    </footer>
-
-    <div id="policiesOverlay" class="policies-overlay">
-      <div class="policies-container">
-        <div class="policies-header">
-          <h2>📜 Services & Policies</h2>
-          <span class="close-policies" id="closePoliciesBtn">&times;</span>
-        </div>
-        <div class="policies-content" id="policiesContent"></div>
-        <div class="policies-footer">
-          <p>Last Updated: April 2026 | HydroSmart - Smart Hydration Solutions</p>
-        </div>
+      <nav class="site-footer__col" aria-label="Footer quick links">
+        <h2 class="site-footer__heading">Explore</h2>
+        <ul class="site-footer__links">
+          <li><a href="products.html">Products</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="membership.html">Membership</a></li>
+          <li><a href="help.html">Help &amp; FAQ</a></li>
+        </ul>
+      </nav>
+      <nav class="site-footer__col" aria-label="Shop and tools">
+        <h2 class="site-footer__heading">Shop</h2>
+        <ul class="site-footer__links">
+          <li><a href="products.html?order=1">Order</a></li>
+          <li><a href="help.html#shipping-calc">Shipping estimator</a></li>
+          <li><a href="help.html#hydration-calc">Hydration calculator</a></li>
+        </ul>
+      </nav>
+      <div class="site-footer__col site-footer__col--cta">
+        <h2 class="site-footer__heading">Support</h2>
+        <ul class="site-footer__links">
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="explore.html#reviews">Reviews</a></li>
+        </ul>
+        <button type="button" class="footer-policies-btn" id="openPoliciesBtn">Services &amp; policies</button>
+        <p class="site-footer__copy">© 2026 Hydro Smart. All rights reserved.</p>
       </div>
     </div>
+  </footer>
 
-    <button type="button" class="back-to-top" id="backToTopBtn" aria-label="Back to top">↑</button>
-    <button type="button" class="mode-toggle" id="modeToggle" title="Toggle theme" aria-pressed="false"
-      aria-label="Switch to light mode">🌙</button>
+  <div id="policiesOverlay" class="policies-overlay">
+    <div class="policies-container">
+      <div class="policies-header">
+        <h2>📜 Services &amp; policies</h2>
+        <span class="close-policies" id="closePoliciesBtn">&times;</span>
+      </div>
+      <div class="policies-content" id="policiesContent"></div>
+      <div class="policies-footer">
+        <p>Last Updated: April 2026 | HydroSmart - Smart Hydration Solutions</p>
+      </div>
+    </div>
+  </div>
 
-    <script src="js/data/policies-data.js"></script>
-    <script src="js/modules/custom-alert.js"></script>
-    <script src="js/modules/scroll.js"></script>
-    <script src="js/modules/policies-ui.js"></script>
-    <script src="js/modules/mobile-menu.js"></script>
-    <script src="js/modules/back-to-top.js"></script>
-    <script src="js/modules/offline-theme.js"></script>
+  <button type="button" class="back-to-top" id="backToTopBtn" aria-label="Back to top">↑</button>
+  <button type="button" class="mode-toggle" id="modeToggle" title="Toggle theme" aria-pressed="false"
+    aria-label="Switch to light mode">🌙</button>
 
-    <script src="js/modules/page-widgets.js"></script>
+  <script src="js/data/policies-data.js"></script>
+  <script src="js/modules/custom-alert.js"></script>
+  <script src="js/modules/scroll.js"></script>
+  <script src="js/modules/policies-ui.js"></script>
+  <script src="js/modules/mobile-menu.js"></script>
+  <script src="js/modules/back-to-top.js"></script>
+  <script src="js/modules/offline-theme.js"></script>
+  <script src="js/modules/nav-search.js"></script>
+  <script src="js/modules/page-widgets.js"></script>
 
 </body>
+
 </html>

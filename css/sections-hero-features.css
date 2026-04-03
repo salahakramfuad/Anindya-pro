@@ -160,6 +160,8 @@ body.light-mode .card__items {
 }
 
 .card-compare-toggle {
+  position: relative;
+  z-index: 2;
   padding: 10px 18px;
   border-radius: var(--radius-pill, 20px);
   border: 1px solid rgba(56, 189, 248, 0.45);

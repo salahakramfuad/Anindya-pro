@@ -278,7 +278,9 @@ body.light-mode .product-catalog__filter-heading {
   display: none;
 }
 
+/* Must set display — legacy `.compare-table { display: none }` also matches this node */
 .compare-table.compare-table--embedded {
+  display: block;
   margin-top: 0.5rem;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;

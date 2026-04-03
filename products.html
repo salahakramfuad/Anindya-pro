@@ -38,7 +38,7 @@
         <li><a href="products.html">Products</a></li>
         <li><a href="features.html">Features</a></li>
         <li><a href="membership.html">Membership</a></li>
-        <li><a href="products.html?order=1">Order</a></li>
+        
         <li class="nav-item--more">
           <details class="nav-details">
             <summary class="nav-details__summary">More</summary>
@@ -46,7 +46,6 @@
               <li><a href="explore.html">Community</a></li>
               <li><a href="help.html">Help center</a></li>
               <li><a href="contact.html">Contact</a></li>
-              <li><a href="products.html#quiz">Bottle quiz</a></li>
               <li><a href="help.html#faq">FAQ</a></li>
               <li><a href="help.html#shipping-calc">Shipping calculator</a></li>
               <li><a href="help.html#hydration-calc">Hydration calculator</a></li>
@@ -69,76 +68,6 @@
         <h2 class="product-catalog__title">Our Smart Bottles</h2>
         <p class="product-catalog__note section-subtitle">Pictures do not describe true size—special editions are more
           compact.</p>
-        <button type="button" class="buyBtn product-catalog__viewer-btn" onclick="openRotateViewer()">View 360°
-          rotation</button>
-
-        <details class="catalog-editor" id="catalogEditor">
-          <summary class="catalog-editor__summary">Manage catalog (add products &amp; save JSON)</summary>
-          <div class="catalog-editor__body">
-            <p class="catalog-editor__help">Edit cards below, then <strong>Save &amp; download JSON</strong> and replace
-              <code>js/data/products-catalog.json</code> in your project. The browser also keeps a copy in storage until
-              you clear it.
-            </p>
-            <form id="catalogEditorForm" class="catalog-editor__form">
-              <label class="catalog-editor__field">
-                <span>Edit existing</span>
-                <select id="catalogEditorPick" name="catalogPick" aria-label="Pick product to edit">
-                  <option value="-1">— New product —</option>
-                </select>
-              </label>
-              <label class="catalog-editor__field">
-                <span>Product ID (compare key)</span>
-                <input type="text" name="catalogId" required placeholder="e.g. Ocean Blue" autocomplete="off">
-              </label>
-              <label class="catalog-editor__field">
-                <span>Title (shown on card)</span>
-                <input type="text" name="catalogTitle" required placeholder="Display name" autocomplete="off">
-              </label>
-              <label class="catalog-editor__field">
-                <span>Price</span>
-                <input type="text" name="catalogPrice" placeholder="$9.99" autocomplete="off">
-              </label>
-              <label class="catalog-editor__field">
-                <span>Tier</span>
-                <select name="catalogTier">
-                  <option value="standard">Standard ($9.99 filter)</option>
-                  <option value="special">Special edition ($7.99 filter)</option>
-                </select>
-              </label>
-              <label class="catalog-editor__field">
-                <span>Image file</span>
-                <input type="text" name="catalogImage" placeholder="bottle_blue.png" autocomplete="off">
-              </label>
-              <label class="catalog-editor__field">
-                <span>Image alt text</span>
-                <input type="text" name="catalogImageAlt" placeholder="Accessible description" autocomplete="off">
-              </label>
-              <label class="catalog-editor__field catalog-editor__field--check">
-                <input type="checkbox" name="catalogPopular">
-                <span>Mark as popular (badge)</span>
-              </label>
-              <label class="catalog-editor__field catalog-editor__field--full">
-                <span>Card bullet items (one per line)</span>
-                <textarea name="catalogItems" rows="4" placeholder="750 ml capacity&#10;Smart tracking"></textarea>
-              </label>
-              <div class="catalog-editor__actions">
-                <button type="button" class="buyBtn" id="catalogAddBtn">Add product</button>
-                <button type="button" class="catalog-editor__btn-secondary" id="catalogUpdateBtn">Update
-                  selected</button>
-                <button type="button" class="catalog-editor__btn-danger" id="catalogDeleteBtn">Delete selected</button>
-              </div>
-              <div class="catalog-editor__actions">
-                <button type="button" class="buyBtn" id="catalogSaveDownloadBtn">Save &amp; download JSON</button>
-                <button type="button" class="catalog-editor__btn-secondary" id="catalogImportBtn">Import JSON
-                  file</button>
-                <button type="button" class="catalog-editor__btn-secondary" id="catalogResetBtn">Clear saved &amp;
-                  reload</button>
-              </div>
-            </form>
-            <input type="file" id="catalogFileInput" class="visually-hidden" accept=".json,application/json"
-              aria-hidden="true" tabindex="-1">
-          </div>
-        </details>
 
         <div class="product-catalog__filter filter-section">
           <h3 class="product-catalog__filter-heading">Filter bottles</h3>
@@ -155,21 +84,22 @@
           <div class="compare-panel__toolbar">
             <div class="compare-panel__headings">
               <h3 class="compare-panel__title">Compare bottles</h3>
-              <p class="compare-panel__status" id="compareStatus" aria-live="polite">Select up to 3 bottles using
-                Compare
-                on each card.</p>
+              <p class="compare-panel__status" id="compareStatus" aria-live="polite">Choose two or more bottles with
+                Compare on each card.</p>
             </div>
             <button type="button" class="compare-panel__clear" id="compareClearBtn" hidden>Clear all</button>
           </div>
-          <p class="compare-panel__empty" id="compareEmpty">Select up to 3 bottles to see a side-by-side comparison.</p>
+          <p class="compare-panel__empty" id="compareEmpty">Select two or more bottles to see a side-by-side
+            comparison.</p>
           <div class="compare-table compare-table--embedded" id="compareTable" hidden></div>
         </div>
       </div>
     </section>
     <!-- ========== BOTTLE QUIZ SECTION ========== -->
     <section class="quiz-section" id="quiz">
-      <h2>🎯 Find Your Perfect Bottle</h2>
-      <p class="section-subtitle">Answer 5 simple questions and get personalized recommendation</p>
+      <h2>🎯 Match a bottle to what you need</h2>
+      <p class="section-subtitle">Each question maps to real features listed on our product cards—capacity, tech, materials,
+        and finish.</p>
 
       <div class="quiz-container" id="quizContainer">
         <div class="quiz-card" id="quizCard">
@@ -188,10 +118,19 @@
         <div class="quiz-result" id="quizResult" style="display: none;">
           <div class="quiz-result-card">
             <div class="result-icon" id="resultIcon">🏆</div>
-            <h3 id="resultTitle">Your Perfect Bottle</h3>
+            <h3 id="resultTitle">Your match</h3>
             <p id="resultDescription"></p>
-            <div class="result-bottle" id="resultBottle"></div>
-            <button type="button" class="buyBtn quiz-order-btn" data-open-order-modal>Order now →</button>
+            <p class="quiz-result-catalog-line" id="resultCatalogLine"></p>
+            <div class="result-bottle" id="resultBottle">
+              <img src="" alt="" class="result-bottle__img" id="resultBottleImg" width="140" height="186" hidden>
+              <div class="result-bottle__fallback" id="resultBottleFallback">
+                <div class="water-fill" style="width: 80px; height: 120px; margin: 0 auto;">
+                  <div class="water-level" style="height: 70%;"></div>
+                </div>
+              </div>
+            </div>
+            <p class="quiz-result-membership" id="resultMembershipLine"></p>
+            <button type="button" class="buyBtn quiz-order-btn" id="quizOrderBtn">Order this bottle →</button>
             <button class="quiz-restart" onclick="resetQuiz()">Take Quiz Again ↻</button>
           </div>
         </div>
@@ -254,6 +193,18 @@
       <p>Visit www.hydrosmart.com for more info!</p>
     </div>
 
+    <!-- ========== 3D BOTTLE VIEWER MODAL ========== -->
+    <div class="bottle-viewer" id="bottleViewer">
+      <span style="position: absolute; top: 10px; right: 20px; cursor: pointer; font-size: 24px;"
+        onclick="closeViewer()">&times;</span>
+      <h3>3D Bottle View</h3>
+      <div class="viewer-3d" id="viewer3d">
+        <div class="water-fill" style="width: 150px; height: 200px;">
+          <div class="water-level" style="height: 60%;"></div>
+        </div>
+      </div>
+      <p class="viewer-angle">Angle: Front</p>
+    </div>
 
     <div id="orderModal" class="order-modal" hidden aria-hidden="true">
       <div class="order-modal__backdrop" data-close-order-modal tabindex="-1"></div>
@@ -309,7 +260,6 @@
           <li><a href="products.html?order=1">Order</a></li>
           <li><a href="help.html#shipping-calc">Shipping estimator</a></li>
           <li><a href="help.html#hydration-calc">Hydration calculator</a></li>
-          <li><a href="products.html#quiz">Bottle quiz</a></li>
         </ul>
       </nav>
       <div class="site-footer__col site-footer__col--cta">

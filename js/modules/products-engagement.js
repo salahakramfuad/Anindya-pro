@@ -162,56 +162,6 @@ document.querySelectorAll( '.water-fill' ).forEach( fill =>
   } )
 } )
 
-// ========== 33. 360° VIEWER (FIXED) ==========
-let currentAngle = 0
-let rotationInterval = null
-
-function openRotateViewer ()
-{
-  const viewer = document.getElementById( 'rotateViewer' )
-  if ( viewer ) viewer.style.display = 'flex'
-  currentAngle = 0
-  const img = document.getElementById( 'rotateImg' )
-  if ( img ) img.style.transform = 'rotateY(0deg)'
-}
-
-function closeRotateViewer ()
-{
-  const viewer = document.getElementById( 'rotateViewer' )
-  if ( viewer ) viewer.style.display = 'none'
-  if ( rotationInterval ) clearInterval( rotationInterval )
-}
-
-function rotateLeft ()
-{
-  currentAngle -= 15
-  const img = document.getElementById( 'rotateImg' )
-  if ( img ) img.style.transform = `rotateY(${currentAngle}deg)`
-}
-
-function rotateRight ()
-{
-  currentAngle += 15
-  const img = document.getElementById( 'rotateImg' )
-  if ( img ) img.style.transform = `rotateY(${currentAngle}deg)`
-}
-
-// Auto-rotate feature
-function startAutoRotate ()
-{
-  if ( rotationInterval ) clearInterval( rotationInterval )
-  rotationInterval = setInterval( () =>
-  {
-    currentAngle += 5
-    const img = document.getElementById( 'rotateImg' )
-    if ( img ) img.style.transform = `rotateY(${currentAngle}deg)`
-  }, 50 )
-}
-
-function stopAutoRotate ()
-{
-  if ( rotationInterval ) clearInterval( rotationInterval )
-}
 // ========== 34. PARALLAX SCROLL ==========
 let parallaxFrame = null
 window.addEventListener( 'scroll', () =>
@@ -227,7 +177,7 @@ window.addEventListener( 'scroll', () =>
 }, { passive: true } )
 
 // ========== 41. COMPARE BOTTLES (unified catalog cards) ==========
-const MAX_COMPARE = 3
+const MAX_COMPARE = 12
 let selectedProductIds = []
 
 function findProductCard ( productId )
@@ -244,47 +194,61 @@ function displayNameForCard ( card )
   return card?.querySelector( 'h3' )?.textContent?.trim() || ''
 }
 
-function specForProductId ( productId )
+/** Single product from loaded catalog JSON */
+function catalogProduct ( productId )
 {
-  const card = findProductCard( productId )
-  if ( !card ) return null
-  const tier = card.dataset.tier === 'special' ? 'special' : 'standard'
-  const priceEl = card.querySelector( 'p' )
-  const price = priceEl?.textContent?.trim() || '—'
-  if ( tier === 'special' )
-  {
-    return {
-      title: displayNameForCard( card ),
-      price,
-      edition: 'Special edition',
-      capacity: '500 ml (compact)',
-      smart: 'Yes',
-      selfClean: 'Included in SE bundle',
-      tempDisplay: 'Yes',
-      warranty: '3 months'
-    }
-  }
-  return {
-    title: displayNameForCard( card ),
-    price,
-    edition: 'Standard',
-    capacity: '750 ml',
-    smart: 'Yes',
-    selfClean: 'Optional add-on (+$7)',
-    tempDisplay: 'Yes',
-    warranty: '6 months'
-  }
+  return window.__productsCatalogData?.products?.find( p => p.id === productId )
 }
 
-const COMPARE_ROWS = [
-  { key: 'price', label: 'Price' },
-  { key: 'edition', label: 'Line' },
-  { key: 'capacity', label: 'Capacity' },
-  { key: 'smart', label: 'Smart features' },
-  { key: 'selfClean', label: 'UV self-cleaning' },
-  { key: 'tempDisplay', label: 'Temperature display' },
-  { key: 'warranty', label: 'Warranty' }
-]
+/**
+ * Build compare rows: core catalog fields plus one row per card bullet (aligned to selected columns).
+ */
+function compareRowsForProductIds ( productIds )
+{
+  if ( !productIds?.length ) return []
+
+  const products = productIds.map( id => catalogProduct( id ) )
+
+  const rows = [
+    {
+      label: 'Price',
+      values: products.map( p => ( p ? ( p.price?.trim() || '—' ) : '—' ) )
+    },
+    {
+      label: 'Edition',
+      values: products.map( p =>
+        ( !p ? '—' : ( p.tier === 'special' ? 'Special edition' : 'Standard' ) )
+      )
+    },
+    {
+      label: 'Popular on site',
+      values: products.map( p => ( p?.popular ? 'Yes' : '—' ) )
+    },
+    {
+      label: 'Product image (file)',
+      values: products.map( p => ( p?.image || '—' ) )
+    },
+    {
+      label: 'Image description (alt)',
+      values: products.map( p => ( p?.imageAlt?.trim() || '—' ) )
+    },
+    {
+      label: 'Catalog ID',
+      values: products.map( p => ( p?.id || '—' ) )
+    }
+  ]
+
+  const maxBullets = Math.max( 0, ...products.map( p => p?.items?.length || 0 ) )
+  for ( let i = 0; i < maxBullets; i++ )
+  {
+    rows.push( {
+      label: `Card feature ${i + 1}`,
+      values: products.map( p => ( p?.items?.[ i ]?.trim() || '—' ) )
+    } )
+  }
+
+  return rows
+}
 
 function syncCompareChrome ()
 {
@@ -293,25 +257,39 @@ function syncCompareChrome ()
   const emptyEl = document.getElementById( 'compareEmpty' )
   const tableWrap = document.getElementById( 'compareTable' )
   const n = selectedProductIds.length
+  const showTable = n >= 2
 
   if ( clearBtn ) clearBtn.hidden = n === 0
-  if ( emptyEl ) emptyEl.hidden = n > 0
+  if ( emptyEl )
+  {
+    emptyEl.hidden = showTable
+    if ( n === 1 )
+    {
+      emptyEl.textContent =
+        'One bottle selected—add at least one more to see a comparison table.'
+    } else if ( n === 0 )
+    {
+      emptyEl.textContent =
+        'Select two or more bottles (Compare on each card) to see them side by side.'
+    }
+  }
   if ( tableWrap )
   {
-    tableWrap.hidden = n === 0
-    if ( n === 0 ) tableWrap.textContent = ''
+    tableWrap.hidden = !showTable
+    if ( !showTable ) tableWrap.textContent = ''
   }
 
   if ( statusEl )
   {
     if ( n === 0 )
     {
-      statusEl.textContent = 'Select up to 3 bottles using Compare on each card.'
+      statusEl.textContent =
+        'Pick two or more bottles—tap Compare on each card (up to ' + MAX_COMPARE + ').'
     } else
     {
-      const labels = selectedProductIds.map( id => specForProductId( id )?.title || id )
+      const labels = selectedProductIds.map( id => catalogProduct( id )?.title || id )
       statusEl.textContent =
-        `Comparing ${n} of ${MAX_COMPARE}: ${labels.join( ', ' )}.`
+        `Comparing ${n}${n === MAX_COMPARE ? ' (max)' : ''}: ${labels.join( ', ' )}.`
     }
   }
 
@@ -338,7 +316,7 @@ function syncCompareChrome ()
 function updateCompareTable ()
 {
   const tableWrap = document.getElementById( 'compareTable' )
-  if ( !tableWrap || selectedProductIds.length === 0 ) return
+  if ( !tableWrap || selectedProductIds.length < 2 ) return
 
   tableWrap.textContent = ''
   const table = document.createElement( 'table' )
@@ -354,14 +332,14 @@ function updateCompareTable ()
   {
     const th = document.createElement( 'th' )
     th.scope = 'col'
-    const spec = specForProductId( id )
-    th.textContent = spec?.title || id
+    const p = catalogProduct( id )
+    th.textContent = p?.title || id
     headTr.appendChild( th )
   } )
   thead.appendChild( headTr )
 
   const tbody = document.createElement( 'tbody' )
-  COMPARE_ROWS.forEach( row =>
+  compareRowsForProductIds( selectedProductIds ).forEach( row =>
   {
     const tr = document.createElement( 'tr' )
     const th = document.createElement( 'th' )
@@ -369,11 +347,10 @@ function updateCompareTable ()
     th.textContent = row.label
     tr.appendChild( th )
 
-    selectedProductIds.forEach( id =>
+    row.values.forEach( cell =>
     {
       const td = document.createElement( 'td' )
-      const spec = specForProductId( id )
-      td.textContent = spec ? spec[ row.key ] : '—'
+      td.textContent = cell
       tr.appendChild( td )
     } )
     tbody.appendChild( tr )
@@ -399,7 +376,7 @@ function toggleCompareForCard ( card )
   {
     if ( typeof showMessage === 'function' )
     {
-      showMessage( 'You can compare up to 3 bottles at a time.', 'info' )
+      showMessage( `You can compare up to ${MAX_COMPARE} bottles at a time.`, 'info' )
     }
     return
   }
@@ -493,26 +470,34 @@ function initProductsPageCardWidgets ()
     card.addEventListener( 'mouseleave', () => { alertDiv.style.display = 'none' } )
   } )
 
-  document.querySelectorAll( '.card-compare-toggle' ).forEach( btn =>
-  {
-    btn.replaceWith( btn.cloneNode( true ) )
-  } )
-  document.querySelectorAll( '.card-compare-toggle' ).forEach( btn =>
-  {
-    btn.addEventListener( 'click', () =>
-    {
-      const card = btn.closest( '.card' )
-      if ( card ) toggleCompareForCard( card )
-    } )
-  } )
-
   syncCompareChrome()
 }
 
-document.addEventListener( 'hydro:productsCatalogRendered', () =>
+function bindProductsGridCompareDelegation ()
 {
-  clearCompare()
+  const grid = document.getElementById( 'productsGrid' )
+  if ( !grid || grid.dataset.compareBound === '1' ) return
+  grid.dataset.compareBound = '1'
+  grid.addEventListener( 'click', e =>
+  {
+    const btn = e.target.closest( '.card-compare-toggle' )
+    if ( !btn || !grid.contains( btn ) ) return
+    e.preventDefault()
+    e.stopPropagation()
+    const card = btn.closest( '.card' )
+    if ( card ) toggleCompareForCard( card )
+  } )
+}
+
+window.addEventListener( 'hydro:productsCatalogRendered', () =>
+{
+  selectedProductIds = selectedProductIds.filter( id =>
+    window.__productsCatalogData?.products?.some( p => p.id === id )
+  )
   initProductsPageCardWidgets()
+  syncCompareChrome()
+  updateCompareTable()
 } )
 
+bindProductsGridCompareDelegation()
 syncCompareChrome()

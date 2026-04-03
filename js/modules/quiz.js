@@ -1,183 +1,243 @@
 /**
- * Bottle recommendation quiz
- * Loads after: none
+ * Bottle matcher — scoring ties each answer to real catalog copy (capacity, tech, materials).
+ * Loads on products.html after catalog defines window.__productsCatalogData (optional for tie-break).
  */
-// ========== BOTTLE QUIZ (FULLY WORKING) ==========
+const QUIZ_CATALOG_ORDER = [
+  'Ocean Blue',
+  'Energy Green',
+  'Galaxy Purple',
+  'Classic Steel',
+  'Bright Black',
+  'Hot Pink',
+  'Arctic White',
+  'Rose Red'
+]
+
+/** Questions reference the same wording shoppers see on cards (750 ml, tracking, self-clean bundle, etc.) */
 const quizQuestions = [
   {
-    text: "How often do you drink water?",
-    options: [ "Rarely (1-2 glasses/day)", "Sometimes (3-4 glasses/day)", "Often (5-6 glasses/day)", "Always (7-8+ glasses/day)" ],
-    scores: [ 1, 2, 3, 4 ]
+    text: 'Size and price—what fits you?',
+    options: [
+      {
+        label: '500 ml compact special edition ($7.99)—small bag, limited runs',
+        bump: { 'Arctic White': 6, 'Rose Red': 6 }
+      },
+      {
+        label: '750 ml everyday bottle ($9.99)—main lineup, more colors',
+        bump: {
+          'Ocean Blue': 5,
+          'Energy Green': 5,
+          'Galaxy Purple': 5,
+          'Classic Steel': 5,
+          'Bright Black': 5,
+          'Hot Pink': 5
+        }
+      },
+      {
+        label: 'Lowest price matters most right now',
+        bump: { 'Arctic White': 8, 'Rose Red': 8, 'Ocean Blue': 1, 'Energy Green': 1, 'Galaxy Purple': 1, 'Classic Steel': 1, 'Bright Black': 1, 'Hot Pink': 1 }
+      },
+      {
+        label: 'Not sure—show a balanced pick',
+        bump: {
+          'Ocean Blue': 2,
+          'Energy Green': 2,
+          'Galaxy Purple': 2,
+          'Classic Steel': 2,
+          'Bright Black': 2,
+          'Hot Pink': 2,
+          'Arctic White': 2,
+          'Rose Red': 2
+        }
+      }
+    ]
   },
   {
-    text: "What's your main activity?",
-    options: [ "Student/Sedentary job", "Light exercise", "Regular sports/athlete", "Outdoor worker" ],
-    scores: [ 1, 2, 3, 4 ]
+    text: 'Which capability matches what you want? (from our listings)',
+    options: [
+      {
+        label: 'Smart hydration tracking (app)—like Ocean Blue',
+        bump: { 'Ocean Blue': 10 }
+      },
+      {
+        label: 'Temperature display on the bottle—like Energy Green',
+        bump: { 'Energy Green': 10 }
+      },
+      {
+        label: 'App reminders + leak-proof lid—like Galaxy Purple',
+        bump: { 'Galaxy Purple': 10 }
+      },
+      {
+        label: 'None of that—I just want water, no apps',
+        bump: { 'Classic Steel': 7, 'Bright Black': 6, 'Hot Pink': 6, 'Arctic White': 2, 'Rose Red': 2 }
+      }
+    ]
   },
   {
-    text: "Do you want smart features?",
-    options: [ "No, just a basic bottle", "Maybe, temperature display", "Yes, reminders and tracking", "Yes, all features + self-cleaning" ],
-    scores: [ 1, 2, 3, 4 ]
+    text: 'Materials and care—which line sounds like you?',
+    options: [
+      {
+        label: 'BPA-free stainless steel (sporty)—Energy Green style',
+        bump: { 'Energy Green': 8 }
+      },
+      {
+        label: 'Dishwasher-safe lid—Hot Pink style',
+        bump: { 'Hot Pink': 8 }
+      },
+      {
+        label: 'Self-clean bundle included in the box—Arctic White SE',
+        bump: { 'Arctic White': 10 }
+      },
+      {
+        label: 'Matte finish + wide mouth for ice—Classic Steel style',
+        bump: { 'Classic Steel': 9 }
+      }
+    ]
   },
   {
-    text: "What's your budget?",
-    options: [ "Under $10", "$10-$15", "$15-$20", "$20+" ],
-    scores: [ 1, 2, 3, 4 ]
+    text: 'Portability and finish for daily use?',
+    options: [
+      {
+        label: 'Carry loop + fingerprint-resistant—Bright Black',
+        bump: { 'Bright Black': 10 }
+      },
+      {
+        label: 'Leak-proof for tossing in a gym bag—Galaxy Purple',
+        bump: { 'Galaxy Purple': 7 }
+      },
+      {
+        label: 'Bold finish + easy-care lid—Hot Pink',
+        bump: { 'Hot Pink': 7 }
+      },
+      {
+        label: 'Simple stainless everyday look—Classic Steel',
+        bump: { 'Classic Steel': 6, 'Ocean Blue': 2, 'Energy Green': 2 }
+      }
+    ]
   },
   {
-    text: "Do you care about bottle color?",
-    options: [ "Not at all", "A little", "Yes, want options", "I want custom colors" ],
-    scores: [ 1, 2, 3, 4 ]
+    text: 'Buying mainly as a gift or for yourself?',
+    options: [
+      {
+        label: 'Gift-ready packaging matters—Rose Red SE',
+        bump: { 'Rose Red': 10 }
+      },
+      {
+        label: 'Limited / special colorway—compact SE',
+        bump: { 'Arctic White': 5, 'Rose Red': 5 }
+      },
+      {
+        label: 'For myself—daily carry',
+        bump: {
+          'Ocean Blue': 3,
+          'Energy Green': 3,
+          'Galaxy Purple': 3,
+          'Classic Steel': 3,
+          'Bright Black': 3,
+          'Hot Pink': 3
+        }
+      },
+      {
+        label: 'No strong preference',
+        bump: {
+          'Ocean Blue': 1,
+          'Energy Green': 1,
+          'Galaxy Purple': 1,
+          'Classic Steel': 1,
+          'Bright Black': 1,
+          'Hot Pink': 1,
+          'Arctic White': 1,
+          'Rose Red': 1
+        }
+      }
+    ]
   }
 ]
 
-/** Catalog-aligned ids for openOrderModal + imagery */
-const QUIZ_PRODUCT_META = {
-  "Ocean Blue": {
-    title: "Ocean Blue",
-    price: "$9.99",
-    headline: "Your pick: Ocean Blue",
-    description: "Strong match for tracking and daily sips—smart hydration features with optional UV add-on when you want to level up.",
-    image: "bottle_blue.png",
-    imageAlt: "Ocean Blue bottle",
-    icon: "💧"
-  },
-  "Energy Green": {
-    title: "Energy Green",
-    price: "$9.99",
-    headline: "Your pick: Energy Green",
-    description: "Great when you want quick temp readouts and a sporty feel without going full app-heavy.",
-    image: "bottle_green.png",
-    imageAlt: "Energy Green bottle",
-    icon: "🌿"
-  },
-  "Galaxy Purple": {
-    title: "Galaxy Purple",
-    price: "$9.99",
-    headline: "Your pick: Galaxy Purple",
-    description: "Styled and practical—leak-proof lid and reminders for a lighter smart setup.",
-    image: "bottle_purple.png",
-    imageAlt: "Galaxy Purple bottle",
-    icon: "✨"
-  },
-  "Classic Steel": {
-    title: "Classic Steel",
-    price: "$9.99",
-    headline: "Your pick: Classic Steel",
-    description: "Keep it simple: durable steel, wide mouth for ice, no-fuss hydration.",
-    image: "Whitebottle.png",
-    imageAlt: "Classic Steel bottle",
-    icon: "🥤"
-  },
-  "Bright Black": {
-    title: "Bright Black",
-    price: "$9.99",
-    headline: "Your pick: Bright Black",
-    description: "Low-key and rugged—fingerprint-resistant finish with a carry loop for on-the-go days.",
-    image: "blackbottle.png",
-    imageAlt: "Bright Black bottle",
-    icon: "⬛"
-  },
-  "Hot Pink": {
-    title: "Hot Pink",
-    price: "$9.99",
-    headline: "Your pick: Hot Pink",
-    description: "Bold color with a dishwasher-safe lid when you want the bottle to feel personal.",
-    image: "pinkbottle.png",
-    imageAlt: "Hot Pink bottle",
-    icon: "🩷"
-  },
-  "Arctic White": {
-    title: "Arctic White (Special Edition)",
-    price: "$7.99",
-    headline: "Your pick: Arctic White",
-    description: "Compact budget pick with self-clean bundle in the box—ideal when you want value under $10.",
-    image: "white.png",
-    imageAlt: "Arctic White bottle",
-    icon: "❄️"
-  },
-  "Rose Red": {
-    title: "Rose Red (Special Edition)",
-    price: "$7.99",
-    headline: "Your pick: Rose Red",
-    description: "Special edition sizing with gift-ready packaging—great when color and price both matter.",
-    image: "red.png",
-    imageAlt: "Rose Red bottle",
-    icon: "🌹"
+function catalogQuizProduct ( id )
+{
+  return window.__productsCatalogData?.products?.find( p => p.id === id )
+}
+
+function emptyScores ()
+{
+  const scores = {}
+  QUIZ_CATALOG_ORDER.forEach( id => { scores[ id ] = 0 } )
+  return scores
+}
+
+function applyBumps ( scores, bump )
+{
+  if ( !bump ) return
+  for ( const [ id, w ] of Object.entries( bump ) )
+  {
+    if ( typeof scores[ id ] === 'number' ) scores[ id ] += w
   }
 }
 
-const MEMBERSHIP_HINTS = {
-  "Basic Hydration": "Reminders and light perks—fits moderate routines.",
-  "Premium Hydration": "Best when you want full app features and priority support.",
-  "Family Hydration": "Multiple profiles—works well for busy households or teams.",
-  "Annual Premium": "Best value if you are all-in for the year—we will pre-select it at checkout."
+function totalScoresForAnswers ( answers )
+{
+  const scores = emptyScores()
+  answers.forEach( ( optIdx, qi ) =>
+  {
+    const opt = quizQuestions[ qi ]?.options?.[ optIdx ]
+    if ( opt ) applyBumps( scores, opt.bump )
+  } )
+  return scores
+}
+
+function pickTopProductId ( scores )
+{
+  let bestId = QUIZ_CATALOG_ORDER[ 0 ]
+  let best = scores[ bestId ] ?? -1
+  for ( const id of QUIZ_CATALOG_ORDER )
+  {
+    const s = scores[ id ] ?? 0
+    if ( s > best )
+    {
+      best = s
+      bestId = id
+      continue
+    }
+    if ( s === best )
+    {
+      const popNew = !!catalogQuizProduct( id )?.popular
+      const popOld = !!catalogQuizProduct( bestId )?.popular
+      if ( popNew && !popOld ) bestId = id
+    }
+  }
+  return bestId
+}
+
+function pickMembershipPlanFromAnswers ( answers )
+{
+  const tech = answers[ 1 ]
+  const gift = answers[ 4 ]
+  if ( tech === 0 || tech === 2 ) return 'Premium Hydration'
+  if ( tech === 1 ) return 'Basic Hydration'
+  if ( tech === 3 && gift === 0 ) return 'Basic Hydration'
+  return ''
+}
+
+const QUIZ_ICONS = {
+  'Ocean Blue': '💧',
+  'Energy Green': '🌿',
+  'Galaxy Purple': '✨',
+  'Classic Steel': '🥤',
+  'Bright Black': '⬛',
+  'Hot Pink': '🩷',
+  'Arctic White': '❄️',
+  'Rose Red': '🌹'
 }
 
 let currentQuestion = 0
-let userAnswers = []
 let quizAnswers = []
-
-function pickQuizProductId ( answers )
-{
-  const drink = answers[ 0 ]
-  const activity = answers[ 1 ]
-  const smart = answers[ 2 ]
-  const budget = answers[ 3 ]
-  const color = answers[ 4 ]
-
-  if ( budget === 0 )
-  {
-    if ( color >= 2 || smart >= 2 ) return "Rose Red"
-    return "Arctic White"
-  }
-
-  if ( smart === 3 )
-  {
-    if ( budget >= 2 ) return "Ocean Blue"
-    return "Arctic White"
-  }
-
-  if ( activity >= 2 && smart >= 2 ) return "Ocean Blue"
-  if ( activity >= 2 && smart === 1 ) return "Energy Green"
-
-  if ( smart === 0 )
-  {
-    if ( color === 0 ) return "Classic Steel"
-    if ( color === 1 ) return "Galaxy Purple"
-    if ( color === 2 ) return "Hot Pink"
-    return "Bright Black"
-  }
-
-  if ( smart === 1 ) return "Energy Green"
-  if ( smart === 2 )
-  {
-    if ( color <= 1 ) return "Galaxy Purple"
-    return "Ocean Blue"
-  }
-
-  return "Ocean Blue"
-}
-
-function pickMembershipPlan ( answers )
-{
-  const drink = answers[ 0 ]
-  const activity = answers[ 1 ]
-  const smart = answers[ 2 ]
-  const budget = answers[ 3 ]
-
-  if ( budget >= 3 && ( smart >= 3 || drink >= 3 ) ) return "Annual Premium"
-  if ( activity === 3 && drink >= 2 ) return "Family Hydration"
-  if ( activity >= 2 && drink >= 3 && smart >= 1 ) return "Family Hydration"
-  if ( smart >= 2 || ( drink >= 3 && activity >= 2 ) ) return "Premium Hydration"
-  if ( smart === 1 || drink >= 2 || activity >= 2 ) return "Basic Hydration"
-  return ""
-}
 
 function loadQuestion ()
 {
   const q = quizQuestions[ currentQuestion ]
-  document.getElementById( 'quizQuestion' ).textContent = `Question ${currentQuestion + 1}/${quizQuestions.length}`
+  document.getElementById( 'quizQuestion' ).textContent =
+    `Question ${currentQuestion + 1}/${quizQuestions.length}`
   document.getElementById( 'quizText' ).textContent = q.text
 
   const optionsDiv = document.getElementById( 'quizOptions' )
@@ -187,7 +247,7 @@ function loadQuestion ()
     const optionDiv = document.createElement( 'div' )
     optionDiv.className = 'quiz-option'
     if ( quizAnswers[ currentQuestion ] === idx ) optionDiv.classList.add( 'selected' )
-    optionDiv.textContent = option
+    optionDiv.textContent = option.label
     optionDiv.onclick = () => selectOption( idx )
     optionsDiv.appendChild( optionDiv )
   } )
@@ -196,7 +256,8 @@ function loadQuestion ()
   document.getElementById( 'quizProgressBar' ).style.width = `${progress}%`
 
   document.getElementById( 'quizPrev' ).style.display = currentQuestion === 0 ? 'none' : 'inline-block'
-  document.getElementById( 'quizNext' ).textContent = currentQuestion === quizQuestions.length - 1 ? 'See Result →' : 'Next ▶'
+  document.getElementById( 'quizNext' ).textContent =
+    currentQuestion === quizQuestions.length - 1 ? 'See match →' : 'Next ▶'
 }
 
 function selectOption ( optionIndex )
@@ -213,7 +274,7 @@ function nextQuestion ()
 {
   if ( quizAnswers[ currentQuestion ] === undefined )
   {
-    alert( 'Please select an answer!' )
+    alert( 'Please choose an answer.' )
     return
   }
 
@@ -238,41 +299,46 @@ function prevQuestion ()
 
 function showResult ()
 {
-  /* Option index 0..3 per question, in order */
   const ordered = quizQuestions.map( ( _, i ) => quizAnswers[ i ] )
-
-  const productId = pickQuizProductId( ordered )
-  const membershipPlan = pickMembershipPlan( ordered )
+  const scores = totalScoresForAnswers( ordered )
+  const productId = pickTopProductId( scores )
+  const membershipPlan = pickMembershipPlanFromAnswers( ordered )
 
   window.__quizRecommendation = { productId, membershipPlan }
 
-  const meta = QUIZ_PRODUCT_META[ productId ] || QUIZ_PRODUCT_META[ "Ocean Blue" ]
+  const catalog = catalogQuizProduct( productId )
+  const title = catalog?.title || productId
+  const price = catalog?.price || ''
+  const bullets = catalog?.items?.length
+    ? `What's on the card: ${catalog.items.join( ' · ' )}.`
+    : ''
 
-  document.getElementById( 'resultIcon' ).textContent = meta.icon
-  document.getElementById( 'resultTitle' ).textContent = meta.headline
-  document.getElementById( 'resultDescription' ).textContent = meta.description
+  document.getElementById( 'resultIcon' ).textContent = QUIZ_ICONS[ productId ] || '🏆'
+  document.getElementById( 'resultTitle' ).textContent = `Your match: ${title}`
 
-  document.getElementById( 'resultBottleName' ).textContent = meta.title
-  document.getElementById( 'resultBottlePrice' ).textContent = meta.price
+  const lead = catalog
+    ? 'We weighed your answers against each bottle’s real features (capacity, tech, materials, and finish).'
+    : 'Here is the closest match from our catalog.'
+  document.getElementById( 'resultDescription' ).textContent =
+    `${lead} Best overall fit right now: ${title}${price ? ` (${price})` : ''}.`
 
-  const memNameEl = document.getElementById( 'resultMembershipName' )
-  const memHintEl = document.getElementById( 'resultMembershipHint' )
-  if ( membershipPlan )
+  const lineEl = document.getElementById( 'resultCatalogLine' )
+  if ( lineEl ) lineEl.textContent = bullets
+
+  const memEl = document.getElementById( 'resultMembershipLine' )
+  if ( memEl )
   {
-    memNameEl.textContent = membershipPlan
-    memHintEl.textContent = MEMBERSHIP_HINTS[ membershipPlan ] || 'We will pre-select this in the order form—you can change it.'
-  } else
-  {
-    memNameEl.textContent = 'No plan suggested'
-    memHintEl.textContent = 'Stay flexible, or add a plan in checkout.'
+    memEl.textContent = membershipPlan
+      ? `Optional membership at checkout: ${membershipPlan} (you can change or clear it).`
+      : ''
   }
 
   const img = document.getElementById( 'resultBottleImg' )
   const fb = document.getElementById( 'resultBottleFallback' )
-  if ( meta.image && img && fb )
+  if ( catalog?.image && img && fb )
   {
-    img.src = meta.image
-    img.alt = meta.imageAlt || meta.title
+    img.src = catalog.image
+    img.alt = catalog.imageAlt || title
     img.hidden = false
     fb.hidden = true
   } else if ( img && fb )
@@ -290,12 +356,17 @@ function resetQuiz ()
   currentQuestion = 0
   quizAnswers = []
   window.__quizRecommendation = null
+  const lineEl = document.getElementById( 'resultCatalogLine' )
+  const memEl = document.getElementById( 'resultMembershipLine' )
+  if ( lineEl ) lineEl.textContent = ''
+  if ( memEl ) memEl.textContent = ''
   document.getElementById( 'quizCard' ).style.display = 'block'
   document.getElementById( 'quizResult' ).style.display = 'none'
   loadQuestion()
 }
 
-// Event listeners
+window.resetQuiz = resetQuiz
+
 document.getElementById( 'quizNext' )?.addEventListener( 'click', nextQuestion )
 document.getElementById( 'quizPrev' )?.addEventListener( 'click', prevQuestion )
 
@@ -315,7 +386,6 @@ document.getElementById( 'quizOrderBtn' )?.addEventListener( 'click', e =>
   }
 } )
 
-// Initialize quiz
 if ( document.getElementById( 'quizOptions' ) )
 {
   loadQuestion()
