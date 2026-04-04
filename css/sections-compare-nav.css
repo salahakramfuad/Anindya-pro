@@ -140,23 +140,23 @@
   color: #fecaca;
 }
 
-body.light-mode .catalog-editor {
+html.light-mode .catalog-editor {
   background: rgba(255, 255, 255, 0.55);
 }
 
-body.light-mode .catalog-editor__field input,
-body.light-mode .catalog-editor__field select,
-body.light-mode .catalog-editor__field textarea {
+html.light-mode .catalog-editor__field input,
+html.light-mode .catalog-editor__field select,
+html.light-mode .catalog-editor__field textarea {
   background: #fff;
   color: #0f172a;
   border-color: rgba(15, 23, 42, 0.12);
 }
 
-body.light-mode .catalog-editor__btn-danger {
+html.light-mode .catalog-editor__btn-danger {
   color: #991b1b;
 }
 
-body.light-mode .catalog-load-error {
+html.light-mode .catalog-load-error {
   color: #b91c1c;
 }
 
@@ -211,7 +211,7 @@ body.light-mode .catalog-load-error {
   color: var(--text-secondary);
 }
 
-body.light-mode .product-catalog__filter-heading {
+html.light-mode .product-catalog__filter-heading {
   color: var(--text-muted);
 }
 
@@ -352,25 +352,25 @@ body.light-mode .product-catalog__filter-heading {
   line-height: 1.45;
 }
 
-body.light-mode .compare-table.compare-table--embedded {
+html.light-mode .compare-table.compare-table--embedded {
   box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
   background: rgba(255, 255, 255, 0.65);
 }
 
-body.light-mode .compare-spec-table tbody tr:nth-child(even) td {
+html.light-mode .compare-spec-table tbody tr:nth-child(even) td {
   background: rgba(15, 23, 42, 0.03);
 }
 
-body.light-mode .compare-spec-table tbody tr:nth-child(even) th[scope="row"] {
+html.light-mode .compare-spec-table tbody tr:nth-child(even) th[scope="row"] {
   background: rgba(241, 245, 249, 0.95);
 }
 
-body.light-mode .compare-spec-table tbody tr:hover td,
-body.light-mode .compare-spec-table tbody tr:hover th[scope="row"] {
+html.light-mode .compare-spec-table tbody tr:hover td,
+html.light-mode .compare-spec-table tbody tr:hover th[scope="row"] {
   background: rgba(224, 242, 254, 0.65);
 }
 
-body.light-mode .compare-spec-table tbody th[scope="row"] {
+html.light-mode .compare-spec-table tbody th[scope="row"] {
   background: rgba(248, 250, 252, 0.98);
 }
 
@@ -429,7 +429,7 @@ body.light-mode .compare-spec-table tbody th[scope="row"] {
   display: block;
 }
 
-body.light-mode .nav-overlay {
+html.light-mode .nav-overlay {
   background: rgba(15, 23, 42, 0.35);
 }
 
@@ -580,31 +580,31 @@ body.light-mode .nav-overlay {
     color: #7dd3fc;
   }
 
-  body.light-mode .nav-item--more {
+  html.light-mode .nav-item--more {
     border-bottom-color: rgba(15, 23, 42, 0.08);
   }
 
-  body.light-mode .nav-details__panel li {
+  html.light-mode .nav-details__panel li {
     border-bottom-color: rgba(15, 23, 42, 0.06);
   }
 
-  body.light-mode .nav-details__panel a {
+  html.light-mode .nav-details__panel a {
     color: #0f172a;
   }
 
-  body.light-mode .nav-details__panel a:hover,
-  body.light-mode .nav-details__panel a:focus-visible {
+  html.light-mode .nav-details__panel a:hover,
+  html.light-mode .nav-details__panel a:focus-visible {
     background: rgba(14, 165, 233, 0.1);
     color: #0369a1;
   }
 
-  body.light-mode .main-nav {
+  html.light-mode .main-nav {
     background: rgba(255, 255, 255, 0.97);
     border-left-color: rgba(14, 165, 233, 0.2);
     box-shadow: -12px 0 40px rgba(15, 23, 42, 0.12);
   }
 
-  body.light-mode .main-nav .nav-list li {
+  html.light-mode .main-nav .nav-list li {
     border-bottom-color: rgba(15, 23, 42, 0.08);
   }
 }
@@ -641,67 +641,67 @@ body.light-mode .nav-overlay {
   }
 }
 
-body.light-mode .product-catalog__panel {
+html.light-mode .product-catalog__panel {
   background: rgba(255, 255, 255, 0.72);
   border-color: rgba(14, 165, 233, 0.15);
   box-shadow: 0 8px 40px rgba(15, 23, 42, 0.08);
 }
 
-body.light-mode .compare-panel__clear {
+html.light-mode .compare-panel__clear {
   border-color: rgba(14, 165, 233, 0.35);
   background: rgba(224, 242, 254, 0.9);
   color: #0f172a;
 }
 
-body.light-mode .compare-panel__empty {
+html.light-mode .compare-panel__empty {
   background: rgba(240, 249, 255, 0.95);
   border-color: rgba(15, 23, 42, 0.12);
   color: #64748b;
 }
 
-body.light-mode .compare-spec-table {
+html.light-mode .compare-spec-table {
   background: rgba(255, 255, 255, 0.95);
 }
 
-body.light-mode .compare-spec-table thead th {
+html.light-mode .compare-spec-table thead th {
   background: rgba(224, 242, 254, 0.95);
   color: #0f172a;
 }
 
-body.light-mode .compare-spec-table tbody th[scope="row"] {
+html.light-mode .compare-spec-table tbody th[scope="row"] {
   background: #f1f5f9;
   color: #334155;
 }
 
-body.light-mode .compare-spec-table tbody td {
+html.light-mode .compare-spec-table tbody td {
   color: #475569;
 }
 
-body.light-mode .compare-spec-table th,
-body.light-mode .compare-spec-table td {
+html.light-mode .compare-spec-table th,
+html.light-mode .compare-spec-table td {
   border-color: rgba(15, 23, 42, 0.1);
 }
 
-body.light-mode .compare-section {
+html.light-mode .compare-section {
   background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
 }
 
-body.light-mode .compare-card {
+html.light-mode .compare-card {
   background: rgba(255, 255, 255, 0.88);
   box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
 }
 
-body.light-mode .compare-card h4 {
+html.light-mode .compare-card h4 {
   color: #0f172a;
 }
 
-body.light-mode .compare-table table {
+html.light-mode .compare-table table {
   background: rgba(255, 255, 255, 0.95);
   color: #0f172a;
 }
 
-body.light-mode .compare-table th,
-body.light-mode .compare-table td {
+html.light-mode .compare-table th,
+html.light-mode .compare-table td {
   border-color: rgba(15, 23, 42, 0.1);
 }
 

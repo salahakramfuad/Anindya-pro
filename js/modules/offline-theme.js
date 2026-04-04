@@ -23,7 +23,7 @@ window.addEventListener( 'online', () =>
 
 // ========== DARK/LIGHT MODE TOGGLE ==========
 const modeToggle = document.getElementById( 'modeToggle' )
-const body = document.body
+const root = document.documentElement
 
 function syncModeToggleUi ( isLight )
 {
@@ -33,18 +33,16 @@ function syncModeToggleUi ( isLight )
   modeToggle.setAttribute( 'aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode' )
 }
 
-// Check for saved preference
+// Saved preference is applied on <html> in <head> to avoid flash; keep DOM in sync if script order differs
 const savedMode = localStorage.getItem( 'mode' )
-if ( savedMode === 'light' )
-{
-  body.classList.add( 'light-mode' )
-}
-syncModeToggleUi( body.classList.contains( 'light-mode' ) )
+if ( savedMode === 'light' ) root.classList.add( 'light-mode' )
+else if ( savedMode === 'dark' ) root.classList.remove( 'light-mode' )
+syncModeToggleUi( root.classList.contains( 'light-mode' ) )
 
 modeToggle?.addEventListener( 'click', () =>
 {
-  body.classList.toggle( 'light-mode' )
-  const isLight = body.classList.contains( 'light-mode' )
+  root.classList.toggle( 'light-mode' )
+  const isLight = root.classList.contains( 'light-mode' )
   syncModeToggleUi( isLight )
   try
   {

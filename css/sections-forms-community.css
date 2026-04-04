@@ -133,27 +133,166 @@
   background: rgba(56, 189, 248, 0.15);
 }
 
-body.light-mode .order-modal__dialog {
+html.light-mode .order-modal__dialog {
   background: linear-gradient(165deg, #f8fafc 0%, #e0f2fe 100%);
   border-color: rgba(14, 165, 233, 0.25);
   box-shadow: 0 20px 48px rgba(15, 23, 42, 0.12);
 }
 
-body.light-mode .order-modal__section .order input,
-body.light-mode .order-modal__section .order select {
+html.light-mode .order-modal__section .order input,
+html.light-mode .order-modal__section .order select {
   background: #fff;
   color: #0f172a;
   border: 1px solid rgba(15, 23, 42, 0.12);
 }
 
-body.light-mode .order-modal__label {
+html.light-mode .order-modal__label {
   color: #475569;
 }
 
-body.light-mode .order-modal__link-btn {
+html.light-mode .order-modal__link-btn {
   border-color: rgba(14, 165, 233, 0.35);
   color: #0369a1;
   background: rgba(224, 242, 254, 0.6);
+}
+
+/* Price alert modal (products page — email outside card) */
+.price-alert-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 890;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: max(1rem, env(safe-area-inset-top, 0px)) 1rem max(1rem, env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
+}
+
+.price-alert-modal.is-open {
+  display: flex;
+}
+
+.price-alert-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.price-alert-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 24rem);
+  border-radius: 18px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  background: linear-gradient(165deg, #0f172a 0%, #020617 100%);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+}
+
+.price-alert-modal__dialog:focus {
+  outline: none;
+}
+
+.price-alert-modal__close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.75rem;
+  width: 2.35rem;
+  height: 2.35rem;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary, #cbd5f5);
+  font-size: 1.45rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.price-alert-modal__close:hover {
+  background: rgba(56, 189, 248, 0.2);
+  color: #fff;
+}
+
+.price-alert-modal__body {
+  padding: 2rem 1.35rem 1.5rem;
+  text-align: center;
+}
+
+.price-alert-modal__body h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-primary, #f8fafc);
+}
+
+.price-alert-modal__lede {
+  margin: 0 0 0.35rem;
+  font-size: 0.9rem;
+  color: var(--text-muted, #94a3b8);
+}
+
+.price-alert-modal__product {
+  margin: 0 0 1.25rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #38bdf8;
+  line-height: 1.35;
+}
+
+.price-alert-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  text-align: left;
+}
+
+.price-alert-modal__label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary, #cbd5e1);
+}
+
+.price-alert-modal__form input {
+  padding: 0.75rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: rgba(15, 23, 42, 0.8);
+  color: var(--text-primary, #f8fafc);
+  font-size: 1rem;
+}
+
+.price-alert-modal__submit {
+  margin-top: 0.35rem;
+  width: 100%;
+}
+
+.price-alert-modal__fineprint {
+  margin: 1rem 0 0;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--text-muted, #64748b);
+}
+
+html.light-mode .price-alert-modal__dialog {
+  background: linear-gradient(165deg, #fff 0%, #f0f9ff 100%);
+  border-color: rgba(14, 165, 233, 0.28);
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.12);
+}
+
+html.light-mode .price-alert-modal__body h2 {
+  color: #0f172a;
+}
+
+html.light-mode .price-alert-modal__product {
+  color: #0369a1;
+}
+
+html.light-mode .price-alert-modal__form input {
+  background: #fff;
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.12);
 }
 
 /* Custom Color Modal */
@@ -517,22 +656,22 @@ body.light-mode .order-modal__link-btn {
   line-height: 1.45;
 }
 
-body.light-mode .site-footer {
+html.light-mode .site-footer {
   background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 50%, #f8fafc 100%);
   border-top-color: rgba(14, 165, 233, 0.2);
   color: #475569;
 }
 
-body.light-mode .site-footer__tagline,
-body.light-mode .site-footer__copy {
+html.light-mode .site-footer__tagline,
+html.light-mode .site-footer__copy {
   color: #64748b;
 }
 
-body.light-mode .site-footer__links a {
+html.light-mode .site-footer__links a {
   color: #334155;
 }
 
-body.light-mode .site-footer__links a:hover {
+html.light-mode .site-footer__links a:hover {
   color: #0284c7;
 }
 

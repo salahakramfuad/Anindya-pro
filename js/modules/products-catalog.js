@@ -85,11 +85,18 @@ function renderProductCards ( container, data )
     media.appendChild( img )
     card.appendChild( media )
 
+    const tierEl = document.createElement( 'span' )
+    tierEl.className = 'card__tier'
+    tierEl.textContent = product.tier === 'special' ? 'Special edition' : 'Standard line'
+    card.appendChild( tierEl )
+
     const h3 = document.createElement( 'h3' )
+    h3.className = 'card__title'
     h3.textContent = product.title
     card.appendChild( h3 )
 
     const priceEl = document.createElement( 'p' )
+    priceEl.className = 'card__price'
     priceEl.textContent = product.price
     card.appendChild( priceEl )
 
@@ -109,6 +116,9 @@ function renderProductCards ( container, data )
     const actions = document.createElement( 'div' )
     actions.className = 'card__actions'
 
+    const row = document.createElement( 'div' )
+    row.className = 'card__actions-row'
+
     const cmp = document.createElement( 'button' )
     cmp.type = 'button'
     cmp.className = 'card-compare-toggle'
@@ -121,8 +131,17 @@ function renderProductCards ( container, data )
     buy.className = 'buy-card-btn'
     buy.textContent = 'Buy'
 
-    actions.appendChild( cmp )
-    actions.appendChild( buy )
+    const notify = document.createElement( 'button' )
+    notify.type = 'button'
+    notify.className = 'card-notify-btn'
+    notify.setAttribute( 'aria-haspopup', 'dialog' )
+    notify.setAttribute( 'aria-label', `Get a price drop alert for ${product.title}` )
+    notify.textContent = 'Notify me'
+
+    row.appendChild( cmp )
+    row.appendChild( buy )
+    actions.appendChild( row )
+    actions.appendChild( notify )
     card.appendChild( actions )
     container.appendChild( card )
   } )

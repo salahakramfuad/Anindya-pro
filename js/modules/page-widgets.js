@@ -26,7 +26,7 @@ filterBtns.forEach( btn =>
 
     productCards.forEach( card =>
     {
-      const price = card.querySelector( 'p' )?.innerText || ''
+      const price = card.querySelector( '.card__price' )?.innerText || card.querySelector( 'p' )?.innerText || ''
       if ( filter === 'all' )
       {
         card.style.display = 'block'

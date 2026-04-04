@@ -63,10 +63,14 @@ function showMessage ( message, type = 'success' )
   alert.setAttribute( 'role', 'status' )
   alert.setAttribute( 'aria-live', 'polite' )
 
+  const isLight = document.documentElement.classList.contains( 'light-mode' )
   const content = document.createElement( 'div' )
   content.className = 'alert-content'
-  content.style.background = 'linear-gradient(135deg, #1e293b, #0f172a)'
+  content.style.background = isLight
+    ? 'linear-gradient(165deg, #f8fafc 0%, #e0f2fe 100%)'
+    : 'linear-gradient(135deg, #1e293b, #0f172a)'
   content.style.borderLeft = `4px solid ${type === 'success' ? '#22c55e' : '#38bdf8'}`
+  content.style.boxShadow = isLight ? '0 12px 40px rgba(15, 23, 42, 0.12)' : ''
 
   const icon = document.createElement( 'span' )
   icon.className = 'alert-icon'
@@ -75,6 +79,7 @@ function showMessage ( message, type = 'success' )
 
   const p = document.createElement( 'p' )
   p.textContent = message
+  p.style.color = isLight ? '#0f172a' : 'white'
 
   content.appendChild( icon )
   content.appendChild( p )

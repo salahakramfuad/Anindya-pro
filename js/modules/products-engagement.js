@@ -1,5 +1,5 @@
 /**
- * Visitor counter, wishlist, viewers, parallax, compare bottles
+ * Visitor counter, viewers, parallax, compare bottles
  */
 // ========== 1. LIVE VISITOR COUNTER ==========
 let visitorCount = Math.floor( Math.random() * 50 ) + 100
@@ -112,31 +112,6 @@ function printSizeChart ()
   }
   printWindow.document.write( chartHTML )
   printWindow.document.close()
-}
-// ========== 5. SAVE FOR LATER (WISHLIST) ==========
-let wishlist = []
-try
-{
-  wishlist = JSON.parse( localStorage.getItem( 'wishlist' ) || '[]' ) || []
-  if ( !Array.isArray( wishlist ) ) wishlist = []
-} catch ( _ )
-{
-  wishlist = []
-}
-function updateWishlistCount ()
-{
-  const countEl = document.getElementById( 'wishlistCount' )
-  if ( countEl ) countEl.textContent = wishlist.length
-}
-updateWishlistCount()
-
-function showWishlistPopup ( message )
-{
-  const popup = document.createElement( 'div' )
-  popup.className = 'wishlist-popup'
-  popup.textContent = message
-  document.body.appendChild( popup )
-  setTimeout( () => popup.remove(), 2000 )
 }
 
 // ========== 19. 3D BOTTLE VIEWER ==========
@@ -406,33 +381,6 @@ function initProductsPageCardWidgets ()
     card.appendChild( badge )
   } )
 
-  document.querySelectorAll( '.card' ).forEach( ( card, index ) =>
-  {
-    if ( card.querySelector( '.wishlist-btn' ) ) return
-    const productName = card.querySelector( 'h3' )?.innerText || `Product ${index}`
-    const wishBtn = document.createElement( 'button' )
-    wishBtn.type = 'button'
-    wishBtn.innerHTML = wishlist.includes( productName ) ? '❤️ Saved' : '🤍 Save for Later'
-    wishBtn.className = 'wishlist-btn'
-    wishBtn.addEventListener( 'click', () =>
-    {
-      if ( wishlist.includes( productName ) )
-      {
-        wishlist = wishlist.filter( p => p !== productName )
-        wishBtn.innerHTML = '🤍 Save for Later'
-        showWishlistPopup( `Removed ${productName} from wishlist` )
-      } else
-      {
-        wishlist.push( productName )
-        wishBtn.innerHTML = '❤️ Saved'
-        showWishlistPopup( `Added ${productName} to wishlist` )
-      }
-      localStorage.setItem( 'wishlist', JSON.stringify( wishlist ) )
-      updateWishlistCount()
-    } )
-    card.appendChild( wishBtn )
-  } )
-
   document.querySelectorAll( '.card img' ).forEach( img =>
   {
     img.replaceWith( img.cloneNode( true ) )
@@ -440,34 +388,6 @@ function initProductsPageCardWidgets ()
   document.querySelectorAll( '.card img' ).forEach( img =>
   {
     img.addEventListener( 'click', open3DViewer )
-  } )
-
-  document.querySelectorAll( '.card' ).forEach( card =>
-  {
-    if ( card.querySelector( '.price-alert' ) ) return
-    const alertDiv = document.createElement( 'div' )
-    alertDiv.className = 'price-alert'
-    alertDiv.style.display = 'none'
-    const emailInput = document.createElement( 'input' )
-    emailInput.type = 'email'
-    emailInput.placeholder = 'Email for price alert'
-    const notifyBtn = document.createElement( 'button' )
-    notifyBtn.type = 'button'
-    notifyBtn.className = 'buyBtn'
-    notifyBtn.style.padding = '5px'
-    notifyBtn.style.fontSize = '12px'
-    notifyBtn.style.marginTop = '5px'
-    notifyBtn.textContent = 'Notify Me'
-    notifyBtn.addEventListener( 'click', () =>
-    {
-      alert( '✅ You will be notified when price drops!' )
-      alertDiv.style.display = 'none'
-    } )
-    alertDiv.appendChild( emailInput )
-    alertDiv.appendChild( notifyBtn )
-    card.appendChild( alertDiv )
-    card.addEventListener( 'mouseenter', () => { alertDiv.style.display = 'block' } )
-    card.addEventListener( 'mouseleave', () => { alertDiv.style.display = 'none' } )
   } )
 
   syncCompareChrome()
@@ -480,12 +400,91 @@ function bindProductsGridCompareDelegation ()
   grid.dataset.compareBound = '1'
   grid.addEventListener( 'click', e =>
   {
+    const notifyBtn = e.target.closest( '.card-notify-btn' )
+    if ( notifyBtn && grid.contains( notifyBtn ) )
+    {
+      e.preventDefault()
+      e.stopPropagation()
+      const card = notifyBtn.closest( '.card' )
+      const id = card?.dataset?.product
+      const title = card?.querySelector( '.card__title' )?.textContent?.trim()
+        || card?.querySelector( 'h3' )?.textContent?.trim()
+        || id
+      if ( typeof window.openPriceAlertModal === 'function' )
+      {
+        window.openPriceAlertModal( { productId: id || '', title: title || '' } )
+      }
+      return
+    }
+
     const btn = e.target.closest( '.card-compare-toggle' )
     if ( !btn || !grid.contains( btn ) ) return
     e.preventDefault()
     e.stopPropagation()
     const card = btn.closest( '.card' )
     if ( card ) toggleCompareForCard( card )
+  } )
+}
+
+function initPriceAlertModal ()
+{
+  const modal = document.getElementById( 'priceAlertModal' )
+  if ( !modal ) return
+
+  const close = () =>
+  {
+    modal.hidden = true
+    modal.classList.remove( 'is-open' )
+    modal.setAttribute( 'aria-hidden', 'true' )
+    document.body.style.overflow = ''
+  }
+
+  window.openPriceAlertModal = ( { productId = '', title = '' } = {} ) =>
+  {
+    const nameEl = document.getElementById( 'priceAlertProductName' )
+    const emailEl = document.getElementById( 'priceAlertEmail' )
+    if ( nameEl )
+    {
+      nameEl.textContent = title || productId || 'this bottle'
+    }
+    modal.dataset.productId = productId
+    if ( emailEl ) emailEl.value = ''
+    modal.hidden = false
+    modal.classList.add( 'is-open' )
+    modal.setAttribute( 'aria-hidden', 'false' )
+    document.body.style.overflow = 'hidden'
+    emailEl?.focus()
+  }
+
+  window.closePriceAlertModal = close
+
+  modal.querySelector( '[data-close-price-alert-modal]' )?.addEventListener( 'click', close )
+  modal.querySelector( '.price-alert-modal__close' )?.addEventListener( 'click', close )
+
+  document.getElementById( 'priceAlertForm' )?.addEventListener( 'submit', e =>
+  {
+    e.preventDefault()
+    const email = document.getElementById( 'priceAlertEmail' )?.value?.trim()
+    if ( !email )
+    {
+      if ( typeof showMessage === 'function' ) showMessage( 'Please enter your email.', 'info' )
+      return
+    }
+    if ( typeof showMessage === 'function' )
+    {
+      showMessage( 'You’re on the list—we’ll email you if this bottle’s price drops.', 'success' )
+    } else
+    {
+      alert( 'You’re on the list!' )
+    }
+    close()
+  } )
+
+  document.addEventListener( 'keydown', e =>
+  {
+    if ( e.key !== 'Escape' ) return
+    if ( !modal.classList.contains( 'is-open' ) ) return
+    close()
   } )
 }
 
@@ -499,5 +498,6 @@ window.addEventListener( 'hydro:productsCatalogRendered', () =>
   updateCompareTable()
 } )
 
+initPriceAlertModal()
 bindProductsGridCompareDelegation()
 syncCompareChrome()

@@ -166,59 +166,59 @@
   border-top: 1px solid var(--border-color, rgba(148, 163, 184, 0.12));
 }
 
-body.light-mode .help-hero {
+html.light-mode .help-hero {
   background: linear-gradient(165deg, #f0f9ff 0%, #eef2ff 45%, #f8fafc 100%);
   border-bottom-color: rgba(15, 23, 42, 0.08);
 }
 
-body.light-mode .help-hero h1 {
+html.light-mode .help-hero h1 {
   color: #0f172a;
 }
 
-body.light-mode .help-hero__lead {
+html.light-mode .help-hero__lead {
   color: #475569;
 }
 
-body.light-mode .help-toc a {
+html.light-mode .help-toc a {
   color: #0f172a;
   background: rgba(14, 165, 233, 0.12);
   border-color: rgba(14, 165, 233, 0.35);
 }
 
-body.light-mode .help-toc a:hover {
+html.light-mode .help-toc a:hover {
   background: rgba(14, 165, 233, 0.2);
 }
 
-body.light-mode .help-section h2 {
+html.light-mode .help-section h2 {
   color: #0f172a;
 }
 
-body.light-mode .help-section--muted {
+html.light-mode .help-section--muted {
   background: rgba(15, 23, 42, 0.03);
 }
 
-body.light-mode .help-card {
+html.light-mode .help-card {
   background: #fff;
   border-color: rgba(15, 23, 42, 0.1);
   box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
 }
 
-body.light-mode .help-card h3 {
+html.light-mode .help-card h3 {
   color: #0f172a;
 }
 
-body.light-mode .help-card p,
-body.light-mode .help-card li {
+html.light-mode .help-card p,
+html.light-mode .help-card li {
   color: #64748b;
 }
 
-body.light-mode .help-callout {
+html.light-mode .help-callout {
   background: rgba(224, 242, 254, 0.6);
   border-color: rgba(14, 165, 233, 0.25);
   color: #475569;
 }
 
-body.light-mode .help-callout strong {
+html.light-mode .help-callout strong {
   color: #0f172a;
 }
 
@@ -276,7 +276,7 @@ body.light-mode .help-callout strong {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-body.light-mode .page-help .shortcuts-popup kbd {
+html.light-mode .page-help .shortcuts-popup kbd {
   background: rgba(15, 23, 42, 0.08);
   border-color: rgba(15, 23, 42, 0.15);
 }
