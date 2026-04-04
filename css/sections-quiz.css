@@ -138,11 +138,11 @@
   display: none;
 }
 
-body.light-mode .quiz-result-catalog-line {
+html.light-mode .quiz-result-catalog-line {
   color: #475569;
 }
 
-body.light-mode .quiz-result-membership {
+html.light-mode .quiz-result-membership {
   color: #64748b;
 }
 
@@ -206,34 +206,34 @@ body.light-mode .quiz-result-membership {
   display: block;
 }
 
-body.light-mode .quiz-card,
-body.light-mode .quiz-result-card {
+html.light-mode .quiz-card,
+html.light-mode .quiz-result-card {
   background: white;
 }
 
-body.light-mode .quiz-text,
-body.light-mode .quiz-option {
+html.light-mode .quiz-text,
+html.light-mode .quiz-option {
   color: #0f172a;
 }
 
-body.light-mode .quiz-result-pick {
+html.light-mode .quiz-result-pick {
   background: rgba(224, 242, 254, 0.65);
   border-color: rgba(14, 165, 233, 0.25);
 }
 
-body.light-mode .quiz-result-pick__label {
+html.light-mode .quiz-result-pick__label {
   color: #0369a1;
 }
 
-body.light-mode .quiz-result-pick__title {
+html.light-mode .quiz-result-pick__title {
   color: #0f172a;
 }
 
-body.light-mode .quiz-result-pick__meta {
+html.light-mode .quiz-result-pick__meta {
   color: #475569;
 }
 
-body.light-mode .result-bottle {
+html.light-mode .result-bottle {
   background: rgba(224, 242, 254, 0.5);
 }
 

@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){try{if(localStorage.getItem('mode')==='light')document.documentElement.classList.add('light-mode');}catch(_){}})();</script>
   <title>Products | HydroSmart</title>
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="hydrosmart-192.png">
@@ -142,9 +143,6 @@
       <span id="visitorCount">0</span> people viewing now
     </div>
 
-    <!-- ========== WISHLIST COUNT ========== -->
-    <div class="wishlist-count" id="wishlistCount">0</div>
-
     <!-- ========== DAILY HYDRATION FACT ========== -->
     <div class="hydration-fact" id="hydrationFact">
       <div class="fact-icon">💧</div>
@@ -234,6 +232,25 @@
             <button type="submit">Place order</button>
           </form>
         </section>
+      </div>
+    </div>
+
+    <div id="priceAlertModal" class="price-alert-modal" hidden aria-hidden="true">
+      <div class="price-alert-modal__backdrop" data-close-price-alert-modal tabindex="-1"></div>
+      <div class="price-alert-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="priceAlertModalTitle">
+        <button type="button" class="price-alert-modal__close" aria-label="Close price alert form">&times;</button>
+        <div class="price-alert-modal__body">
+          <h2 id="priceAlertModalTitle">Price drop alert</h2>
+          <p class="price-alert-modal__lede">We’ll email you if the price goes down on:</p>
+          <p class="price-alert-modal__product" id="priceAlertProductName"></p>
+          <form id="priceAlertForm" class="price-alert-modal__form">
+            <label class="price-alert-modal__label" for="priceAlertEmail">Email</label>
+            <input type="email" id="priceAlertEmail" name="priceAlertEmail" required autocomplete="email"
+              placeholder="you@example.com">
+            <button type="submit" class="buyBtn price-alert-modal__submit">Notify me</button>
+          </form>
+          <p class="price-alert-modal__fineprint">No spam—one product, opt out anytime. Demo only (no backend).</p>
+        </div>
       </div>
     </div>
 

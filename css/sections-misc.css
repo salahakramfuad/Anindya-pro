@@ -727,37 +727,37 @@ select option:hover {
 }
 
 /* ========== Light mode — misc sections & forms ========== */
-body.light-mode .reviews-section,
-body.light-mode .facts-section {
+html.light-mode .reviews-section,
+html.light-mode .facts-section {
   background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
   border-color: rgba(14, 165, 233, 0.15);
 }
 
-body.light-mode .review-card,
-body.light-mode .fact-card {
+html.light-mode .review-card,
+html.light-mode .fact-card {
   background: rgba(255, 255, 255, 0.85);
   border-color: rgba(15, 23, 42, 0.08);
 }
 
-body.light-mode .review-text {
+html.light-mode .review-text {
   color: #475569;
 }
 
-body.light-mode .fact-label {
+html.light-mode .fact-label {
   color: #64748b;
 }
 
-body.light-mode .shipping-form select,
-body.light-mode .calc-input-group select,
-body.light-mode select {
+html.light-mode .shipping-form select,
+html.light-mode .calc-input-group select,
+html.light-mode select {
   background: #f8fafc;
   color: #0f172a;
   border-color: rgba(14, 165, 233, 0.35);
 }
 
-body.light-mode .shipping-form select option,
-body.light-mode .calc-input-group select option,
-body.light-mode select option {
+html.light-mode .shipping-form select option,
+html.light-mode .calc-input-group select option,
+html.light-mode select option {
   background: #f1f5f9;
   color: #0f172a;
 }
