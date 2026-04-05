@@ -42,6 +42,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+main {
+  flex: 1 0 auto;
+  width: 100%;
+  min-width: 0;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -716,8 +722,8 @@ html.light-mode .fact-refresh {
 }
 
 .viewer-3d {
-  width: 300px;
-  height: 300px;
+  width: min(100%, 300px);
+  aspect-ratio: 1;
   margin: 20px auto;
   position: relative;
   cursor: grab;
@@ -790,6 +796,29 @@ html.light-mode .fact-refresh {
   background-size: cover;
 }
 
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .parallax {
+    background-attachment: scroll;
+  }
+
+  .hydration-fact {
+    margin-left: clamp(0.75rem, 4vw, 8%);
+    margin-right: clamp(0.75rem, 4vw, 8%);
+  }
+
+  .live-counter {
+    left: max(12px, env(safe-area-inset-left, 0px));
+    bottom: max(12px, env(safe-area-inset-bottom, 0px));
+    max-width: calc(100vw - 5.5rem);
+    flex-wrap: wrap;
+    font-size: 11px;
+  }
+}
+
 /* ========== BACK IN STOCK ALERT ========== */
 .back-in-stock {
   margin-top: 10px;
@@ -831,7 +860,7 @@ html.light-mode .fact-refresh {
 .page-hub__grid {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
   gap: 1rem;
 }
 

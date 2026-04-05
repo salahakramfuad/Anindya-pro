@@ -20,6 +20,7 @@ function closeMobileMenu ()
     mobileMenuBtn.setAttribute( 'aria-label', 'Open menu' )
   }
   if ( navOverlay ) navOverlay.classList.remove( 'active' )
+  document.body.classList.remove( 'nav-drawer-open' )
   document.body.style.overflow = ''
 }
 
@@ -33,6 +34,7 @@ function openMobileMenu ()
     mobileMenuBtn.setAttribute( 'aria-label', 'Close menu' )
   }
   if ( navOverlay ) navOverlay.classList.add( 'active' )
+  document.body.classList.add( 'nav-drawer-open' )
   document.body.style.overflow = 'hidden'
 }
 

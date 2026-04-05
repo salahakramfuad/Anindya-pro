@@ -9,6 +9,11 @@
   gap: 40px;
 }
 
+.hero-text {
+  flex: 1 1 min(100%, 22rem);
+  min-width: 0;
+}
+
 .hero-text h1 {
   font-size: 60px;
   background: linear-gradient(90deg, #38bdf8, #22c55e);
@@ -51,8 +56,15 @@
   transform: translateY(0);
 }
 
+.heroImage {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: center;
+}
+
 .heroImage img {
-  width: 420px;
+  width: min(100%, 420px);
+  height: auto;
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
 }
 
@@ -563,7 +575,7 @@ html.light-mode .product-catalog .card-notify-btn:hover {
 
 .membership-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 30px;
   margin-bottom: 60px;
 }
