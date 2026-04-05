@@ -8,7 +8,8 @@
 .order form {
   display: flex;
   flex-direction: column;
-  width: 350px;
+  width: min(100%, 22rem);
+  max-width: 100%;
   margin: auto;
   gap: 15px;
 }
@@ -465,7 +466,8 @@ html.light-mode .price-alert-modal__form input {
 .contact form {
   display: flex;
   flex-direction: column;
-  width: 350px;
+  width: min(100%, 22rem);
+  max-width: 100%;
   margin: auto;
   gap: 15px;
 }
@@ -690,15 +692,16 @@ html.light-mode .site-footer__links a:hover {
   .hero {
     flex-direction: column;
     text-align: center;
-    padding: 60px 5%;
+    padding: clamp(2.5rem, 8vw, 3.75rem) clamp(1rem, 5vw, 5%);
   }
 
   .hero-text h1 {
-    font-size: 40px;
+    font-size: clamp(2rem, 7vw, 2.5rem);
+    line-height: 1.15;
   }
 
   .heroImage img {
-    width: 280px;
+    width: min(100%, 300px);
   }
 
   .products {
@@ -755,21 +758,52 @@ html.light-mode .site-footer__links a:hover {
     padding: 20px;
   }
 
-  .search-input {
-    width: 120px;
-    padding: 6px 10px;
-    font-size: 12px;
+  .techfeatures,
+  .bodyfeatures,
+  .customization-section,
+  .membership,
+  .product,
+  .social-community,
+  .contact,
+  .order {
+    padding-left: clamp(1rem, 5vw, 8%);
+    padding-right: clamp(1rem, 5vw, 8%);
   }
 
-  .search-button {
-    padding: 6px 12px;
-    font-size: 12px;
+  .section-subtitle {
+    margin-bottom: clamp(1.5rem, 5vw, 3rem);
   }
 }
 
 @media (max-width: 480px) {
+  .hero {
+    padding: 2.5rem 1rem 2rem;
+    gap: 1.5rem;
+  }
+
   .hero-text h1 {
-    font-size: 32px;
+    font-size: clamp(1.65rem, 9vw, 2rem);
+    line-height: 1.15;
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .buyBtn {
+    display: block;
+    width: 100%;
+    max-width: 18rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .heroImage img {
+    width: min(100%, 240px);
   }
 
   .card {
@@ -779,6 +813,14 @@ html.light-mode .site-footer__links a:hover {
 
   .comparison-table {
     font-size: 10px;
+  }
+
+  .search-input {
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: clamp(1.45rem, 6vw, 2rem);
   }
 }
 
@@ -798,7 +840,7 @@ html.light-mode .site-footer__links a:hover {
 
 .social-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
   gap: 30px;
   margin-top: 20px;
 }
