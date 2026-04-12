@@ -13,142 +13,117 @@ const QUIZ_CATALOG_ORDER = [
   'Rose Red'
 ]
 
-/** Questions reference the same wording shoppers see on cards (750 ml, tracking, self-clean bundle, etc.) */
+/** Enhanced personality-based bottle matcher with lifestyle scenarios */
 const quizQuestions = [
   {
-    text: 'Size and price—what fits you?',
+    text: '🌅 Your perfect morning starts with...',
     options: [
       {
-        label: '500 ml compact special edition ($7.99)—small bag, limited runs',
-        bump: { 'Arctic White': 6, 'Rose Red': 6 }
+        label: '⚡ High-intensity workout - need hydration that keeps up',
+        bump: { 'Energy Green': 10, 'Ocean Blue': 5 }
       },
       {
-        label: '750 ml everyday bottle ($9.99)—main lineup, more colors',
-        bump: {
-          'Ocean Blue': 5,
-          'Energy Green': 5,
-          'Galaxy Purple': 5,
-          'Classic Steel': 5,
-          'Bright Black': 5,
-          'Hot Pink': 5
-        }
+        label: '☕ Slow coffee ritual - elegance matters',
+        bump: { 'Classic Steel': 8, 'Rose Red': 6 }
       },
       {
-        label: 'Lowest price matters most right now',
-        bump: { 'Arctic White': 8, 'Rose Red': 8, 'Ocean Blue': 1, 'Energy Green': 1, 'Galaxy Purple': 1, 'Classic Steel': 1, 'Bright Black': 1, 'Hot Pink': 1 }
+        label: '🧘‍♀️ Meditation & yoga - peaceful vibes only',
+        bump: { 'Galaxy Purple': 9, 'Arctic White': 5 }
       },
       {
-        label: 'Not sure—show a balanced pick',
-        bump: {
-          'Ocean Blue': 2,
-          'Energy Green': 2,
-          'Galaxy Purple': 2,
-          'Classic Steel': 2,
-          'Bright Black': 2,
-          'Hot Pink': 2,
-          'Arctic White': 2,
-          'Rose Red': 2
-        }
+        label: '🚀 Rush hour warrior - grab and go!',
+        bump: { 'Bright Black': 10, 'Hot Pink': 4 }
       }
     ]
   },
   {
-    text: 'Which capability matches what you want? (from our listings)',
+    text: '💼 Your work style is...',
     options: [
       {
-        label: 'Smart hydration tracking (app)—like Ocean Blue',
-        bump: { 'Ocean Blue': 10 }
+        label: '🏢 Corporate professional - sleek & discreet',
+        bump: { 'Classic Steel': 10, 'Bright Black': 7 }
       },
       {
-        label: 'Temperature display on the bottle—like Energy Green',
-        bump: { 'Energy Green': 10 }
+        label: '🎨 Creative freelancer - bold & expressive',
+        bump: { 'Hot Pink': 10, 'Galaxy Purple': 6 }
       },
       {
-        label: 'App reminders + leak-proof lid—like Galaxy Purple',
-        bump: { 'Galaxy Purple': 10 }
+        label: '👨‍💻 Tech innovator - smart & connected',
+        bump: { 'Ocean Blue': 10, 'Energy Green': 5 }
       },
       {
-        label: 'None of that—I just want water, no apps',
-        bump: { 'Classic Steel': 7, 'Bright Black': 6, 'Hot Pink': 6, 'Arctic White': 2, 'Rose Red': 2 }
+        label: '🌿 Outdoor adventurer - rugged & ready',
+        bump: { 'Energy Green': 9, 'Classic Steel': 4 }
       }
     ]
   },
   {
-    text: 'Materials and care—which line sounds like you?',
+    text: '🎉 Weekend personality check...',
     options: [
       {
-        label: 'BPA-free stainless steel (sporty)—Energy Green style',
-        bump: { 'Energy Green': 8 }
+        label: '🏃‍♀️ Adventure seeker - hiking, biking, exploring',
+        bump: { 'Energy Green': 10, 'Classic Steel': 6 }
       },
       {
-        label: 'Dishwasher-safe lid—Hot Pink style',
-        bump: { 'Hot Pink': 8 }
+        label: '📚 Cozy homebody - books, Netflix, comfort',
+        bump: { 'Arctic White': 9, 'Rose Red': 5 }
       },
       {
-        label: 'Self-clean bundle included in the box—Arctic White SE',
-        bump: { 'Arctic White': 10 }
+        label: '🎉 Social butterfly - parties, events, people',
+        bump: { 'Hot Pink': 10, 'Bright Black': 4 }
       },
       {
-        label: 'Matte finish + wide mouth for ice—Classic Steel style',
-        bump: { 'Classic Steel': 9 }
+        label: '✨ Self-care Sunday - spa, wellness, me-time',
+        bump: { 'Galaxy Purple': 9, 'Rose Red': 6 }
       }
     ]
   },
   {
-    text: 'Portability and finish for daily use?',
+    text: '📱 Your tech philosophy...',
     options: [
       {
-        label: 'Carry loop + fingerprint-resistant—Bright Black',
-        bump: { 'Bright Black': 10 }
+        label: '🚀 Early adopter - love smart features & apps',
+        bump: { 'Ocean Blue': 10, 'Energy Green': 6 }
       },
       {
-        label: 'Leak-proof for tossing in a gym bag—Galaxy Purple',
-        bump: { 'Galaxy Purple': 7 }
+        label: '🔋 Battery life obsessed - practical over flashy',
+        bump: { 'Classic Steel': 8, 'Energy Green': 7 }
       },
       {
-        label: 'Bold finish + easy-care lid—Hot Pink',
-        bump: { 'Hot Pink': 7 }
+        label: '📸 Instagram ready - aesthetics are everything',
+        bump: { 'Hot Pink': 10, 'Galaxy Purple': 8, 'Rose Red': 6 }
       },
       {
-        label: 'Simple stainless everyday look—Classic Steel',
-        bump: { 'Classic Steel': 6, 'Ocean Blue': 2, 'Energy Green': 2 }
+        label: '🚫 Tech-minimalist - just want it to work',
+        bump: { 'Arctic White': 9, 'Classic Steel': 5 }
       }
     ]
   },
   {
-    text: 'Buying mainly as a gift or for yourself?',
+    text: '🎁 This bottle is for...',
     options: [
       {
-        label: 'Gift-ready packaging matters—Rose Red SE',
-        bump: { 'Rose Red': 10 }
-      },
-      {
-        label: 'Limited / special colorway—compact SE',
-        bump: { 'Arctic White': 5, 'Rose Red': 5 }
-      },
-      {
-        label: 'For myself—daily carry',
+        label: '🎯 Me - daily hydration upgrade',
         bump: {
           'Ocean Blue': 3,
           'Energy Green': 3,
-          'Galaxy Purple': 3,
           'Classic Steel': 3,
           'Bright Black': 3,
-          'Hot Pink': 3
+          'Hot Pink': 3,
+          'Galaxy Purple': 3
         }
       },
       {
-        label: 'No strong preference',
-        bump: {
-          'Ocean Blue': 1,
-          'Energy Green': 1,
-          'Galaxy Purple': 1,
-          'Classic Steel': 1,
-          'Bright Black': 1,
-          'Hot Pink': 1,
-          'Arctic White': 1,
-          'Rose Red': 1
-        }
+        label: '🎁 Special gift - wow factor required',
+        bump: { 'Rose Red': 10, 'Galaxy Purple': 8, 'Arctic White': 6 }
+      },
+      {
+        label: '🏆 Achievement reward - earned this!',
+        bump: { 'Bright Black': 8, 'Classic Steel': 6, 'Energy Green': 5 }
+      },
+      {
+        label: '💕 Couple matching - his & hers vibes',
+        bump: { 'Rose Red': 7, 'Arctic White': 5, 'Hot Pink': 4 }
       }
     ]
   }
@@ -262,12 +237,31 @@ function loadQuestion ()
 
 function selectOption ( optionIndex )
 {
-  quizAnswers[ currentQuestion ] = optionIndex
-  document.querySelectorAll( '.quiz-option' ).forEach( ( opt, idx ) =>
+  // Add haptic feedback simulation (visual pulse)
+  const options = document.querySelectorAll( '.quiz-option' )
+  options.forEach( ( opt, idx ) =>
   {
-    if ( idx === optionIndex ) opt.classList.add( 'selected' )
-    else opt.classList.remove( 'selected' )
+    opt.classList.remove( 'selected' )
+    if ( idx === optionIndex )
+    {
+      opt.classList.add( 'selected' )
+      // Add pulse animation
+      opt.style.animation = 'none'
+      setTimeout( () => {
+        opt.style.animation = 'pulse 0.3s ease-out'
+      }, 10 )
+    }
   } )
+
+  quizAnswers[ currentQuestion ] = optionIndex
+
+  // Auto-advance after selection for better UX
+  setTimeout( () => {
+    if ( currentQuestion < quizQuestions.length - 1 )
+    {
+      nextQuestion()
+    }
+  }, 800 )
 }
 
 function nextQuestion ()
