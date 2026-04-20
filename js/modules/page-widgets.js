@@ -364,4 +364,3 @@ document.addEventListener( 'keydown', ( e ) =>
     shortcutsPopup.classList.remove( 'show' )
   }
 } )
-
