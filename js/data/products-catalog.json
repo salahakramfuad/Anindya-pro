@@ -4,7 +4,7 @@
     {
       "id": "Ocean Blue",
       "title": "Ocean Blue",
-      "price": "$9.99",
+      "price": "11,99 USD",
       "tier": "standard",
       "image": "bottle_blue.png",
       "imageAlt": "Ocean Blue Bottle",
@@ -18,7 +18,7 @@
     {
       "id": "Energy Green",
       "title": "Energy Green",
-      "price": "$9.99",
+      "price": "11,99 USD",
       "tier": "standard",
       "image": "bottle_green.png",
       "imageAlt": "Energy Green Bottle",
@@ -32,7 +32,7 @@
     {
       "id": "Galaxy Purple",
       "title": "Galaxy Purple",
-      "price": "$9.99",
+      "price": "11,99 USD",
       "tier": "standard",
       "image": "bottle_purple.png",
       "imageAlt": "Galaxy Purple Bottle",
@@ -46,7 +46,7 @@
     {
       "id": "Classic Steel",
       "title": "Classic Steel",
-      "price": "$9.99",
+      "price": "11,99 USD",
       "tier": "standard",
       "image": "Whitebottle.png",
       "imageAlt": "Classic Steel Bottle",
@@ -60,7 +60,7 @@
     {
       "id": "Bright Black",
       "title": "Bright Black",
-      "price": "$9.99",
+      "price": "11,99 USD",
       "tier": "standard",
       "image": "blackbottle.png",
       "imageAlt": "Bright Black Bottle",
@@ -74,7 +74,7 @@
     {
       "id": "Hot Pink",
       "title": "Hot Pink",
-      "price": "$9.99",
+      "price": "11,99 USD",
       "tier": "standard",
       "image": "pinkbottle.png",
       "imageAlt": "Hot Pink Bottle",
@@ -88,7 +88,7 @@
     {
       "id": "Arctic White",
       "title": "Arctic White (Special Edition)",
-      "price": "$7.99",
+      "price": "10,49 USD",
       "tier": "special",
       "image": "white.png",
       "imageAlt": "Arctic White Bottle",
@@ -102,7 +102,7 @@
     {
       "id": "Rose Red",
       "title": "Rose Red (Special Edition)",
-      "price": "$7.99",
+      "price": "10,49 USD",
       "tier": "special",
       "image": "red.png",
       "imageAlt": "Rose Red Bottle",
