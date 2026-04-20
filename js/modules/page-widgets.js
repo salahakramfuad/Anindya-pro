@@ -26,14 +26,14 @@ filterBtns.forEach( btn =>
 
     productCards.forEach( card =>
     {
-      const price = card.querySelector( '.card__price' )?.innerText || card.querySelector( 'p' )?.innerText || ''
+      const tier = ( card.dataset.tier || '' ).toLowerCase()
       if ( filter === 'all' )
       {
         card.style.display = 'block'
-      } else if ( filter === 'standard' && price === '$9.99' )
+      } else if ( filter === 'standard' && tier === 'standard' )
       {
         card.style.display = 'block'
-      } else if ( filter === 'special' && price === '$7.99' )
+      } else if ( filter === 'special' && tier === 'special' )
       {
         card.style.display = 'block'
       } else
@@ -170,40 +170,6 @@ document.querySelectorAll( '.card' ).forEach( ( card, index ) =>
     badge.textContent = '⚠️ Limited Stock'
   }
   card.appendChild( badge )
-} )
-
-// Back-in-stock signup (must run after stock badges exist)
-document.querySelectorAll( '.card' ).forEach( card =>
-{
-  const stockBadge = card.querySelector( '.stock-badge.limited' )
-  if ( !stockBadge ) return
-
-  const alertDiv = document.createElement( 'div' )
-  alertDiv.className = 'back-in-stock'
-  const emailInput = document.createElement( 'input' )
-  emailInput.type = 'email'
-  emailInput.placeholder = 'Email when back in stock'
-  emailInput.setAttribute( 'aria-label', 'Email for back in stock alerts' )
-  const notifyBtn = document.createElement( 'button' )
-  notifyBtn.type = 'button'
-  notifyBtn.className = 'buyBtn'
-  notifyBtn.style.padding = '5px'
-  notifyBtn.style.fontSize = '12px'
-  notifyBtn.style.marginTop = '5px'
-  notifyBtn.textContent = 'Notify Me'
-  notifyBtn.addEventListener( 'click', () =>
-  {
-    if ( !emailInput.value.trim() )
-    {
-      alert( 'Please enter your email.' )
-      emailInput.focus()
-      return
-    }
-    alert( '✅ We will email you when this bottle is back in stock!' )
-  } )
-  alertDiv.appendChild( emailInput )
-  alertDiv.appendChild( notifyBtn )
-  card.appendChild( alertDiv )
 } )
 
 // ========== ESTIMATED DELIVERY (FIXED - Shows below order form) ==========
